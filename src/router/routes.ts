@@ -8,7 +8,9 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/chat_layout',
     component: () => import('src/layouts/MainLayout.vue'),
-    children: [{ path: '/chats', component: () => import('components/ChatsList/index.vue') }],
+    children: [
+      { path: '/settings', component: () => import('components/Tools/Settings/index.vue') },
+    ],
   },
 
   // Always leave this as last one,

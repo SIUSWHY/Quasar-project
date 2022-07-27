@@ -28,61 +28,6 @@
 
     <q-drawer show-if-above v-model="rightDrawerOpen" :width="width" side="right">
       <router-view></router-view>
-      <q-item>
-        <q-item-section side>
-          <q-icon name="west" size="1.5em" @click="toggleRightDrawer"></q-icon>
-        </q-item-section>
-        <q-item-section side>
-          <q-avatar :rounded="false" size="50px">
-            <img src="../assets/avatars/avatar.jpg" />
-          </q-avatar>
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Ares</q-item-label>
-          <q-item-label caption>online</q-item-label>
-        </q-item-section>
-        <q-item-section side>
-          <q-icon name="more_vert" size="1.5em"></q-icon>
-        </q-item-section>
-      </q-item>
-      <q-item>
-        <div id="q-app">
-          <div class="q-pa-md row justify-center">
-            <div style="width: 100%; max-width: 400px">
-              <q-chat-message label="Sunday, 19th"></q-chat-message>
-
-              <q-chat-message
-                name="me"
-                avatar="https://cdn.quasar.dev/img/avatar4.jpg"
-                :text="['hey, how are you?']"
-                sent
-                stamp="7 minutes ago"
-              ></q-chat-message>
-              <q-chat-message
-                name="Jane"
-                avatar="https://cdn.quasar.dev/img/avatar3.jpg"
-                :text="['doing fine, how r you?']"
-                stamp="4 minutes ago"
-              ></q-chat-message>
-            </div>
-          </div>
-        </div>
-      </q-item>
-      <!-- <q-item>
-        <div id="q-app">
-          <div class="q-pa-md">
-            <div class="q-gutter-y-md column">
-              <q-input bottom-slots v-model="text" label="Label" :dense="dense">
-                <template v-slot:before>
-                  <q-avatar>
-                    <img src="https://cdn.quasar.dev/img/avatar5.jpg" />
-                  </q-avatar>
-                </template>
-              </q-input>
-            </div>
-          </div>
-        </div>
-      </q-item> -->
     </q-drawer>
 
     <q-page-container>
@@ -100,14 +45,17 @@ const linksList = [
   {
     title: 'Contacts',
     icon: 'perm_contact_calendar',
+    link: '/settings',
   },
   {
     title: 'Favorites',
     icon: 'bookmark',
+    link: '/chat_layout/settings',
   },
   {
     title: 'Settings',
     icon: 'settings',
+    link: '/chat_layout/settings',
   },
 ];
 const chatList = [

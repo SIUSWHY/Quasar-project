@@ -10,8 +10,8 @@ export default defineComponent({
     };
   },
   methods: {
-    onSubmit() {
-      this.$router.push({ path: 'chat_layout' });
-    },
+    // onSubmit() {
+    //   this.$router.push({ path: 'chat_layout' });
+    // },
   },
 });
