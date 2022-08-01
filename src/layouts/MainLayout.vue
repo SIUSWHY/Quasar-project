@@ -31,7 +31,13 @@
     </q-drawer>
 
     <q-page-container>
-      <ChatList @click="toggleRightDrawer" v-for="chat in chats" :key="chat.name" v-bind="chat" />
+      <ChatList
+        @click="toggleRightDrawer"
+        :to="chat.link"
+        v-for="chat in chats"
+        :key="chat.name"
+        v-bind="chat"
+      />
     </q-page-container>
   </q-layout>
 </template>
@@ -42,20 +48,20 @@ import EssentialLink from 'components/EssentialLink.vue';
 import ChatList from 'components/ChatsList/index.vue';
 
 const linksList = [
-  {
-    title: 'Contacts',
-    icon: 'perm_contact_calendar',
-    link: '/settings',
-  },
-  {
-    title: 'Favorites',
-    icon: 'bookmark',
-    link: '/chat_layout/settings',
-  },
+  // {
+  //   title: 'Contacts',
+  //   icon: 'perm_contact_calendar',
+  //   link: 'settings',
+  // },
+  // {
+  //   title: 'Favorites',
+  //   icon: 'bookmark',
+  //   link: 'settings',
+  // },
   {
     title: 'Settings',
     icon: 'settings',
-    link: '/chat_layout/settings',
+    link: '/settings',
   },
 ];
 const chatList = [
@@ -64,18 +70,21 @@ const chatList = [
     caption: '21',
     time: '2',
     avatar: require('src/assets/avatars/FP_Ares.png'),
+    link: '/chat_layout/chat',
   },
   {
     name: 'Ares1',
     caption: '2',
     time: '37',
     avatar: require('src/assets/avatars/FP_Ares.png'),
+    link: '/chat_layout/chat',
   },
   {
     name: 'Ares2',
     caption: '5',
     time: '51',
     avatar: require('src/assets/avatars/FP_Ares.png'),
+    link: '/chat_layout/chat',
   },
 ];
 
@@ -102,7 +111,9 @@ export default defineComponent({
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
       toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
+        setTimeout(() => {
+          rightDrawerOpen.value = !rightDrawerOpen.value;
+        }, 125);
       },
     };
   },

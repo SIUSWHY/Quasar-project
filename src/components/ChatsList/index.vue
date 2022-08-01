@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable v-ripple>
+  <q-item clickable v-ripple to="chat">
     <q-item-section side>
       <q-avatar rounded size="50px">
         <img :src="avatar" />

@@ -9,7 +9,8 @@ const routes: RouteRecordRaw[] = [
     path: '/chat_layout',
     component: () => import('src/layouts/MainLayout.vue'),
     children: [
-      { path: '/settings', component: () => import('components/Tools/Settings/index.vue') },
+      { path: 'settings', component: () => import('components/Tools/Settings/index.vue') },
+      { path: 'chat', component: () => import('components/Chat/index.vue') },
     ],
   },
 
