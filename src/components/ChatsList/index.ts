@@ -11,12 +11,10 @@ export default defineComponent({
       type: String,
       default: '',
     },
-
     caption: {
       type: String,
       default: '',
     },
-
     time: {
       type: String,
       default: '',

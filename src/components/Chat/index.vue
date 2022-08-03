@@ -1,5 +1,5 @@
 <template>
-  <q-item style="background-color: #2e2e2e">
+  <q-item style="background-color: #2e2e2e; position: absolute; z-index: 1; width: 100%">
     <q-item-section side>
       <router-link to="/chat_layout">
         <q-icon name="west" size="1.5em" @click="toggleRightDrawer"></q-icon>
@@ -18,29 +18,34 @@
       <q-icon name="more_vert" size="1.5em"></q-icon>
     </q-item-section>
   </q-item>
-  <q-item>
+  <q-item style="padding-top: 66px; padding-bottom: 50px">
     <div id="q-app">
       <div class="q-pa-md row justify-center">
-        <div style="width: 100%">
+        <div style="width: 100%; heiht: auto">
           <q-chat-message label="Sunday, 19th"></q-chat-message>
-
-          <q-chat-message
-            name="me"
-            avatar="https://cdn.quasar.dev/img/avatar4.jpg"
-            :text="['hey, how are you?']"
-            sent
-            stamp="7 minutes ago"
-          ></q-chat-message>
-          <q-chat-message
-            name="Jane"
-            avatar="https://cdn.quasar.dev/img/avatar3.jpg"
-            :text="['doing fine, how r you?']"
-            stamp="4 minutes ago"
-          ></q-chat-message>
+          <MessageComponent
+            v-for="message in messages"
+            :key="message.name"
+            v-bind="message"
+            :message="message"
+          />
         </div>
       </div>
     </div>
   </q-item>
+  <q-footer style="background-color: #1d1d1d">
+    <q-item>
+      <q-item-section side>
+        <q-icon size="1.7em" name="sentiment_very_satisfied"></q-icon>
+      </q-item-section>
+      <q-item-section>
+        <q-input placeholder="Placeholder"></q-input>
+      </q-item-section>
+      <q-item-section side>
+        <q-icon size="1.7em" name="send"></q-icon>
+      </q-item-section>
+    </q-item>
+  </q-footer>
 </template>
 
 <script lang="ts" src="./index.ts" />
