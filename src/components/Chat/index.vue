@@ -22,10 +22,10 @@
     <div id="q-app">
       <div class="q-pa-md row justify-center">
         <div style="width: 100%; heiht: auto">
-          <q-chat-message label="Sunday, 19th"></q-chat-message>
+          <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
           <MessageComponent
             v-for="message in messages"
-            :key="message.name"
+            :key="message.id"
             v-bind="message"
             :message="message"
           />

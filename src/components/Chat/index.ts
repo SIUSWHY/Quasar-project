@@ -1,13 +1,16 @@
+// import { io } from 'socket.io-client';
 import { defineComponent } from 'vue';
 import MessageComponent from './Message/index.vue';
 
 const messagesList = [
-  { name: 'me', text: 'hey, how are you' },
+  { id: 1, name: 'me', massegeText: ['hey, how are you', 'test'] },
   {
+    id: 2,
     name: 'Jane',
-    text: 'doing fine, how r you?',
+    massegeText: ['doing fine, how r you?'],
   },
 ];
+// const socket = io('http://localhost:8080/#/chat_layout/chat');
 
 export default defineComponent({
   name: 'ChatPage',

@@ -1,12 +1,23 @@
 <template>
   <div>
-    <q-chat-message
-      :name="this.message.name"
-      avatar="https://cdn.quasar.dev/img/avatar4.jpg"
-      :text="text"
-      :sent="true"
-      stamp="7 minutes ago"
-    ></q-chat-message>
+    <div v-if="this.message.name === 'me'">
+      <q-chat-message
+        :name="this.message.name"
+        avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+        :text="this.message.massegeText"
+        :sent="true"
+        stamp="7 minutes ago"
+      ></q-chat-message>
+    </div>
+    <div v-else>
+      <q-chat-message
+        :name="this.message.name"
+        avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+        :text="this.message.massegeText"
+        :sent="false"
+        stamp="7 minutes ago"
+      ></q-chat-message>
+    </div>
   </div>
   <!-- <q-chat-message
           name="Jane"

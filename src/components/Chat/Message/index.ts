@@ -6,16 +6,8 @@ export default defineComponent({
     message: {
       type: Object,
     },
-    // text: {
-    //   type: String,
-    // },
   },
   data() {
     return {};
   },
-  mounted() {
-    console.log(this.message);
-    // debugger;
-  },
-  methods: {},
 });

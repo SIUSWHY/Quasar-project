@@ -18,6 +18,7 @@
         <strong>
           <EssentialLink
             @click="toggleRightDrawer"
+            :to="link.link"
             v-for="link in essentialLinks"
             :key="link.title"
             v-bind="link"
@@ -51,17 +52,17 @@ const linksList = [
   {
     title: 'Contacts',
     icon: 'perm_contact_calendar',
-    link: '/settings',
+    link: '/chat_layout/settings',
   },
   {
     title: 'Favorites',
     icon: 'bookmark',
-    link: '/settings',
+    link: '/chat_layout/settings',
   },
   {
     title: 'Settings',
     icon: 'settings',
-    link: '/settings',
+    link: '/chat_layout/settings',
   },
 ];
 const chatList = [
