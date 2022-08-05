@@ -1,5 +1,5 @@
-// import { io } from 'socket.io-client';
-import { defineComponent } from 'vue';
+import { io } from 'socket.io-client';
+import { defineComponent, ref } from 'vue';
 import MessageComponent from './Message/index.vue';
 
 const messagesList = [
@@ -10,7 +10,23 @@ const messagesList = [
     massegeText: ['doing fine, how r you?'],
   },
 ];
-// const socket = io('http://localhost:8080/#/chat_layout/chat');
+const socket = io('http://localhost:3000', {
+  query: {
+    // idRoom
+  },
+});
+
+socket.on('ok', data => {
+  console.log(data);
+  // set state
+});
+
+setTimeout(() => {
+  socket.emit('message', {
+    test: true,
+  });
+}, 2000);
+const messageText = ref(null);
 
 export default defineComponent({
   name: 'ChatPage',
@@ -19,8 +35,20 @@ export default defineComponent({
   },
   setup() {
     return {
+      socket,
+      messageText,
       messages: messagesList,
     };
   },
-  methods: {},
+  methods: {
+    postMessage() {
+      if (messageText.value === (null || undefined || '')) {
+        return;
+      }
+      socket.emit('message', {
+        message: messageText.value,
+      });
+      // console.log(messageText.value);
+    },
+  },
 });

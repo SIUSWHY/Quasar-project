@@ -39,10 +39,10 @@
         <q-icon size="1.7em" name="sentiment_very_satisfied"></q-icon>
       </q-item-section>
       <q-item-section>
-        <q-input placeholder="Placeholder"></q-input>
+        <q-input v-model="messageText" placeholder="Placeholder"></q-input>
       </q-item-section>
       <q-item-section side>
-        <q-icon size="1.7em" name="send"></q-icon>
+        <q-icon size="1.7em" @click="postMessage()" name="send"></q-icon>
       </q-item-section>
     </q-item>
   </q-footer>

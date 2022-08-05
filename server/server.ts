@@ -2,12 +2,19 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 async function run() {
   const app = express();
+  const httpServer = createServer(app);
+  const io = new Server(httpServer, {
+    cors: {
+      origin: 'http://localhost:8080',
+    },
+    /* options */
+  });
   const port = 3000;
-  const io = new Server();
 
   app.use(cors());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,11 +27,23 @@ async function run() {
   io.on('connection', socket => {
     console.log('a user connected');
     socket.on('disconnect', () => {
-      console.log('user disconnected');
+      console.log('a user disconnected');
+    });
+
+    socket.on('message', data => {
+      console.log(data);
+
+      // save to DB
+
+      socket.emit('ok', { AAA: false });
     });
   });
 
-  io.listen(port);
+  httpServer.listen(port, () =>
+    console.log(`
+  Example app listening on port ${port}!
+  `)
+  );
 
   // app.listen(port, () =>
   //   console.log(`

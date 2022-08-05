@@ -10,7 +10,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('src/layouts/MainLayout.vue'),
     children: [
       { path: 'settings', component: () => import('components/Tools/Settings/index.vue') },
-      { path: 'chat', component: () => import('components/Chat/index.vue') },
+      {
+        path: 'chat/:id',
+        component: () => import('components/Chat/index.vue'),
+        beforeEnter(to: any, from: any) {
+          // react to route changes...
+          console.log(to.params.id);
+        },
+      },
     ],
   },
 
