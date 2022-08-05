@@ -1,9 +1,15 @@
 <template>
   <q-item style="background-color: #2e2e2e; position: absolute; z-index: 1; width: 100%">
     <q-item-section side>
-      <router-link to="/chat_layout">
-        <q-icon name="west" size="1.5em" @click="toggleRightDrawer"></q-icon>
-      </router-link>
+      <q-icon
+        name="west"
+        size="1.5em"
+        @click="
+          () => {
+            toggleRightDrawer, goChatLayout();
+          }
+        "
+      ></q-icon>
     </q-item-section>
     <q-item-section side>
       <q-avatar :rounded="false" size="50px">

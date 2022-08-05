@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('components/Chat/index.vue'),
         beforeEnter(to: any, from: any) {
           // react to route changes...
-          console.log(to.params.id);
+          // console.log(to.params.id);
         },
       },
     ],

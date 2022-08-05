@@ -40,7 +40,16 @@ export default defineComponent({
       messages: messagesList,
     };
   },
+  unmounted() {
+    socket.disconnect();
+  },
+  mounted() {
+    socket.connect();
+  },
   methods: {
+    goChatLayout() {
+      this.$router.push('/chat_layout');
+    },
     postMessage() {
       if (messageText.value === (null || undefined || '')) {
         return;
