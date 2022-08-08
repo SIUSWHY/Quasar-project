@@ -18,6 +18,9 @@ const socket = io('http://localhost:3000', {
 
 socket.on('ok', data => {
   console.log(data);
+  console.log(socket.id);
+  console.log(socket.connected);
+
   // set state
 });
 
