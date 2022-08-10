@@ -80,6 +80,7 @@
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import ChatList from 'components/ChatsList/index.vue';
+import { useStore } from 'src/store';
 
 const linksList = [
   {
@@ -98,106 +99,6 @@ const linksList = [
     link: '/chat_layout/settings',
   },
 ];
-const chatList = [
-  {
-    name: 'Achilles',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Achilles.png'),
-    link: '/chat_layout/chat/Achilles',
-  },
-  {
-    name: 'Aphrodite',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Aphrodite.png'),
-    link: '/chat_layout/chat/Aphrodite',
-  },
-  {
-    name: 'Ares',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Ares.png'),
-    link: '/chat_layout/chat/Ares',
-  },
-  {
-    name: 'Artemis',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Artemis.png'),
-    link: '/chat_layout/chat/Artemis',
-  },
-  {
-    name: 'Athena',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Athena.png'),
-    link: '/chat_layout/chat/Athena',
-  },
-  {
-    name: 'Chaos',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Chaos.png'),
-    link: '/chat_layout/chat/Chaos',
-  },
-  {
-    name: 'Hades',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Hades.png'),
-    link: '/chat_layout/chat/Hades',
-  },
-  {
-    name: 'Hermes',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Hermes.png'),
-    link: '/chat_layout/chat/Hermes',
-  },
-  {
-    name: 'Megaera',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Megaera.png'),
-    link: '/chat_layout/chat/Megaera',
-  },
-  {
-    name: 'Nyx',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Nyx.png'),
-    link: '/chat_layout/chat/Nyx',
-  },
-  {
-    name: 'Poseidon',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Poseidon.png'),
-    link: '/chat_layout/chat/Poseidon',
-  },
-  {
-    name: 'Theseus',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Theseus.png'),
-    link: '/chat_layout/chat/Theseus',
-  },
-  {
-    name: 'Thanatos',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Thanatos.png'),
-    link: '/chat_layout/chat/Thanatos',
-  },
-  {
-    name: 'Zeus',
-    caption: '21',
-    time: '2',
-    avatar: require('src/assets/avatars/FP_Zeus.png'),
-    link: '/chat_layout/chat/Zeus',
-  },
-];
 const toolsIsActive = ref(false);
 
 export default defineComponent({
@@ -212,11 +113,12 @@ export default defineComponent({
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    const $store = useStore();
 
     return {
       toolsIsActive,
       essentialLinks: linksList,
-      chats: chatList,
+      chats: $store.state.userList.users,
       leftDrawerOpen,
       width,
       rightDrawerOpen,

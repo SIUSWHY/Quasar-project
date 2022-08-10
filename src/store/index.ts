@@ -1,8 +1,8 @@
 import { store } from 'quasar/wrappers';
 import { InjectionKey } from 'vue';
-import { dashboard } from '../layouts/store/index';
+import { userList } from '../layouts/store/index';
 import { createStore, Store as VuexStore, useStore as vuexUseStore } from 'vuex';
-import { DasboardList } from 'src/layouts/store/types';
+import { UserList } from 'src/layouts/store/types';
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
@@ -21,7 +21,7 @@ export interface StateInterface {
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   example: unknown;
-  dashboard: DasboardList;
+  userList: UserList;
 }
 
 // provide typings for `this.$store`
@@ -37,7 +37,7 @@ export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol('vuex-ke
 export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
-      dashboard,
+      userList,
       // example
     },
 

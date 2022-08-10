@@ -1,8 +1,4 @@
 import { GetterTree } from 'vuex';
-import { RootState, DasboardList } from './types';
+import { RootState, UserList } from './types';
 
-export const getters: GetterTree<DasboardList, RootState> = {
-  someAction(/* context */) {
-    // your code
-  },
-};
+export const getters: GetterTree<UserList, RootState> = {};

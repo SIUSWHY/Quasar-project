@@ -1,14 +1,14 @@
-export interface EventType {
+export interface UserType {
   _id?: string;
-  color: string;
-  start: string;
-  end: string;
   name: string;
-  timed: string;
-  details: string;
+  time: string;
+  caption: string;
+  link: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  avatar: any;
 }
-export interface DasboardList {
-  calendarEvents: EventType[];
+export interface UserList {
+  users: UserType[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
