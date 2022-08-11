@@ -9,19 +9,17 @@
           <q-input filled type="password" v-model="user.password" label="Your password"></q-input>
 
           <div>
-            <router-link to="/chat_layout">
-              <q-btn
-                @click="
-                  () => {
-                    loginUser();
-                  }
-                "
-                label="Submit"
-                type="submit"
-                color="primary"
-              >
-              </q-btn>
-            </router-link>
+            <q-btn
+              @click="
+                () => {
+                  loginUser();
+                }
+              "
+              label="Submit"
+              type="submit"
+              color="primary"
+            >
+            </q-btn>
           </div>
         </q-form>
       </div>

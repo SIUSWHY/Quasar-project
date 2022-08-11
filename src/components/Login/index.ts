@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+import { mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
 
 const user = {
@@ -14,12 +15,21 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapMutations('userList', {
+      setCurrentUser: 'SET_CURRENT_USER',
+    }),
     async loginUser() {
-      const test = await loginUser(user);
-      console.log(test);
+      try {
+        const { data } = await loginUser(user);
+        this.setCurrentUser(data.user);
+        console.log(data.user);
+
+        this.$router.push({ path: 'chat_layout' });
+      } catch (error) {
+        alert(error);
+      }
     },
     // onSubmit() {
-    //   this.$router.push({ path: 'chat_layout' });
     // },
   },
 });

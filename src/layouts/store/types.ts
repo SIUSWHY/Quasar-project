@@ -8,7 +8,7 @@ export interface UserType {
   avatar: any;
 }
 export interface CurrentUser {
-  _id?: string;
+  _id: string;
   name: string;
   link: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,6 @@
 import User from '../models/modelUser';
 import express from 'express';
+import createToken from '../helpers/createToken';
 const LoginUser = express.Router();
 
 LoginUser.post('/loginUser', async (req, res) => {
@@ -7,9 +8,13 @@ LoginUser.post('/loginUser', async (req, res) => {
   const user = await User.findOne({ $and: [{ name }, { password }] });
 
   if (user !== null) {
-    return res.status(200).send({ massege: 'You login. Welcome', user });
+    const token = createToken({
+      user,
+    });
+    return res.status(200).send({ massege: 'You login. Welcome', user, token });
   } else {
-    return res.status(404).send('Incorrect Data');
+    throw new Error('Incorrect password or username');
+    return res.status(404);
   }
 });
 
