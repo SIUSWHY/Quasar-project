@@ -36,7 +36,7 @@
         <ChatList
           @click="toggleRightDrawer"
           :to="chat.link"
-          v-for="chat in chats"
+          v-for="chat in $store.state.userList.users"
           :key="chat.name"
           v-bind="chat"
         />
@@ -83,7 +83,7 @@
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import ChatList from 'components/ChatsList/index.vue';
-import { useStore } from 'src/store';
+import { mapActions } from 'vuex';
 
 const linksList = [
   {
@@ -111,17 +111,18 @@ export default defineComponent({
     EssentialLink,
     ChatList,
   },
+  async created() {
+    await this.loadUsers();
+  },
 
   setup() {
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-    const $store = useStore();
 
     return {
       toolsIsActive,
       essentialLinks: linksList,
-      chats: $store.state.userList.users,
       leftDrawerOpen,
       width,
       rightDrawerOpen,
@@ -136,6 +137,9 @@ export default defineComponent({
     };
   },
   methods: {
+    ...mapActions('userList', {
+      loadUsers: 'loadUsers',
+    }),
     togleTools() {
       toolsIsActive.value = !toolsIsActive.value;
     },

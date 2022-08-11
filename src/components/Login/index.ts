@@ -15,8 +15,8 @@ export default defineComponent({
   },
   methods: {
     async loginUser() {
-      await loginUser(user);
-      console.log(user);
+      const test = await loginUser(user);
+      console.log(test);
     },
     // onSubmit() {
     //   this.$router.push({ path: 'chat_layout' });

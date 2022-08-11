@@ -1,5 +1,5 @@
 <template>
-  <div v-for="chat in chats" :key="chat.name" v-bind="chat">
+  <div v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat">
     <q-item clickable v-ripple>
       <q-item-section side>
         <q-avatar rounded size="50px">
