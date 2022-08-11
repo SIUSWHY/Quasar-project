@@ -51,6 +51,7 @@
     >
       <q-fab icon="edit" direction="up" color="blue">
         <q-fab-action
+          @click="toggleRightDrawer()"
           label="Create secret chat"
           external-label
           color="green-6"
@@ -58,6 +59,7 @@
           icon="lock"
         ></q-fab-action>
         <q-fab-action
+          @click="toggleRightDrawer()"
           label="Write message"
           external-label
           color="red-5"
@@ -66,6 +68,7 @@
         ></q-fab-action>
         <q-fab-action
           label="Create group"
+          @click="toggleRightDrawer()"
           external-label
           color="orange-6"
           label-position="left"

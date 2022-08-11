@@ -105,6 +105,12 @@ export const state: UserList = {
       link: '/chat_layout/chat/Zeus',
     },
   ],
+  currentUser: {
+    name: '',
+    avatar: '',
+    link: '',
+    _id: '',
+  },
 };
 
 const namespaced = true;

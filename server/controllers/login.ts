@@ -7,7 +7,7 @@ LoginUser.post('/loginUser', async (req, res) => {
   const user = await User.findOne({ $and: [{ name }, { password }] });
 
   if (user !== null) {
-    return res.status(200).send({ massege: 'You login. Welcome' });
+    return res.status(200).send({ massege: 'You login. Welcome', user });
   } else {
     return res.status(404).send('Incorrect Data');
   }

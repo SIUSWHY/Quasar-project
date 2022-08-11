@@ -5,6 +5,7 @@ import cors from 'cors';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import LoginUser from './controllers/login';
+import getUsers from './controllers/getUsers';
 
 async function run() {
   const app = express();
@@ -23,7 +24,7 @@ async function run() {
 
   await mongoose.connect('mongodb://localhost:27017/Quasar');
 
-  app.use([LoginUser]);
+  app.use([LoginUser, getUsers]);
 
   io.on('connection', socket => {
     console.log('a user connected');
