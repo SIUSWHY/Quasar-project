@@ -1,3 +1,4 @@
+import { Cookies } from 'quasar';
 import { defineComponent } from 'vue';
 import { mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
@@ -20,10 +21,12 @@ export default defineComponent({
     }),
     async loginUser() {
       try {
-        const { data } = await loginUser(user);
-        this.setCurrentUser(data.user);
-        console.log(data.user);
+        const {
+          data: { token },
+        } = await loginUser(user);
+        // this.setCurrentUser(data.user);
 
+        Cookies.set('Token', token);
         this.$router.push({ path: 'chat_layout' });
       } catch (error) {
         alert(error);

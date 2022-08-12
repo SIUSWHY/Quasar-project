@@ -32,7 +32,7 @@
     </q-drawer>
 
     <q-page-container>
-      <q-pull-to-refresh bg-color="black">
+      <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
         <ChatList
           @click="toggleRightDrawer"
           :to="chat.link"
@@ -140,6 +140,12 @@ export default defineComponent({
     ...mapActions('userList', {
       loadUsers: 'loadUsers',
     }),
+    async refreshUserList(done: () => void) {
+      setTimeout(() => {
+        this.loadUsers();
+        done();
+      }, 1000);
+    },
     togleTools() {
       toolsIsActive.value = !toolsIsActive.value;
     },

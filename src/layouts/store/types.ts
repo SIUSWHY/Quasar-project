@@ -1,5 +1,5 @@
 export interface UserType {
-  _id?: string;
+  _id?: { $oid: string };
   name: string;
   time: string;
   caption: string;
