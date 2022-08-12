@@ -14,6 +14,14 @@ const routes: RouteRecordRaw[] = [
         path: 'chat/:id',
         component: () => import('components/Chat/index.vue'),
       },
+      {
+        path: 'write_message',
+        component: () => import('components/Tools/WriteMessage/index.vue'),
+      },
+      {
+        path: 'create_group',
+        component: () => import('components/Tools/CreateGroup/index.vue'),
+      },
     ],
   },
 

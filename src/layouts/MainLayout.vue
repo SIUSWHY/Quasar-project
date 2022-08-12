@@ -35,9 +35,9 @@
       <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
         <ChatList
           @click="toggleRightDrawer"
-          :to="chat.link"
+          :to="'/chat_layout/chat/' + chat._id"
           v-for="chat in $store.state.userList.users"
-          :key="chat.name"
+          :key="chat._id"
           v-bind="chat"
         />
       </q-pull-to-refresh>
@@ -59,7 +59,8 @@
           icon="lock"
         ></q-fab-action>
         <q-fab-action
-          @click="toggleRightDrawer()"
+          @click="writeMessage()"
+          to="/chat_layout/write_message"
           label="Write message"
           external-label
           color="red-5"
@@ -68,6 +69,7 @@
         ></q-fab-action>
         <q-fab-action
           label="Create group"
+          to="/chat_layout/create_group"
           @click="toggleRightDrawer()"
           external-label
           color="orange-6"
@@ -137,6 +139,10 @@ export default defineComponent({
     };
   },
   methods: {
+    writeMessage() {
+      this.toggleRightDrawer();
+      // this.$router.push({ path: 'chat_layout/write_message' });
+    },
     ...mapActions('userList', {
       loadUsers: 'loadUsers',
     }),

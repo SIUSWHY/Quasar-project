@@ -2,7 +2,7 @@ import { defineComponent, ref } from 'vue';
 import UserList from './UserList/index.vue';
 
 export default defineComponent({
-  name: 'WriteMessage',
+  name: 'CreateGroup',
   components: {
     UserList,
   },
@@ -18,9 +18,6 @@ export default defineComponent({
     };
   },
   methods: {
-    goToChat(id: string) {
-      this.$router.push('/chat_layout/chat/' + id);
-    },
     goChatLayout() {
       this.$router.push('/chat_layout');
     },

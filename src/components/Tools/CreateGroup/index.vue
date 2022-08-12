@@ -10,15 +10,12 @@
           }
         "
       ></q-icon>
+      <q-space></q-space>
+      <div>Create Group</div>
     </q-toolbar>
   </q-header>
   <q-page-container>
-    <UserList
-      @click="goToChat(chat._id)"
-      v-for="chat in $store.state.userList.users"
-      :key="chat.name"
-      v-bind="chat"
-    />
+    <UserList v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat" />
   </q-page-container>
 </template>
 
