@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { axiosInstance } from '../../server/API';
+import { axiosInstance } from './index';
 
 const getUsers = (): Promise<AxiosResponse<string[]>> => axiosInstance.get('/users');
 

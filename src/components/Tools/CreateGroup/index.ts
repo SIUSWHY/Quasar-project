@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 import UserList from './UserList/index.vue';
 
 export default defineComponent({
@@ -7,14 +7,12 @@ export default defineComponent({
     UserList,
   },
   data() {
-    const rightDrawerOpen = ref(false);
-
     return {
-      toggleRightDrawer() {
-        setTimeout(() => {
-          rightDrawerOpen.value = !rightDrawerOpen.value;
-        }, 10);
-      },
+      //   toggleRightDrawer() {
+      //     setTimeout(() => {
+      //       rightDrawerOpen.value = !rightDrawerOpen.value;
+      //     }, 10);
+      //   },
     };
   },
   methods: {

@@ -69,8 +69,7 @@
         ></q-fab-action>
         <q-fab-action
           label="Create group"
-          to="/chat_layout/create_group"
-          @click="toggleRightDrawer()"
+          to="/create_group"
           external-label
           color="orange-6"
           label-position="left"

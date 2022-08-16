@@ -2,6 +2,7 @@ export interface UserType {
   _id?: { $oid: string };
   name: string;
   time: string;
+  password: string;
   caption: string;
   link: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

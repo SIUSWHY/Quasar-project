@@ -7,8 +7,7 @@
     "password": "Achilles",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Achilles.055d5514.png",
-    "link": "/chat_layout/chat/Achilles"
+    "avatar": "FP_Achilles.png"
   },
   {
     "_id": {
@@ -18,8 +17,7 @@
     "password": "Aphrodite",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Aphrodite.9070e34e.png",
-    "link": "/chat_layout/chat/Aphrodite"
+    "avatar": "FP_Aphrodite.png"
   },
   {
     "_id": {
@@ -29,8 +27,7 @@
     "password": "Ares",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Ares.1ef6c298.png",
-    "link": "/chat_layout/chat/Ares"
+    "avatar": "FP_Ares.png"
   },
   {
     "_id": {
@@ -40,8 +37,7 @@
     "password": "Artemis",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Artemis.ea67045c.png",
-    "link": "/chat_layout/chat/Artemis"
+    "avatar": "FP_Artemis.png"
   },
   {
     "_id": {
@@ -51,8 +47,7 @@
     "password": "Athena",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Athena.831279eb.png",
-    "link": "/chat_layout/chat/Athena"
+    "avatar": "FP_Athena.png"
   },
   {
     "_id": {
@@ -62,8 +57,7 @@
     "password": "Chaos",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Chaos.0d505557.png",
-    "link": "/chat_layout/chat/Chaos"
+    "avatar": "FP_Chaos.png"
   },
   {
     "_id": {
@@ -73,8 +67,7 @@
     "password": "Hades",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Hades.e9542f6a.png",
-    "link": "/chat_layout/chat/Hades"
+    "avatar": "FP_Hades.png"
   },
   {
     "_id": {
@@ -84,8 +77,7 @@
     "password": "Hermes",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Hermes.38302dac.png",
-    "link": "/chat_layout/chat/Hermes"
+    "avatar": "FP_Hermes.png"
   },
   {
     "_id": {
@@ -95,8 +87,7 @@
     "password": "Megaera",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Megaera.0eb43f55.png",
-    "link": "/chat_layout/chat/Megaera"
+    "avatar": "FP_Megaera.png"
   },
   {
     "_id": {
@@ -106,8 +97,7 @@
     "password": "Nyx",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Nyx.5134e1b1.png",
-    "link": "/chat_layout/chat/Nyx"
+    "avatar": "FP_Nyx.png"
   },
   {
     "_id": {
@@ -117,8 +107,7 @@
     "password": "Poseidon",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Poseidon.e7c0d7dc.png",
-    "link": "/chat_layout/chat/Poseidon"
+    "avatar": "FP_Poseidon.png"
   },
   {
     "_id": {
@@ -128,8 +117,7 @@
     "password": "Theseus",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Theseus.4ca5f503.png",
-    "link": "/chat_layout/chat/Theseus"
+    "avatar": "FP_Theseus.png"
   },
   {
     "_id": {
@@ -139,8 +127,7 @@
     "password": "Thanatos",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Thanatos.964ab570.png",
-    "link": "/chat_layout/chat/Thanatos"
+    "avatar": "FP_Thanatos.png"
   },
   {
     "_id": {
@@ -150,7 +137,6 @@
     "password": "Zeus",
     "caption": "21",
     "time": "2",
-    "avatar": "http://localhost:8080/img/FP_Zeus.02f47b73.png",
-    "link": "/chat_layout/chat/Zeus"
+    "avatar": "FP_Zeus.png"
   }
 ]
