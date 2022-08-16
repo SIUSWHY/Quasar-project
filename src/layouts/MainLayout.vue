@@ -31,7 +31,7 @@
       <router-view></router-view>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container style="padding-top: 50px">
       <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
         <ChatList
           @click="toggleRightDrawer"

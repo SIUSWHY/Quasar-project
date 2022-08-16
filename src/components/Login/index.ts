@@ -32,7 +32,5 @@ export default defineComponent({
         alert(error);
       }
     },
-    // onSubmit() {
-    // },
   },
 });
