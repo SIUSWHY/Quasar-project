@@ -1,7 +1,7 @@
-// import { Cookies } from 'quasar';
+import { Cookies } from 'quasar';
 import { defineComponent } from 'vue';
 import { mapMutations } from 'vuex';
-// import loginUser from '../../API/loginUser';
+import loginUser from '../../API/loginUser';
 
 const user = {
   name: 'Ares',
@@ -20,17 +20,16 @@ export default defineComponent({
       setCurrentUser: 'SET_CURRENT_USER',
     }),
     async loginUser() {
-      this.$router.push({ path: 'chat_layout' });
-      // try {
-      //   const {
-      //     data: { token },
-      //   } = await loginUser(user);
-      //   // this.setCurrentUser(data.user);
-      //   Cookies.set('Token', token);
-      //   this.$router.push({ path: 'chat_layout' });
-      // } catch (error) {
-      //   alert(error);
-      // }
+      // this.$router.push({ path: 'chat_layout' });
+      try {
+        const {
+          data: { token },
+        } = await loginUser(user);
+        Cookies.set('Token', token);
+        this.$router.push({ path: 'chat_layout' });
+      } catch (error) {
+        alert(error);
+      }
     },
   },
 });

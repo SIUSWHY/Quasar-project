@@ -26,7 +26,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/create_group',
-    component: () => import('components/Tools/CreateGroup/index.vue'),
+    component: () => import('components/Tools/TransitionComponent/index.vue'),
   },
 
   // Always leave this as last one,

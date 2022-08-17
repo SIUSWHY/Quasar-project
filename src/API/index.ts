@@ -3,7 +3,7 @@ import axios from 'axios';
 // import Cookies from 'js-cookie';
 
 export const axiosInstance = axios.create({
-  baseURL: 'http://127.0.0.1:3000',
+  baseURL: 'https://pet-quasar-app.herokuapp.com/',
 });
 
 // axiosInstance.interceptors.request.use(
