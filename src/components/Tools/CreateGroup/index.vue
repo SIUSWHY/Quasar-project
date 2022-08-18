@@ -12,7 +12,8 @@
           "
         ></q-icon>
         <q-space></q-space>
-        <div>Create Group</div>
+        <div><strong>Create Group</strong></div>
+        <q-space></q-space>
       </q-toolbar>
     </q-header>
     <q-page-container>

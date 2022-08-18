@@ -10,7 +10,7 @@ const messagesList = [
     massegeText: ['doing fine, how r you?'],
   },
 ];
-const socket = io('http://localhost:3000', {
+const socket = io('https://pet-quasar-app.herokuapp.com/', {
   query: {
     // idRoom
   },
@@ -54,13 +54,18 @@ export default defineComponent({
       this.$router.push('/chat_layout');
     },
     postMessage() {
-      if (messageText.value === (null || undefined || '')) {
+      if (messageText.value === null || undefined || '') {
         return;
+        debugger;
       }
       socket.emit('message', {
         message: messageText.value,
       });
-      // console.log(messageText.value);
+      console.log(messageText.value);
+      messageText.value = null;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const test: any = this.$refs.textInput;
+      test.focus();
     },
   },
 });

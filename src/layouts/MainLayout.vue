@@ -3,28 +3,17 @@
     <q-header elevated style="background-color: #121212">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-space />
+        <q-tabs v-model="tab">
+          <q-tab name="chats" label="Chats"></q-tab>
+          <q-tab name="test" label="Test"></q-tab>
+        </q-tabs>
+        <q-space />
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above>
-      <q-avatar square size="300px">
-        <img src="../assets/avatars/avatar.jpg" alt="avatar" />
-      </q-avatar>
-      <q-list>
-        <strong>
-          <EssentialLink
-            @click="toggleRightDrawer"
-            :to="link.link"
-            v-for="link in essentialLinks"
-            :key="link.title"
-            v-bind="link"
-          />
-        </strong>
-      </q-list>
+      <UserInfo />
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" :width="width" side="right">
@@ -68,8 +57,9 @@
           icon="person"
         ></q-fab-action>
         <q-fab-action
+          @click="toggleRightDrawer()"
           label="Create group"
-          to="/create_group"
+          to="/chat_layout/create_group"
           external-label
           color="orange-6"
           label-position="left"
@@ -82,35 +72,18 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
 import ChatList from 'components/ChatsList/index.vue';
+import UserInfo from '../components/UserInfo/index.vue';
 import { mapActions } from 'vuex';
 
-const linksList = [
-  {
-    title: 'Contacts',
-    icon: 'perm_contact_calendar',
-    link: '/chat_layout/settings',
-  },
-  {
-    title: 'Favorites',
-    icon: 'bookmark',
-    link: '/chat_layout/settings',
-  },
-  {
-    title: 'Settings',
-    icon: 'settings',
-    link: '/chat_layout/settings',
-  },
-];
 const toolsIsActive = ref(false);
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
     ChatList,
+    UserInfo,
   },
   async created() {
     await this.loadUsers();
@@ -123,10 +96,10 @@ export default defineComponent({
 
     return {
       toolsIsActive,
-      essentialLinks: linksList,
       leftDrawerOpen,
       width,
       rightDrawerOpen,
+      tab: ref('chats'),
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
@@ -158,7 +131,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .shadowBlock {
   opacity: 0;
   width: 0;
@@ -175,5 +148,10 @@ export default defineComponent({
 }
 .btn_z-index {
   z-index: 2002;
+}
+::v-deep {
+  .q-drawer__opener.fixed-right {
+    display: none;
+  }
 }
 </style>

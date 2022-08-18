@@ -3,8 +3,8 @@
     <q-item-section side>
       <q-avatar rounded size="50px">
         <img :src="require('src/assets/avatars/' + avatar)" />
-        <q-badge align="bottom" floating rounded>
-          <q-icon name="done" size="10px"></q-icon>
+        <q-badge class="bottom-position" align="bottom" floating rounded>
+          <q-icon name="done" size="11px"></q-icon>
         </q-badge>
       </q-avatar>
     </q-item-section>
