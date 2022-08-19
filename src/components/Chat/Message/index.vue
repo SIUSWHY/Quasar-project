@@ -2,20 +2,18 @@
   <div>
     <div v-if="this.message.name === 'me'">
       <q-chat-message
-        :name="this.message.name"
-        avatar="https://cdn.quasar.dev/img/avatar4.jpg"
         :text="this.message.massegeText"
+        bg-color="light-blue-9"
         :sent="true"
-        stamp="7 minutes ago"
+        text-color="white"
       ></q-chat-message>
     </div>
     <div v-else>
       <q-chat-message
-        :name="this.message.name"
-        avatar="https://cdn.quasar.dev/img/avatar4.jpg"
+        text-color="white"
+        bg-color="grey-9"
         :text="this.message.massegeText"
         :sent="false"
-        stamp="7 minutes ago"
       ></q-chat-message>
     </div>
   </div>

@@ -1,0 +1,8 @@
+::v-deep {
+  .q-message-text--sent {
+    border-radius: 15px 4px 0 15px;
+  }
+  .q-message-text--received {
+    border-radius: 4px 15px 15px 0;
+  }
+}

@@ -3,6 +3,7 @@ import { InjectionKey } from 'vue';
 import { userList } from '../layouts/store/index';
 import { createStore, Store as VuexStore, useStore as vuexUseStore } from 'vuex';
 import { UserList } from 'src/layouts/store/types';
+import { chatData } from 'src/components/Chat/store/index';
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
@@ -38,6 +39,7 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       userList,
+      chatData,
       // example
     },
 

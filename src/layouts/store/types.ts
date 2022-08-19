@@ -6,14 +6,14 @@ export interface UserType {
   caption: string;
   link: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  avatar: any;
+  avatar: string;
 }
 export interface CurrentUser {
   _id: string;
   name: string;
   link: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  avatar: any;
+  avatar: string;
 }
 export interface UserList {
   users: UserType[];

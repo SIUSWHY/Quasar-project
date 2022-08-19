@@ -5,7 +5,7 @@ import { getters } from './getters';
 import { UserList, RootState } from './types';
 
 export const state: UserList = {
-  currentUser: {
+  companionData: {
     name: '',
     avatar: '',
     _id: '',
