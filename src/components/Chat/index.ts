@@ -10,7 +10,7 @@ const messagesList = [
     massegeText: ['doing fine, how r you?'],
   },
 ];
-const socket = io('https://pet-quasar-app.herokuapp.com/', {
+const socket = io('https://pet-quasar-app.herokuapp.com', {
   query: {
     // idRoom
   },
@@ -29,7 +29,9 @@ setTimeout(() => {
     test: true,
   });
 }, 2000);
+
 const messageText = ref(null);
+const companionData = ref(null);
 
 export default defineComponent({
   name: 'ChatPage',
@@ -39,6 +41,7 @@ export default defineComponent({
   setup() {
     return {
       socket,
+      companionData,
       messageText,
       messages: messagesList,
     };
@@ -46,17 +49,23 @@ export default defineComponent({
   unmounted() {
     socket.disconnect();
   },
-  mounted() {
+  created() {
+    companionData.value = this.getCompanion();
     socket.connect();
   },
   methods: {
+    getCompanion() {
+      const companionId = this.$route.path.split('/').pop();
+      const companion = this.$store.getters['userList/getCompanionData'](companionId);
+      console.log(companion);
+      return companion;
+    },
     goChatLayout() {
       this.$router.push('/chat_layout');
     },
     postMessage() {
       if (messageText.value === null || undefined || '') {
         return;
-        debugger;
       }
       socket.emit('message', {
         message: messageText.value,
@@ -64,8 +73,8 @@ export default defineComponent({
       console.log(messageText.value);
       messageText.value = null;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const test: any = this.$refs.textInput;
-      test.focus();
+      const textInput: any = this.$refs.textInput;
+      textInput.focus();
     },
   },
 });

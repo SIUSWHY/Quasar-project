@@ -13,11 +13,11 @@
     </q-item-section>
     <q-item-section side>
       <q-avatar :rounded="false" size="50px">
-        <img src="../../assets/avatars/avatar.jpg" />
+        <img :src="require('src/assets/avatars/' + companionData?.avatar)" />
       </q-avatar>
     </q-item-section>
     <q-item-section>
-      <q-item-label>Ares</q-item-label>
+      <q-item-label>{{ companionData?.name }}</q-item-label>
       <q-item-label caption>online</q-item-label>
     </q-item-section>
     <q-item-section side>
@@ -29,12 +29,7 @@
       <div class="q-pa-md row justify-center">
         <div style="width: 100%; heiht: auto">
           <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
-          <MessageComponent
-            v-for="message in messages"
-            :key="message.id"
-            v-bind="message"
-            :message="message"
-          />
+          <MessageComponent v-for="message in messages" :key="message.name" v-bind="message" :message="message" />
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Cookies } from 'quasar';
 // const { VUE_APP_SERVER_URL } = process.env;
-
 export const axiosInstance = axios.create({
   baseURL: 'https://pet-quasar-app.herokuapp.com/',
 });
