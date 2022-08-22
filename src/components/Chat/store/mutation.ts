@@ -1,4 +1,4 @@
 import { MutationTree } from 'vuex';
-import { UserList } from './types';
+import { ChatData } from './types';
 
-export const mutations: MutationTree<UserList> = {};
+export const mutations: MutationTree<ChatData> = {};

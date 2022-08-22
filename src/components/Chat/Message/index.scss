@@ -1,8 +1,32 @@
 ::v-deep {
   .q-message-text--sent {
-    border-radius: 15px 4px 0 15px;
+    border-radius: 15px 4px 4px 15px;
   }
   .q-message-text--received {
-    border-radius: 4px 15px 15px 0;
+    border-radius: 4px 15px 15px 4px;
+  }
+  .q-message-text--received:last-child {
+    border-radius: 4px 15px 15px 15px;
+  }
+  .q-message-text--sent:last-child {
+    border-radius: 15px 4px 15px 15px;
+  }
+  .q-message-text:last-child:before {
+    display: none;
+  }
+  .q-message-text:last-child {
+    min-height: auto;
+  }
+  .q-message-text {
+    max-width: 270px;
+    // display: flex;
+  }
+  .q-message-text-content {
+    // display: flex;
+  }
+  .q-message-stamp {
+    display: inline-block;
+    // margin-left: 10px;
+    min-width: 33px;
   }
 }

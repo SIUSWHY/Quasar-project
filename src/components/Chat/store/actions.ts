@@ -1,4 +1,4 @@
 import { ActionTree } from 'vuex';
-import { RootState, UserList } from './types';
+import { RootState, ChatData } from './types';
 
-export const actions: ActionTree<UserList, RootState> = {};
+export const actions: ActionTree<ChatData, RootState> = {};

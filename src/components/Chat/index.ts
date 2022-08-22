@@ -2,14 +2,6 @@ import { io } from 'socket.io-client';
 import { defineComponent, ref } from 'vue';
 import MessageComponent from './Message/index.vue';
 
-const messagesList = [
-  { id: 1, name: 'me', massegeText: ['hey, how are you', 'test'] },
-  {
-    id: 2,
-    name: 'Jane',
-    massegeText: ['doing fine, how r you?'],
-  },
-];
 const socket = io('https://pet-quasar-app.herokuapp.com', {
   query: {
     // idRoom
@@ -43,7 +35,6 @@ export default defineComponent({
       socket,
       companionData,
       messageText,
-      messages: messagesList,
     };
   },
   unmounted() {

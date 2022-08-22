@@ -5,6 +5,7 @@
         :text="this.message.massegeText"
         bg-color="light-blue-9"
         :sent="true"
+        :stamp="this.message.stamp"
         text-color="white"
       ></q-chat-message>
     </div>
@@ -14,6 +15,7 @@
         bg-color="grey-9"
         :text="this.message.massegeText"
         :sent="false"
+        :stamp="this.message.stamp"
       ></q-chat-message>
     </div>
   </div>
