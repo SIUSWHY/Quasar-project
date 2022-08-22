@@ -11,11 +11,11 @@ export const state: ChatData = {
     _id: '',
   },
   messages: [
-    { name: 'me', stamp: '21:30', massegeText: ['hey, how are you', 'test', 'test,test,testtest,test,test,test'] },
+    { name: 'me', stamp: '21:30', messageText: ['hey, how are you', 'test', 'test,test,testtest,test,test,test'] },
     {
       name: 'Jane',
       stamp: '21:30',
-      massegeText: [
+      messageText: [
         'doing fine, how r you?',
         'test',
         'doing fine, how r you doing fine, how r you doing fine, how r you doing fine, how r you',

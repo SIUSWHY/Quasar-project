@@ -2,7 +2,7 @@
   <div>
     <div v-if="this.message.name === 'me'">
       <q-chat-message
-        :text="this.message.massegeText"
+        :text="this.message.messageText"
         bg-color="light-blue-9"
         :sent="true"
         :stamp="this.message.stamp"
@@ -13,7 +13,7 @@
       <q-chat-message
         text-color="white"
         bg-color="grey-9"
-        :text="this.message.massegeText"
+        :text="this.message.messageText"
         :sent="false"
         :stamp="this.message.stamp"
       ></q-chat-message>

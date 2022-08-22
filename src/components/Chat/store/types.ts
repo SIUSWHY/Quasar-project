@@ -6,7 +6,7 @@ export interface CompanionUserData {
 export interface MessageData {
   name: string;
   stamp: string;
-  massegeText: string[];
+  messageText: string[];
 }
 export interface ChatData {
   companionData: CompanionUserData;
