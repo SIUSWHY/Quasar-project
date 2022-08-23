@@ -9,7 +9,6 @@ export const state: UserList = {
   currentUser: {
     name: '',
     avatar: '',
-    link: '',
     _id: '',
   },
 };

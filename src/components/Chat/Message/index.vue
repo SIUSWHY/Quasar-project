@@ -19,12 +19,6 @@
       ></q-chat-message>
     </div>
   </div>
-  <!-- <q-chat-message
-          name="Jane"
-          avatar="https://cdn.quasar.dev/img/avatar3.jpg"
-          :text="['doing fine, how r you?']"
-          stamp="4 minutes ago"
-        ></q-chat-message> -->
 </template>
 
 <script lang="ts" src="./index.ts" />

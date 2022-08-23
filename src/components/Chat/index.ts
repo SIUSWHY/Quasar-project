@@ -89,6 +89,11 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const textInput: any = this.$refs.textInput;
       textInput.focus();
+
+      setTimeout(() => {
+        const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
+        elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
+      });
     },
   },
 });

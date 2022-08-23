@@ -19,14 +19,24 @@
   }
   .q-message-text {
     max-width: 270px;
-    // display: flex;
-  }
-  .q-message-text-content {
-    // display: flex;
   }
   .q-message-stamp {
     display: inline-block;
-    // margin-left: 10px;
     min-width: 33px;
+    font-size: 10px;
+  }
+  .q-message-container.row.items-end.no-wrap.reverse {
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+  .q-message-container.row.items-end.no-wrap {
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 }

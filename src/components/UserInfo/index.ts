@@ -1,4 +1,5 @@
 import { defineComponent, ref } from 'vue';
+import { mapActions } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
 
 const actions = [
@@ -33,5 +34,15 @@ export default defineComponent({
       },
     };
   },
-  methods: {},
+
+  mounted() {
+    this.setCurrentUser();
+  },
+
+  methods: {
+    ...mapActions('userList', { getCurrentUser: 'setCurrentUser' }),
+    async setCurrentUser() {
+      this.getCurrentUser();
+    },
+  },
 });

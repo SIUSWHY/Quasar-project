@@ -26,8 +26,8 @@
   </q-item>
   <q-item style="padding-top: 66px; padding-bottom: 50px">
     <div id="q-app">
-      <div class="q-pa-md row justify-center">
-        <div style="width: 100%; heiht: auto">
+      <div class="q-pa-md correct-padding row justify-center">
+        <div class="test" style="width: 100%; heiht: auto">
           <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
           <MessageComponent v-for="message in messagesArray" :key="message.stamp" v-bind="message" :message="message" />
         </div>
