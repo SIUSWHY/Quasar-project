@@ -1,6 +1,6 @@
 <template>
   <q-avatar square size="300px">
-    <img src="../../assets/avatars/avatar.jpg" alt="avatar" />
+    <img :src="require('../../assets/avatars/' + currentUserAvatar)" alt="avatar" />
   </q-avatar>
   <q-list>
     <strong>

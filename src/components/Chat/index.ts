@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
 import MessageComponent from './Message/index.vue';
 
-const socket = io('http://localhost:3000', {
+const socket = io('https://pet-quasar-app.herokuapp.com/', {
   query: {
     // idRoom
   },

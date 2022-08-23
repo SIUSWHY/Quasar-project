@@ -19,6 +19,7 @@ const actions = [
     link: '/chat_layout/settings',
   },
 ];
+const currentUserAvatar = ref('avatar.jpg');
 
 export default defineComponent({
   name: 'UserInfo',
@@ -27,6 +28,7 @@ export default defineComponent({
     const rightDrawerOpen = ref(false);
     return {
       userActions: actions,
+      currentUserAvatar,
       toggleRightDrawer() {
         setTimeout(() => {
           rightDrawerOpen.value = !rightDrawerOpen.value;
@@ -35,14 +37,22 @@ export default defineComponent({
     };
   },
 
-  mounted() {
+  created() {
     this.setCurrentUser();
+  },
+
+  mounted() {
+    // currentUserAvatar.value = this.setCurrentuserAvatar();
   },
 
   methods: {
     ...mapActions('userList', { getCurrentUser: 'setCurrentUser' }),
     async setCurrentUser() {
-      this.getCurrentUser();
+      await this.getCurrentUser();
+    },
+    setCurrentuserAvatar() {
+      const avatar = this.$store.state.userList.currentUser.avatar;
+      return avatar;
     },
   },
 });
