@@ -92,7 +92,7 @@ export default defineComponent({
 
       setTimeout(() => {
         const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
-        elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
+        elementFromArrayElements?.scrollIntoView({ block: 'end', behavior: 'smooth' });
       });
     },
   },

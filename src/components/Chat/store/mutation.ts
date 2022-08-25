@@ -7,6 +7,6 @@ export const mutations: MutationTree<ChatData> = {
     state.messages.push(message);
   },
   [SET_NEW_MESSAGE_FROM_COMPANION](state, message) {
-    state.messages[state.messages.length - 1].messageText.push(message.messageText[0]);
+    state.messages[state.messages.length - 1]?.messageText.push(message.messageText[0]);
   },
 };

@@ -10,22 +10,7 @@ export const state: ChatData = {
     avatar: '',
     _id: '',
   },
-  messages: [
-    {
-      name: '62f3c561e4dc51b27e21af3a',
-      stamp: '21:30',
-      messageText: ['hey, how are you', 'test', 'test,test,testtest,test,test,test'],
-    },
-    {
-      name: 'Jane',
-      stamp: '21:30',
-      messageText: [
-        'doing fine, how r you?',
-        'test',
-        'doing fine, how r you doing fine, how r you doing fine, how r you doing fine, how r you',
-      ],
-    },
-  ],
+  messages: [],
 };
 
 const namespaced = true;
