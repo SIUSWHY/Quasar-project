@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="this.message.name === $store.state.userList.currentUser?._id">
+    <div v-if="this.message.userId === $store.state.userList.currentUser?._id">
       <q-chat-message
         :text="this.message.messageText"
         bg-color="light-blue-9"

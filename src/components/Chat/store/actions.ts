@@ -4,7 +4,7 @@ import { RootState, ChatData } from './types';
 
 export const actions: ActionTree<ChatData, RootState> = {
   pushNewMessage({ commit, state }, message) {
-    if (message?.name === state.messages[state.messages.length - 1]?.name) {
+    if (message?.userId === state.messages[state.messages.length - 1]?.userId) {
       commit(SET_NEW_MESSAGE_FROM_COMPANION, message);
     } else {
       commit(SET_NEW_MESSAGE, message);

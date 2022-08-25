@@ -4,7 +4,7 @@ export interface CompanionUserData {
   avatar: string;
 }
 export interface MessageData {
-  name: string;
+  userId: string;
   stamp: string;
   messageText: string[];
 }
