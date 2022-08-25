@@ -15,6 +15,7 @@
                   loginUser();
                 }
               "
+              :loading="isLoading"
               label="Submit"
               type="submit"
               color="primary"

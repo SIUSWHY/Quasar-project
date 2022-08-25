@@ -3,18 +3,13 @@ import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
 import MessageComponent from './Message/index.vue';
 
-const socket = io('https://pet-quasar-app.herokuapp.com/', {
+const socket = io('http://192.168.88.47:3000', {
   query: {
     // idRoom
   },
 });
 
-socket.on('ok', data => {
-  console.log(data);
-  // console.log(socket.id);
-  // console.log(socket.connected);
-  // set state
-});
+socket.emit('connection', { user: 'Ares' });
 
 setTimeout(() => {
   socket.emit('message', {
@@ -45,10 +40,14 @@ export default defineComponent({
     socket.disconnect();
   },
 
-  created() {
+  async created() {
     messagesArray.value = this.$store.getters['chatData/getMessages'];
     companionData.value = this.getCompanion();
     socket.connect();
+
+    socket.on('ok', data => {
+      this.pushNewMessage(data.data.message);
+    });
   },
 
   methods: {
@@ -70,21 +69,22 @@ export default defineComponent({
       if (messageText.value === null || undefined || '') {
         return;
       }
-      socket.emit('message', {
-        message: messageText.value,
-      });
+
       const currentTime = new Date();
       const time = currentTime.getHours() + ':' + currentTime.getMinutes();
+      const postUserId = this.$store.state.userList.currentUser._id;
 
       const message = {
         messageText: [messageText.value],
         stamp: time,
-        name: 'me',
+        name: postUserId,
       };
 
-      messageText.value = null;
+      socket.emit('message', {
+        message: message,
+      });
 
-      this.pushNewMessage(message);
+      messageText.value = null;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const textInput: any = this.$refs.textInput;
