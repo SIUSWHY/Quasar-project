@@ -20,6 +20,7 @@ setTimeout(() => {
 const messageText = ref(null);
 const companionData = ref(null);
 const messagesArray = ref(null);
+const room_id = Date.now();
 
 export default defineComponent({
   name: 'ChatPage',
@@ -43,6 +44,8 @@ export default defineComponent({
   async created() {
     messagesArray.value = this.$store.getters['chatData/getMessages'];
     companionData.value = this.getCompanion();
+    const currentUser = this.$store.state.userList.currentUser;
+    socket.emit('roomId', { room_id: room_id, username: currentUser.name });
     socket.connect();
 
     socket.on('ok', data => {
@@ -82,6 +85,7 @@ export default defineComponent({
 
       socket.emit('message', {
         message: message,
+        room_id: room_id,
       });
 
       messageText.value = null;
