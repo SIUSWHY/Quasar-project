@@ -6,14 +6,6 @@ import MessageComponent from './Message/index.vue';
 
 const messageText = ref(null);
 const companionData = ref(null);
-const messagesArray = ref(null);
-
-const socket = io('http://192.168.88.47:3000', {
-  query: {
-    token: Cookies.get('Token'),
-    chatType: 'double',
-  },
-});
 
 export default defineComponent({
   name: 'ChatPage',
@@ -23,39 +15,50 @@ export default defineComponent({
 
   setup() {
     return {
-      socket,
+      socket: io('http://192.168.88.47:3000', {
+        query: {
+          token: Cookies.get('Token'),
+          chatType: 'double',
+        },
+      }),
       companionData,
-      messagesArray,
       messageText,
     };
   },
 
   unmounted() {
-    socket.disconnect();
+    this.socket.disconnect();
   },
 
   async created() {
-    messagesArray.value = this.$store.getters['chatData/getMessages'];
     companionData.value = this.getCompanion();
     const companionId = this.$route.path.split('/').pop();
 
-    socket.emit('companionId', {
+    this.socket.emit('companionId', {
       companionId: companionId,
     });
 
-    socket.connect();
+    this.socket.connect();
 
-    socket.on('ok', data => {
-      console.log(socket);
-
+    this.socket.on('ok', data => {
       this.pushNewMessage(data.data.message);
+      console.log(data.data.message);
+    });
+
+    this.socket.on('join', data => {
+      const arrMessages = data.messages;
+      this.pushMessages(arrMessages);
     });
   },
 
   methods: {
     ...mapActions('chatData', {
       pushNewMessage: 'pushNewMessage',
+      pushMessages: 'pushMessages',
     }),
+    // ...mapActions('chatData', {
+    //   pushMessages: 'pushMessages',
+    // }),
 
     getCompanion() {
       const companionId = this.$route.path.split('/').pop();
@@ -83,8 +86,7 @@ export default defineComponent({
         userId: postUserId,
       };
 
-      socket.emit('message', {
-        // users_id: [postUserId, companionId],
+      this.socket.emit('message', {
         message: message,
       });
 

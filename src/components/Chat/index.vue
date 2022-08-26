@@ -29,7 +29,12 @@
       <div class="q-pa-md correct-padding row justify-center">
         <div class="test" style="width: 100%; heiht: auto">
           <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
-          <MessageComponent v-for="message in messagesArray" :key="message.stamp" v-bind="message" :message="message" />
+          <MessageComponent
+            v-for="message in $store.getters['chatData/getMessages']"
+            :key="message.stamp"
+            v-bind="message"
+            :message="message"
+          />
         </div>
       </div>
     </div>

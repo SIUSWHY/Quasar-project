@@ -1,5 +1,5 @@
 import { ActionTree } from 'vuex';
-import { SET_NEW_MESSAGE, SET_NEW_MESSAGE_FROM_COMPANION } from './mutationTypes';
+import { SET_MESSAGES, SET_NEW_MESSAGE, SET_NEW_MESSAGE_FROM_COMPANION } from './mutationTypes';
 import { RootState, ChatData } from './types';
 
 export const actions: ActionTree<ChatData, RootState> = {
@@ -9,5 +9,8 @@ export const actions: ActionTree<ChatData, RootState> = {
     } else {
       commit(SET_NEW_MESSAGE, message);
     }
+  },
+  pushMessages({ commit }, arrMessages) {
+    commit(SET_MESSAGES, arrMessages);
   },
 };
