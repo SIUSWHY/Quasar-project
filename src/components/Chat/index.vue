@@ -13,11 +13,11 @@
     </q-item-section>
     <q-item-section side>
       <q-avatar :rounded="false" size="50px">
-        <img :src="require('src/assets/avatars/' + companionData?.avatar)" />
+        <img :src="require('src/assets/avatars/' + (companionData?.avatar ?? 'avatar.jpg'))" />
       </q-avatar>
     </q-item-section>
     <q-item-section>
-      <q-item-label>{{ companionData?.name }}</q-item-label>
+      <q-item-label>{{ companionData?.name ?? '' }}</q-item-label>
       <q-item-label caption>online</q-item-label>
     </q-item-section>
     <q-item-section side>

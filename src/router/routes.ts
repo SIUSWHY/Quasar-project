@@ -1,3 +1,4 @@
+import { Cookies } from 'quasar';
 import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
@@ -8,6 +9,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/chat_layout',
     component: () => import('src/layouts/MainLayout.vue'),
+    beforeEnter: (to, from, next) => {
+      const cookie = Cookies.get('Token');
+      if (cookie === null || undefined || '') {
+        next('/');
+      }
+      next();
+    },
     children: [
       { path: 'settings', component: () => import('components/Tools/Settings/index.vue') },
       {

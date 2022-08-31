@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { SET_MESSAGES, SET_NEW_MESSAGE, SET_NEW_MESSAGE_FROM_COMPANION } from './mutationTypes';
+import { SET_COMPANION, SET_MESSAGES, SET_NEW_MESSAGE, SET_NEW_MESSAGE_FROM_COMPANION } from './mutationTypes';
 import { ChatData } from './types';
 
 export const mutations: MutationTree<ChatData> = {
@@ -11,5 +11,8 @@ export const mutations: MutationTree<ChatData> = {
   },
   [SET_MESSAGES](state, arrMessages) {
     state.messages = [...state.messages, ...arrMessages];
+  },
+  [SET_COMPANION](state, companion) {
+    state.companionData = companion;
   },
 };

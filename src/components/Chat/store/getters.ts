@@ -6,4 +6,8 @@ export const getters: GetterTree<ChatData, RootState> = {
     const messages = state.messages;
     return messages;
   },
+  getCompanion(state) {
+    const companion = state.companionData;
+    return companion;
+  },
 };
