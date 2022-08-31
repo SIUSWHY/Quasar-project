@@ -1,5 +1,12 @@
 import { MutationTree } from 'vuex';
-import { SET_COMPANION, SET_MESSAGES, SET_NEW_MESSAGE, SET_NEW_MESSAGE_FROM_COMPANION } from './mutationTypes';
+import {
+  CLEAR_COMPANION_STORE,
+  CLEAR_MESSAGE_STORE,
+  SET_COMPANION,
+  SET_MESSAGES,
+  SET_NEW_MESSAGE,
+  SET_NEW_MESSAGE_FROM_COMPANION,
+} from './mutationTypes';
 import { ChatData } from './types';
 
 export const mutations: MutationTree<ChatData> = {
@@ -10,9 +17,16 @@ export const mutations: MutationTree<ChatData> = {
     state.messages[state.messages.length - 1]?.messageText.push(message.messageText[0]);
   },
   [SET_MESSAGES](state, arrMessages) {
+    // state.messages = [];
     state.messages = [...state.messages, ...arrMessages];
   },
   [SET_COMPANION](state, companion) {
     state.companionData = companion;
+  },
+  [CLEAR_MESSAGE_STORE](state) {
+    state.messages = [];
+  },
+  [CLEAR_COMPANION_STORE](state) {
+    state.companionData = { name: '', avatar: '', _id: '' };
   },
 };

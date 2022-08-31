@@ -12,12 +12,26 @@
       ></q-icon>
     </q-item-section>
     <q-item-section side>
-      <q-avatar :rounded="false" size="50px">
-        <img :src="require('src/assets/avatars/' + (companionData?.avatar ?? 'avatar.jpg'))" />
-      </q-avatar>
+      <div>
+        <div v-if="$store.getters['chatData/getCompanion'].avatar">
+          <q-avatar :rounded="false" size="50px">
+            <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+          </q-avatar>
+        </div>
+        <div v-else>
+          <q-skeleton type="QAvatar"></q-skeleton>
+        </div>
+      </div>
     </q-item-section>
     <q-item-section>
-      <q-item-label>{{ companionData?.name ?? '' }}</q-item-label>
+      <div>
+        <div v-if="$store.getters['chatData/getCompanion']?.name">
+          <q-item-label>{{ $store.getters['chatData/getCompanion']?.name }}</q-item-label>
+        </div>
+        <div v-else>
+          <q-skeleton type="text"></q-skeleton>
+        </div>
+      </div>
       <q-item-label caption>online</q-item-label>
     </q-item-section>
     <q-item-section side>

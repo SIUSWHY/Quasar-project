@@ -28,11 +28,14 @@ export default defineComponent({
 
   unmounted() {
     this.socket.disconnect();
+    this.clearCompanionStore();
+    this.clearMessageStore();
   },
 
   async created() {
-    companionData.value = this.getCompanion();
+    // companionData.value = this.getCompanion();
     const companionId = this.$route.path.split('/').pop();
+    this.getCompanionData({ _id: companionId });
 
     this.socket.emit('companionId', {
       companionId: companionId,
@@ -55,16 +58,19 @@ export default defineComponent({
     ...mapActions('chatData', {
       pushNewMessage: 'pushNewMessage',
       pushMessages: 'pushMessages',
+      clearMessageStore: 'clearMessageStore',
+      getCompanionData: 'getCompanionData',
+      clearCompanionStore: 'clearCompanionStore',
     }),
     // ...mapActions('chatData', {
     //   pushMessages: 'pushMessages',
     // }),
 
-    getCompanion() {
-      const companionId = this.$route.path.split('/').pop();
-      const companion = this.$store.getters['userList/getCompanionData'](companionId);
-      return companion;
-    },
+    // getCompanion() {
+    //   const companionId = this.$route.path.split('/').pop();
+    //   const companion = this.$store.getters['userList/getCompanionData'](companionId);
+    //   return companion;
+    // },
 
     goChatLayout() {
       this.$router.push('/chat_layout');
