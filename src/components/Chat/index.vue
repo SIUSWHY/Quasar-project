@@ -42,13 +42,25 @@
     <div id="q-app">
       <div class="q-pa-md correct-padding row justify-center">
         <div class="test" style="width: 100%; heiht: auto">
-          <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
-          <MessageComponent
-            v-for="message in $store.getters['chatData/getMessages']"
-            :key="message.stamp"
-            v-bind="message"
-            :message="message"
-          />
+          <div>
+            <div v-if="$store.getters['chatData/getMessages']">
+              <MessageComponent
+                v-for="message in $store.getters['chatData/getMessages']"
+                :key="message.stamp"
+                v-bind="message"
+                :message="message"
+              />
+            </div>
+            <div v-else>
+              <div>
+                <q-skeleton class="custom-left-skeleon" width="200px" height="40px"></q-skeleton>
+              </div>
+              <div class="flex-position">
+                <q-skeleton class="custom-right-skeleon" width="200px" height="40px"></q-skeleton>
+              </div>
+            </div>
+            <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
+          </div>
         </div>
       </div>
     </div>

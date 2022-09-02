@@ -23,5 +23,11 @@ export default defineComponent({
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    clickToChouseChat() {
+      window.onclick = e => {
+        console.log(e); // to get the element
+      };
+    },
+  },
 });

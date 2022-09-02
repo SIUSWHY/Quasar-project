@@ -32,12 +32,7 @@
       </q-pull-to-refresh>
     </q-page-container>
     <div :class="{ shadowBlock: true, shadowBlockOpen: toolsIsActive }"></div>
-    <q-page-sticky
-      @click="togleTools"
-      position="bottom-right"
-      class="btn_z-index"
-      :offset="[18, 18]"
-    >
+    <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
       <q-fab icon="edit" direction="up" color="blue">
         <q-fab-action
           @click="toggleRightDrawer()"
@@ -77,6 +72,8 @@ import UserInfo from '../components/UserInfo/index.vue';
 import { mapActions } from 'vuex';
 
 const toolsIsActive = ref(false);
+const rightDrawerOpen = ref(false);
+const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
 export default defineComponent({
   name: 'MainLayout',
@@ -87,12 +84,11 @@ export default defineComponent({
   },
   async created() {
     await this.loadUsers();
+    this.redireckToLayout();
   },
 
   setup() {
     const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
-    const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
     return {
       toolsIsActive,
@@ -110,7 +106,17 @@ export default defineComponent({
       },
     };
   },
+  watch: {
+    rightDrawerOpen() {
+      this.redireckToLayout();
+    },
+  },
   methods: {
+    redireckToLayout() {
+      if (rightDrawerOpen.value === false) {
+        this.$router.push({ path: '/chat_layout' });
+      }
+    },
     writeMessage() {
       this.toggleRightDrawer();
       // this.$router.push({ path: 'chat_layout/write_message' });

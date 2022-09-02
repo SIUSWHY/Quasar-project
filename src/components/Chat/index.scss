@@ -1,3 +1,14 @@
 .q-pa-md.correct-padding {
   padding: 16px 0;
 }
+.custom-left-skeleon {
+  border-radius: 4px 15px 15px 15px;
+}
+.custom-right-skeleon {
+  border-radius: 15px 4px 15px 15px;
+}
+.flex-position {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+}

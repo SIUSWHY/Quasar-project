@@ -33,10 +33,8 @@ export default defineComponent({
   },
 
   async created() {
-    // companionData.value = this.getCompanion();
     const companionId = this.$route.path.split('/').pop();
     this.getCompanionData({ _id: companionId });
-
     this.socket.emit('companionId', {
       companionId: companionId,
     });
@@ -62,15 +60,6 @@ export default defineComponent({
       getCompanionData: 'getCompanionData',
       clearCompanionStore: 'clearCompanionStore',
     }),
-    // ...mapActions('chatData', {
-    //   pushMessages: 'pushMessages',
-    // }),
-
-    // getCompanion() {
-    //   const companionId = this.$route.path.split('/').pop();
-    //   const companion = this.$store.getters['userList/getCompanionData'](companionId);
-    //   return companion;
-    // },
 
     goChatLayout() {
       this.$router.push('/chat_layout');
