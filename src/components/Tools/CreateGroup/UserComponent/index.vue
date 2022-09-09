@@ -1,5 +1,6 @@
 <template>
   <q-item
+    class="custom_target"
     clickable
     @click="
       () => {
@@ -9,10 +10,12 @@
   >
     <q-item-section side>
       <q-avatar rounded size="50px">
-        <img :src="require('src/assets/avatars/' + avatar)" />
-        <q-badge class="bottom-position" align="bottom" floating rounded>
-          <q-icon name="done" size="11px"></q-icon>
-        </q-badge>
+        <img style="border-radius: 25px" :src="require('src/assets/avatars/' + avatar)" />
+        <div v-if="$store.state.userList.selectedUsers.includes(_id)">
+          <q-badge class="bottom-position" align="bottom" floating rounded>
+            <q-icon name="done" size="11px"></q-icon>
+          </q-badge>
+        </div>
       </q-avatar>
     </q-item-section>
     <q-item-section>

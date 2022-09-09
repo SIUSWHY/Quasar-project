@@ -17,6 +17,7 @@ export interface CurrentUser {
 export interface UserList {
   users: UserType[];
   currentUser: CurrentUser;
+  selectedUsers: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

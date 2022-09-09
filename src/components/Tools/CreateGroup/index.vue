@@ -17,7 +17,7 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <UserList v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat" />
+      <UserComponent v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat" />
     </q-page-container>
   </q-layout>
 </template>

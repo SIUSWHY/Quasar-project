@@ -1,3 +1,4 @@
+import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
@@ -20,6 +21,7 @@ const actions = [
   },
 ];
 const currentUserAvatar = ref('avatar.jpg');
+const darkModeStatus = ref(true);
 
 export default defineComponent({
   name: 'UserInfo',
@@ -29,12 +31,22 @@ export default defineComponent({
     return {
       userActions: actions,
       currentUserAvatar,
+      darkModeStatus,
       toggleRightDrawer() {
         setTimeout(() => {
           rightDrawerOpen.value = !rightDrawerOpen.value;
         }, 10);
       },
     };
+  },
+  watch: {
+    darkModeStatus() {
+      if (darkModeStatus.value) {
+        Dark.set(true);
+      } else {
+        Dark.set(false);
+      }
+    },
   },
 
   created() {

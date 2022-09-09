@@ -12,6 +12,19 @@
         v-bind="link"
       />
     </strong>
+    <strong>
+      <q-item>
+        <q-item-section avatar side>
+          <q-icon name="dark_mode" color="white" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Dark mode</q-item-label>
+        </q-item-section>
+        <q-item-section>
+          <q-toggle v-model="darkModeStatus"></q-toggle>
+        </q-item-section>
+      </q-item>
+    </strong>
   </q-list>
 </template>
 

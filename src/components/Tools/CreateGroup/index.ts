@@ -1,19 +1,13 @@
 import { defineComponent } from 'vue';
-import UserList from './UserList/index.vue';
+import UserComponent from './UserComponent/index.vue';
 
 export default defineComponent({
   name: 'CreateGroup',
   components: {
-    UserList,
+    UserComponent,
   },
   data() {
-    return {
-      //   toggleRightDrawer() {
-      //     setTimeout(() => {
-      //       rightDrawerOpen.value = !rightDrawerOpen.value;
-      //     }, 10);
-      //   },
-    };
+    return {};
   },
   methods: {
     goChatLayout() {

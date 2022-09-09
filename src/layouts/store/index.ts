@@ -11,6 +11,7 @@ export const state: UserList = {
     avatar: '',
     _id: '',
   },
+  selectedUsers: [],
 };
 
 const namespaced = true;

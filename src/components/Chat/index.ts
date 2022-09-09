@@ -15,6 +15,7 @@ export default defineComponent({
 
   setup() {
     return {
+      // socket: io('https://quasar-server.onrender.com/', {
       socket: io('http://192.168.88.47:3000', {
         query: {
           token: Cookies.get('Token'),
@@ -93,8 +94,9 @@ export default defineComponent({
 
       setTimeout(() => {
         const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
-        elementFromArrayElements?.scrollIntoView({ block: 'end', behavior: 'smooth' });
-      });
+        elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
+        console.log(elementFromArrayElements);
+      }, 300);
     },
   },
 });
