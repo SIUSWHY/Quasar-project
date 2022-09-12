@@ -1,5 +1,5 @@
 <template>
-  <q-layout>
+  <q-layout view="lHh Lpr lFf">
     <q-header elevated style="background-color: #121212">
       <q-toolbar>
         <q-icon
@@ -12,7 +12,16 @@
           "
         ></q-icon>
         <q-space></q-space>
-        <div><strong>Create Group</strong></div>
+        <div class="chip-position">
+          <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
+            <q-chip>
+              <q-avatar size="21px">
+                <img :src="require('src/assets/avatars/' + chip.avatar)" />
+              </q-avatar>
+              {{ chip.name }}
+            </q-chip>
+          </div>
+        </div>
         <q-space></q-space>
       </q-toolbar>
     </q-header>

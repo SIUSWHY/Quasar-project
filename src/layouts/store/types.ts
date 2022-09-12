@@ -14,10 +14,17 @@ export interface CurrentUser {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   avatar: string;
 }
+export interface SelectedUsers {
+  _id: string;
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  avatar: string;
+}
+
 export interface UserList {
   users: UserType[];
   currentUser: CurrentUser;
-  selectedUsers: string[];
+  selectedUsers: SelectedUsers[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

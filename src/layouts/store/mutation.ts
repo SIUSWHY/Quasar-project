@@ -9,14 +9,15 @@ export const mutations: MutationTree<UserList> = {
   [SET_CURRENT_USER](state, user: CurrentUser) {
     state.currentUser = user;
   },
-  [PUSH_SELECTED_USERS](state, usersId: string) {
-    const foundUserInState = state.selectedUsers.find(id => id === usersId);
-    if (foundUserInState === undefined) {
-      state.selectedUsers = [...state.selectedUsers, usersId];
+  [PUSH_SELECTED_USERS](state, user: { name: string; _id: string; avatar: string }) {
+    const newSelectedUsers = [...state.selectedUsers];
+
+    const indexSelectedUser = newSelectedUsers.findIndex(selectedUser => selectedUser._id === user._id);
+    if (indexSelectedUser === -1) {
+      newSelectedUsers.push(user);
     } else {
-      const filtred = state.selectedUsers.filter(id => !usersId.includes(id));
-      state.selectedUsers = filtred;
+      newSelectedUsers.splice(indexSelectedUser, 1);
     }
-    console.log(foundUserInState);
+    state.selectedUsers = newSelectedUsers;
   },
 };

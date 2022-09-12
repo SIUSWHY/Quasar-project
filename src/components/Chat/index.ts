@@ -1,7 +1,7 @@
 import { Cookies } from 'quasar';
 import { io } from 'socket.io-client';
 import { defineComponent, ref } from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import MessageComponent from './Message/index.vue';
 
 const messageText = ref(null);
@@ -51,6 +51,7 @@ export default defineComponent({
       const arrMessages = data.messages;
       this.pushMessages(arrMessages);
     });
+    this.getLenght();
   },
 
   methods: {
@@ -60,6 +61,13 @@ export default defineComponent({
       clearMessageStore: 'clearMessageStore',
       getCompanionData: 'getCompanionData',
       clearCompanionStore: 'clearCompanionStore',
+    }),
+    getLenght() {
+      const lenght = this.getMessages();
+      console.log(lenght.lenght);
+    },
+    ...mapGetters('chatData', {
+      getMessages: 'getMessages',
     }),
 
     goChatLayout() {

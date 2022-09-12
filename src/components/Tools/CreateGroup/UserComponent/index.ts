@@ -28,7 +28,7 @@ export default defineComponent({
     ...mapActions('userList', { pushSecelectedUsers: 'pushSecelectedUsers' }),
 
     clickToChouseChat() {
-      this.pushSecelectedUsers(this.$props._id);
+      this.pushSecelectedUsers(this.$props);
     },
   },
 });
