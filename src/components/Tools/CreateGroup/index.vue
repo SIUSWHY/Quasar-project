@@ -11,27 +11,26 @@
             }
           "
         ></q-icon>
-        <q-space></q-space>
 
-        <div v-if="$store.state.userList.selectedUsers[0] !== undefined">
-          <div class="chip-position">
-            <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
-              <q-chip>
-                <q-avatar size="21px">
-                  <img :src="require('src/assets/avatars/' + chip.avatar)" />
-                </q-avatar>
-                {{ chip.name }}
-              </q-chip>
+        <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+          <div v-if="$store.state.userList.selectedUsers[0] !== undefined" class="test">
+            <div class="chip-position">
+              <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
+                <q-chip>
+                  <q-avatar size="21px">
+                    <img :src="require('src/assets/avatars/' + chip.avatar)" />
+                  </q-avatar>
+                  {{ chip.name }}
+                </q-chip>
+              </div>
+            </div>
+            <div style="float: right; padding-top: 10px; height: 30px">
+              <div style="position: absolute; z-index: 2000; margin-left: -50px">
+                <q-btn round color="primary" icon="east"></q-btn>
+              </div>
             </div>
           </div>
-          <div style="float: right; padding-top: 10px; height: 30px">
-            <div style="position: absolute; z-index: 2000; margin-left: -50px">
-              <q-btn round color="primary" icon="east"></q-btn>
-            </div>
-          </div>
-        </div>
-        <div v-else></div>
-        <q-space></q-space>
+        </transition>
       </q-toolbar>
     </q-header>
     <q-page-container>
