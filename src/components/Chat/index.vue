@@ -43,7 +43,7 @@
       <div class="q-pa-md correct-padding row justify-center">
         <div class="test" style="width: 100%; heiht: auto">
           <div>
-            <div v-if="$store.getters['chatData/getMessages']?.lenght !== 0">
+            <div v-if="$store.getters['chatData/getMessages'][0] !== undefined">
               <MessageComponent
                 v-for="message in $store.getters['chatData/getMessages']"
                 :key="message.stamp"
