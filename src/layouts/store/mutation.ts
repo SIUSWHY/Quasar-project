@@ -14,7 +14,7 @@ export const mutations: MutationTree<UserList> = {
 
     const indexSelectedUser = newSelectedUsers.findIndex(selectedUser => selectedUser._id === user._id);
     if (indexSelectedUser === -1) {
-      newSelectedUsers.push(user);
+      newSelectedUsers.unshift(user);
     } else {
       newSelectedUsers.splice(indexSelectedUser, 1);
     }

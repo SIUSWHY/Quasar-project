@@ -12,16 +12,25 @@
           "
         ></q-icon>
         <q-space></q-space>
-        <div class="chip-position">
-          <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
-            <q-chip>
-              <q-avatar size="21px">
-                <img :src="require('src/assets/avatars/' + chip.avatar)" />
-              </q-avatar>
-              {{ chip.name }}
-            </q-chip>
+
+        <div v-if="$store.state.userList.selectedUsers">
+          <div class="chip-position">
+            <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
+              <q-chip>
+                <q-avatar size="21px">
+                  <img :src="require('src/assets/avatars/' + chip.avatar)" />
+                </q-avatar>
+                {{ chip.name }}
+              </q-chip>
+            </div>
           </div>
+          <!-- <div style="float: right; padding-top: 10px; height: 30px">
+            <div style="position: absolute; z-index: 2000; margin-left: -50px">
+              <q-btn round color="primary" icon="east"></q-btn>
+            </div>
+          </div> -->
         </div>
+        <div v-else></div>
         <q-space></q-space>
       </q-toolbar>
     </q-header>
