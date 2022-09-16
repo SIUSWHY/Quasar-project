@@ -24,6 +24,9 @@
     display: inline-block;
     min-width: 33px;
     font-size: 10px;
+    .stemp {
+      padding-right: 5px;
+    }
   }
   .q-message-container.row.items-end.no-wrap.reverse {
     div {
@@ -39,4 +42,8 @@
       align-items: flex-start;
     }
   }
+}
+.stepm-direction {
+  display: flex;
+  flex-direction: row !important;
 }

@@ -6,7 +6,7 @@
         <q-space />
         <q-tabs v-model="tab">
           <q-tab name="chats" label="Chats"></q-tab>
-          <q-tab name="test" label="Test"></q-tab>
+          <q-tab name="calls" label="Calls"></q-tab>
         </q-tabs>
         <q-space />
       </q-toolbar>
@@ -21,47 +21,63 @@
     </q-drawer>
 
     <q-page-container style="padding-top: 50px">
-      <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
-        <ChatList
-          @click="toggleRightDrawer"
-          :to="'/chat_layout/chat/' + chat._id"
-          v-for="chat in $store.state.userList.users"
-          :key="chat._id"
-          v-bind="chat"
-        />
-      </q-pull-to-refresh>
+      <div v-if="tab === 'chats'">
+        <transition appear enter-active-class="animated fadeInLeft">
+          <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
+            <ChatList
+              @click="toggleRightDrawer"
+              :to="'/chat_layout/chat/' + chat._id"
+              v-for="chat in $store.state.userList.users"
+              :key="chat._id"
+              v-bind="chat"
+            />
+          </q-pull-to-refresh>
+        </transition>
+      </div>
+      <div v-else>
+        <transition appear enter-active-class="animated fadeInRight">
+          <div>
+            <h6 style="justify-content: center; display: flex">NO CALLS !?!?!??!</h6>
+            <img width="412" src="https://i.imgflip.com/64sz4u.png?a462000" alt="" />
+          </div>
+        </transition>
+      </div>
     </q-page-container>
     <div :class="{ shadowBlock: true, shadowBlockOpen: toolsIsActive }"></div>
-    <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
-      <q-fab icon="edit" direction="up" color="blue">
-        <q-fab-action
-          @click="toggleRightDrawer()"
-          label="Create secret chat"
-          external-label
-          color="green-6"
-          label-position="left"
-          icon="lock"
-        ></q-fab-action>
-        <q-fab-action
-          @click="writeMessage()"
-          to="/chat_layout/write_message"
-          label="Write message"
-          external-label
-          color="red-5"
-          label-position="left"
-          icon="person"
-        ></q-fab-action>
-        <q-fab-action
-          @click="toggleRightDrawer()"
-          label="Create group"
-          to="/chat_layout/create_group"
-          external-label
-          color="orange-6"
-          label-position="left"
-          icon="people"
-        ></q-fab-action>
-      </q-fab>
-    </q-page-sticky>
+    <div v-if="tab === 'chats'">
+      <transition appear enter-active-class="animated fadeIn">
+        <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
+          <q-fab icon="edit" direction="up" color="blue">
+            <q-fab-action
+              @click="toggleRightDrawer()"
+              label="Create secret chat"
+              external-label
+              color="green-6"
+              label-position="left"
+              icon="lock"
+            ></q-fab-action>
+            <q-fab-action
+              @click="writeMessage()"
+              to="/chat_layout/write_message"
+              label="Write message"
+              external-label
+              color="red-5"
+              label-position="left"
+              icon="person"
+            ></q-fab-action>
+            <q-fab-action
+              @click="toggleRightDrawer()"
+              label="Create group"
+              to="/chat_layout/create_group"
+              external-label
+              color="orange-6"
+              label-position="left"
+              icon="people"
+            ></q-fab-action>
+          </q-fab>
+        </q-page-sticky>
+      </transition>
+    </div>
   </q-layout>
 </template>
 
@@ -69,6 +85,7 @@
 import { defineComponent, ref } from 'vue';
 import ChatList from 'components/ChatsList/index.vue';
 import UserInfo from '../components/UserInfo/index.vue';
+import getRooms from '../API/getRooms';
 import { mapActions } from 'vuex';
 
 const toolsIsActive = ref(false);
@@ -85,6 +102,9 @@ export default defineComponent({
   async created() {
     await this.loadUsers();
     this.redireckToLayout();
+  },
+  mounted() {
+    this.test123();
   },
 
   setup() {
@@ -112,6 +132,12 @@ export default defineComponent({
     },
   },
   methods: {
+    async test123() {
+      setTimeout(async () => {
+        const userId = { _id: this.$store.state.userList.currentUser._id };
+        await getRooms(userId);
+      }, 1000);
+    },
     redireckToLayout() {
       if (rightDrawerOpen.value === false) {
         this.$router.push({ path: '/chat_layout' });
