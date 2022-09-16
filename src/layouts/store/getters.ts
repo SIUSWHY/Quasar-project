@@ -11,4 +11,8 @@ export const getters: GetterTree<UserList, RootState> = {
     }
     return user;
   },
+  getUsersDataForGroupChat(state) {
+    const users = state.selectedUsers;
+    return users;
+  },
 };

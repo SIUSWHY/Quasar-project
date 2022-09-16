@@ -1,7 +1,7 @@
 import getCurrentUser from 'src/API/getCurrnetUser';
 import getUsers from 'src/API/getUsers';
 import { ActionTree } from 'vuex';
-import { GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
+import { CLEAR_SELECTED_USERS, GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
 import { RootState, UserList } from './types';
 
 export const actions: ActionTree<UserList, RootState> = {
@@ -15,6 +15,9 @@ export const actions: ActionTree<UserList, RootState> = {
   },
   pushSecelectedUsers({ commit }, user) {
     commit(PUSH_SELECTED_USERS, user);
+  },
+  clearSelectedUsers({ commit }) {
+    commit(CLEAR_SELECTED_USERS);
   },
   someAction(/* context */) {
     // your code

@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex';
-import { GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
+import { CLEAR_SELECTED_USERS, GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
 import { CurrentUser, UserList, UserType } from './types';
 
 export const mutations: MutationTree<UserList> = {
@@ -19,5 +19,8 @@ export const mutations: MutationTree<UserList> = {
       newSelectedUsers.splice(indexSelectedUser, 1);
     }
     state.selectedUsers = newSelectedUsers;
+  },
+  [CLEAR_SELECTED_USERS](state) {
+    state.selectedUsers = [];
   },
 };

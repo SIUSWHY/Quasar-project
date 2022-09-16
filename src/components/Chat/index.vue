@@ -41,7 +41,7 @@
   <q-item style="padding-top: 66px; padding-bottom: 50px">
     <div id="q-app">
       <div class="q-pa-md correct-padding row justify-center">
-        <div class="test" style="width: 100%; heiht: auto">
+        <div style="width: 100%; heiht: auto">
           <div>
             <div v-if="$store.getters['chatData/getMessages'][0] !== undefined">
               <MessageComponent
