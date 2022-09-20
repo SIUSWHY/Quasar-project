@@ -6,7 +6,7 @@
         <q-space />
         <q-tabs v-model="tab">
           <q-tab name="chats" label="Chats"></q-tab>
-          <q-tab name="calls" label="Calls"></q-tab>
+          <!-- <q-tab name="calls" label="Calls"></q-tab> -->
         </q-tabs>
         <q-space />
       </q-toolbar>
@@ -31,6 +31,21 @@
               :key="chat._id"
               v-bind="chat"
             />
+            <div v-if="$store.state.userList.chats[0] !== undefined">
+              <q-separator dark></q-separator>
+              <div v-for="newChat in $store.state.userList.chats" :key="newChat._id">
+                <q-item clickable v-ripple :to="'/chat_layout/chat/' + newChat._id">
+                  <q-item-section side>
+                    <q-avatar class="custom-border" rounded size="50px">
+                      <img :src="require('src/assets/avatars/' + newChat.room_img)" />
+                    </q-avatar>
+                  </q-item-section>
+                  <q-item-section>
+                    <q-item-label>{{ newChat.room_name }}</q-item-label>
+                  </q-item-section>
+                </q-item>
+              </div>
+            </div>
           </q-pull-to-refresh>
         </transition>
       </div>
@@ -85,7 +100,6 @@
 import { defineComponent, ref } from 'vue';
 import ChatList from 'components/ChatsList/index.vue';
 import UserInfo from '../components/UserInfo/index.vue';
-import getRooms from '../API/getRooms';
 import { mapActions } from 'vuex';
 
 const toolsIsActive = ref(false);
@@ -134,8 +148,8 @@ export default defineComponent({
   methods: {
     async test123() {
       setTimeout(async () => {
-        const userId = { _id: this.$store.state.userList.currentUser._id };
-        await getRooms(userId);
+        const userId = this.$store.state.userList.currentUser._id;
+        this.getChats(userId);
       }, 1000);
     },
     redireckToLayout() {
@@ -149,6 +163,7 @@ export default defineComponent({
     },
     ...mapActions('userList', {
       loadUsers: 'loadUsers',
+      getChats: 'getChats',
     }),
     async refreshUserList(done: () => void) {
       setTimeout(() => {

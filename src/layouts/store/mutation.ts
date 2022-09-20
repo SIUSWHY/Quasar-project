@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
-import { CLEAR_SELECTED_USERS, GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
-import { CurrentUser, UserList, UserType } from './types';
+import { CLEAR_SELECTED_USERS, GET_CHATS, GET_USERS, PUSH_SELECTED_USERS, SET_CURRENT_USER } from './mutationTypes';
+import { ChatsType, CurrentUser, UserList, UserType } from './types';
 
 export const mutations: MutationTree<UserList> = {
   [GET_USERS](state, users: UserType[]) {
@@ -22,5 +22,26 @@ export const mutations: MutationTree<UserList> = {
   },
   [CLEAR_SELECTED_USERS](state) {
     state.selectedUsers = [];
+  },
+  [GET_CHATS](state, chats: ChatsType[]) {
+    const currentUserId = state.currentUser._id;
+
+    chats.forEach((chat: ChatsType) => {
+      const userWithoutCurrentUser = chat.users_id.filter(user => !currentUserId.includes(user._id));
+      let chatData!: { name: string; avatar: string };
+
+      if (userWithoutCurrentUser.length !== 0) {
+        userWithoutCurrentUser.forEach((user: UserType) => {
+          chatData = { name: user.name, avatar: user.avatar };
+        });
+      } else {
+        return;
+      }
+
+      chat.room_img = chatData.avatar;
+      chat.room_name = chatData.name;
+    });
+
+    state.chats = chats;
   },
 };

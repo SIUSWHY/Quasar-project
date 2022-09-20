@@ -6,7 +6,7 @@
           <div class="stepm-direction">
             <div class="stemp">{{ this.message.stamp }}</div>
             <div>
-              <div v-if="true">
+              <div v-if="this.message.whoRead[1] !== undefined">
                 <q-icon size="15px" color="blue-10" name="done_all"></q-icon>
               </div>
               <div v-else>

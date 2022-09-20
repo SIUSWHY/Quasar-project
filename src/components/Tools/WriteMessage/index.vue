@@ -18,7 +18,7 @@
     </q-header>
     <q-page-container>
       <UserList
-        @click="goToChat(chat._id)"
+        :to="'/chat_layout/chat/' + chat._id"
         v-for="chat in $store.state.userList.users"
         :key="chat.name"
         v-bind="chat"
