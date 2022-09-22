@@ -18,12 +18,13 @@
     </q-header>
     <q-page-container>
       <UserList
-        :to="'/chat_layout/chat/' + chat._id"
         v-for="chat in $store.state.userList.users"
+        @click="isMessageModalOpen = !isMessageModalOpen"
         :key="chat.name"
         v-bind="chat"
       />
     </q-page-container>
+    <MessageModal v-model="isMessageModalOpen" @close-modal="isMessageModalOpen = $event" />
   </q-layout>
 </template>
 

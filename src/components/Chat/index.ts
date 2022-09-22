@@ -1,11 +1,11 @@
-import { Cookies } from 'quasar';
-import { io } from 'socket.io-client';
+import { useSocketIO } from 'src/SocketInstance';
 import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
 import MessageComponent from './Message/index.vue';
 
 const messageText = ref(null);
 const companionData = ref(null);
+const socket = useSocketIO();
 
 export default defineComponent({
   name: 'ChatPage',
@@ -16,19 +16,19 @@ export default defineComponent({
   setup() {
     return {
       // socket: io('https://quasar-server.onrender.com/', {
-      socket: io('http://192.168.88.47:3000', {
-        query: {
-          token: Cookies.get('Token'),
-          chatType: 'double',
-        },
-      }),
+      // socket: io('http://192.168.88.47:3000', {
+      //   query: {
+      //     token: Cookies.get('Token'),
+      //     chatType: 'double',
+      //   },
+      // }),
       companionData,
       messageText,
     };
   },
 
   unmounted() {
-    this.socket.disconnect();
+    socket.socket.disconnect();
     this.clearCompanionStore();
     this.clearMessageStore();
   },
@@ -36,18 +36,18 @@ export default defineComponent({
   async created() {
     const companionId = this.$route.path.split('/').pop();
     this.getCompanionData({ _id: companionId });
-    this.socket.emit('companionId', {
+    socket.socket.emit('companionId', {
       companionId: companionId,
     });
 
-    this.socket.connect();
+    socket.socket.connect();
 
-    this.socket.on('ok', data => {
+    socket.socket.on('ok', data => {
       this.pushNewMessage(data.data.message);
       console.log(data.data.message);
     });
 
-    this.socket.on('join', data => {
+    socket.socket.on('join', data => {
       const arrMessages = data.messages;
       this.pushMessages(arrMessages);
     });
@@ -82,7 +82,7 @@ export default defineComponent({
         userId: postUserId,
       };
 
-      this.socket.emit('message', {
+      socket.socket.emit('message', {
         message: message,
       });
 
