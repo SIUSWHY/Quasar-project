@@ -7,6 +7,10 @@ const routes: RouteRecordRaw[] = [
     component: () => import('components/Login/index.vue'),
   },
   {
+    path: '/sign_up',
+    component: () => import('components/SignUp/index.vue'),
+  },
+  {
     path: '/chat_layout',
     component: () => import('src/layouts/MainLayout.vue'),
     beforeEnter: (to, from, next) => {

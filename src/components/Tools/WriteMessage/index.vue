@@ -8,7 +8,7 @@
             size="1.5em"
             @click="
               () => {
-                goChatLayout();
+                toggleRightDrawer();
               }
             "
           ></q-icon>

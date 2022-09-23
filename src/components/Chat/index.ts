@@ -40,6 +40,7 @@ export default defineComponent({
     });
 
     socket.on('join', data => {
+      this.setNewChat(data.room);
       const arrMessages = data.messages;
       this.pushMessages(arrMessages);
     });
@@ -55,6 +56,9 @@ export default defineComponent({
     }),
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',
+    }),
+    ...mapActions('userList', {
+      setNewChat: 'setNewChat',
     }),
 
     goChatLayout() {

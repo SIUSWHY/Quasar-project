@@ -1,7 +1,14 @@
 <template>
-  <q-avatar square size="300px">
-    <img :src="require('../../assets/avatars/' + currentUserAvatar)" alt="avatar" />
-  </q-avatar>
+  <div>
+    <div v-if="$store.getters['userList/getCurrentUser'].avatar">
+      <q-avatar square size="300px">
+        <img :src="require('../../assets/avatars/' + $store.getters['userList/getCurrentUser'].avatar)" alt="avatar" />
+      </q-avatar>
+    </div>
+    <div v-else>
+      <q-skeleton size="300px" type="avatar"></q-skeleton>
+    </div>
+  </div>
   <q-list>
     <strong>
       <UserActions

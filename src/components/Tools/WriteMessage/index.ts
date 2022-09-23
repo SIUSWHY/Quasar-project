@@ -12,12 +12,13 @@ export default defineComponent({
   data() {
     return {
       isMessageModalOpen: ref(false),
-      toggleRightDrawer() {
-        setTimeout(() => {
-          rightDrawerOpen.value = !rightDrawerOpen.value;
-        }, 10);
-      },
     };
   },
-  methods: {},
+  methods: {
+    toggleRightDrawer() {
+      setTimeout(() => {
+        rightDrawerOpen.value = !rightDrawerOpen.value;
+      }, 10);
+    },
+  },
 });

@@ -24,24 +24,21 @@
       <div v-if="tab === 'chats'">
         <transition appear enter-active-class="animated fadeInLeft">
           <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
-            <!-- <ChatList
-              @click="toggleRightDrawer"
-              :to="'/chat_layout/chat/' + chat._id"
-              v-for="chat in $store.state.userList.users"
-              :key="chat._id"
-              v-bind="chat"
-            /> -->
             <div v-if="$store.state.userList.chats[0] !== undefined">
-              <!-- <q-separator dark></q-separator> -->
-              <div v-for="newChat in $store.state.userList.chats" :key="newChat._id">
-                <q-item clickable v-ripple :to="'/chat_layout/chat'">
+              <ChatComponentLayout
+                v-for="newChat in $store.getters['userList/getChats']"
+                :key="newChat._id"
+                v-bind="newChat"
+              />
+            </div>
+            <div v-else>
+              <div v-for="skeleton in 5" :key="skeleton">
+                <q-item clickable v-ripple>
                   <q-item-section side>
-                    <q-avatar class="custom-border" rounded size="50px">
-                      <img :src="require('src/assets/avatars/' + newChat.room_img)" />
-                    </q-avatar>
+                    <q-skeleton type="QAvatar"></q-skeleton>
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>{{ newChat.room_name }}</q-item-label>
+                    <q-skeleton type="text"></q-skeleton>
                   </q-item-section>
                 </q-item>
               </div>
@@ -98,8 +95,8 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-// import ChatList from 'components/ChatsList/index.vue';
 import UserInfo from '../components/UserInfo/index.vue';
+import ChatComponentLayout from './Chat/index.vue';
 import { mapActions } from 'vuex';
 
 const toolsIsActive = ref(false);
@@ -110,7 +107,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    // ChatList,
+    ChatComponentLayout,
     UserInfo,
   },
   async created() {

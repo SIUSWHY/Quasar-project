@@ -2,15 +2,16 @@
   <div id="q-app" style="min-height: 100vh">
     <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
       <div class="q-pa-md">
-        <q-card-section class="text-h6 text-center">Login</q-card-section>
+        <q-card-section class="text-h6 text-center">Sign Up</q-card-section>
         <q-form class="q-gutter-md">
-          <q-input filled v-model="user.name" :label="$t('login.your_username')"></q-input>
+          <q-input filled v-model="user.name" label="Your username"></q-input>
+          <q-input filled v-model="user.email" label="Your email"></q-input>
 
           <q-input filled type="password" v-model="user.password" :label="$t('login.your_password')"></q-input>
-          <div>
+          <!-- <div>
             Don't have an account?
-            <router-link style="color: #1976d2 !important" to="/sign_up">Sign up</router-link>
-          </div>
+            <router-link to="/sign_up">Sign up</router-link>
+          </div> -->
 
           <div>
             <q-btn
