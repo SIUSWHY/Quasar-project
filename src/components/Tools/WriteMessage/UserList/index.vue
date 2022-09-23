@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable>
+  <q-item clickable @click="selectData()">
     <q-item-section side>
       <q-avatar rounded size="50px">
         <img :src="require('src/assets/avatars/' + avatar)" />

@@ -1,5 +1,12 @@
 <template>
-  <q-dialog persistent maximized transition-duration="200" transition-show="slide-left" transition-hide="slide-right">
+  <q-dialog
+    persistent
+    maximized
+    transition-duration="200"
+    transition-show="slide-left"
+    transition-hide="slide-right"
+    style="background: #1d1d1d"
+  >
     <Chat />
   </q-dialog>
 </template>

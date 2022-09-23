@@ -7,6 +7,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    _id: {
+      type: String,
+      required: true,
+    },
     avatar: {
       type: String,
       default: '',

@@ -2,7 +2,7 @@ import { MutationTree } from 'vuex';
 import {
   CLEAR_COMPANION_STORE,
   CLEAR_MESSAGE_STORE,
-  SET_COMPANION,
+  SET_COMPANION_DATA,
   SET_MESSAGES,
   SET_NEW_MESSAGE,
   SET_NEW_MESSAGE_FROM_COMPANION,
@@ -20,7 +20,7 @@ export const mutations: MutationTree<ChatData> = {
     // state.messages = [];
     state.messages = [...state.messages, ...arrMessages];
   },
-  [SET_COMPANION](state, companion) {
+  [SET_COMPANION_DATA](state, companion) {
     state.companionData = companion;
   },
   [CLEAR_MESSAGE_STORE](state) {

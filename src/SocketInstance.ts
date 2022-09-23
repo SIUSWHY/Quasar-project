@@ -18,14 +18,21 @@ import { io } from 'socket.io-client';
 
 // createApp(App).use(socket);
 
-export const useSocketIO = () => {
-  const socket = io('http://192.168.88.47:3000', {
-    query: {
-      token: Cookies.get('Token'),
-      chatType: 'double',
-    },
-  });
-  return {
-    socket,
-  };
-};
+// export const useSocketIO = () => {
+//   const socket = io('http://192.168.88.47:3000', {
+//     query: {
+//       token: Cookies.get('Token'),
+//       chatType: 'double',
+//     },
+//   });
+//   return {
+//     socket,
+//   };
+// };
+
+export const socket = io('http://192.168.88.47:3000', {
+  query: {
+    token: Cookies.get('Token'),
+    chatType: 'double',
+  },
+});

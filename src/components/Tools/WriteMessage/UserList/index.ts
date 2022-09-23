@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'UserList',
@@ -27,5 +28,12 @@ export default defineComponent({
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    ...mapActions('chatData', {
+      setCompanionData: 'setCompanionData',
+    }),
+    selectData() {
+      this.setCompanionData(this.$props);
+    },
+  },
 });

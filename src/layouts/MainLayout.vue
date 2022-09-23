@@ -24,17 +24,17 @@
       <div v-if="tab === 'chats'">
         <transition appear enter-active-class="animated fadeInLeft">
           <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
-            <ChatList
+            <!-- <ChatList
               @click="toggleRightDrawer"
               :to="'/chat_layout/chat/' + chat._id"
               v-for="chat in $store.state.userList.users"
               :key="chat._id"
               v-bind="chat"
-            />
+            /> -->
             <div v-if="$store.state.userList.chats[0] !== undefined">
-              <q-separator dark></q-separator>
+              <!-- <q-separator dark></q-separator> -->
               <div v-for="newChat in $store.state.userList.chats" :key="newChat._id">
-                <q-item clickable v-ripple :to="'/chat_layout/chat/' + newChat._id">
+                <q-item clickable v-ripple :to="'/chat_layout/chat'">
                   <q-item-section side>
                     <q-avatar class="custom-border" rounded size="50px">
                       <img :src="require('src/assets/avatars/' + newChat.room_img)" />
@@ -98,7 +98,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import ChatList from 'components/ChatsList/index.vue';
+// import ChatList from 'components/ChatsList/index.vue';
 import UserInfo from '../components/UserInfo/index.vue';
 import { mapActions } from 'vuex';
 
@@ -110,15 +110,13 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    ChatList,
+    // ChatList,
     UserInfo,
   },
   async created() {
     await this.loadUsers();
+    this.getChatsForCurrentUser();
     this.redireckToLayout();
-  },
-  mounted() {
-    this.test123();
   },
 
   setup() {
@@ -146,7 +144,7 @@ export default defineComponent({
     },
   },
   methods: {
-    async test123() {
+    async getChatsForCurrentUser() {
       setTimeout(async () => {
         const userId = this.$store.state.userList.currentUser._id;
         this.getChats(userId);
