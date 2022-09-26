@@ -20,7 +20,6 @@ export default defineComponent({
   },
 
   unmounted() {
-    socket.disconnect();
     this.clearCompanionStore();
     this.clearMessageStore();
   },
@@ -31,8 +30,6 @@ export default defineComponent({
     socket.emit('companionId', {
       companionId: companion._id,
     });
-
-    socket.connect();
 
     socket.on('ok', data => {
       this.pushNewMessage(data.data.message);

@@ -1,5 +1,5 @@
 import { axiosInstance } from './index';
 
-const getUser = (userId: any) => axiosInstance.post('/getUser', userId);
+const getUser = (userId: string) => axiosInstance.post('/getUser', userId);
 
 export default getUser;

@@ -1,4 +1,4 @@
-import getUser from 'src/API/getUser';
+// import getUser from 'src/API/getUser';
 import { MutationTree } from 'vuex';
 import {
   CLEAR_SELECTED_USERS,
@@ -59,28 +59,32 @@ export const mutations: MutationTree<UserList> = {
 
   [SET_NEW_CHAT](state, chat: ChatsType) {
     const filtred = state.chats.filter(chats => chat._id.includes(chats._id));
-    const currentUserId = state.currentUser._id;
+    // const currentUserId = state.currentUser._id;
+    console.log(chat);
 
-    if (filtred.length === 0) {
-      const userWithoutCurrentUser = chat.users_id.filter(user => !currentUserId.includes(user._id));
-      let chatData!: { name: string; avatar: string };
+    // if (filtred.length === 0) {
+    //   const userWithoutCurrentUser = chat.users_id.find(user => user._id !== currentUserId);
+    //   let chatData!: { name: string; avatar: string };
+    //   debugger;
 
-      console.log(userWithoutCurrentUser);
+    //   console.log(userWithoutCurrentUser);
 
-      if (userWithoutCurrentUser.length !== 0) {
-        userWithoutCurrentUser.forEach(async userId => {
-          const user: any = await getUser({ _id: userId });
-          chatData = { name: user.name, avatar: user.avatar };
-        });
-      } else {
-        return;
-      }
+    //   if (userWithoutCurrentUser !== undefined) {
+    //     userWithoutCurrentUser.forEach(async userId => {
+    //       const { data: user }: any = await getUser({ _id: userId });
 
-      chat.room_img = chatData.avatar;
-      chat.room_name = chatData.name;
+    //       chatData = { name: user.name, avatar: user.avatar };
+    //       console.log(chatData);
+    //     });
+    //   } else {
+    //     return;
+    //   }
 
-      state.chats = [...state.chats, chat];
-    }
+    //   chat.room_img = chatData.avatar;
+    //   chat.room_name = chatData.name;
+
+    //   state.chats = [...state.chats, chat];
+    // }
     console.log(filtred);
   },
 };

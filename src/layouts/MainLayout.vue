@@ -98,6 +98,7 @@ import { defineComponent, ref } from 'vue';
 import UserInfo from '../components/UserInfo/index.vue';
 import ChatComponentLayout from './Chat/index.vue';
 import { mapActions } from 'vuex';
+import { socket } from 'src/SocketInstance';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
@@ -114,6 +115,10 @@ export default defineComponent({
     await this.loadUsers();
     this.getChatsForCurrentUser();
     this.redireckToLayout();
+    socket.connect();
+  },
+  unmounted() {
+    socket.disconnect();
   },
 
   setup() {

@@ -35,6 +35,17 @@ export interface ChatsType {
   room_img?: string;
   roomId: string;
   users_id: UserType[];
+  unreadMessagesCount: number;
+}
+
+export interface ChatsTypeWithOutUsersData {
+  __v: number;
+  _id: string;
+  chatType: string;
+  room_name?: string;
+  room_img?: string;
+  roomId: string;
+  users_id: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

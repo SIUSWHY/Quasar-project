@@ -37,7 +37,11 @@
     <q-page-container>
       <UserComponent v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat" />
     </q-page-container>
-    <CreateGroupModal v-model="isCreateGroupModalOpen" @close-modal="isCreateGroupModalOpen = $event" />
+    <CreateGroupModal
+      v-model="isCreateGroupModalOpen"
+      :users="$store.state.userList.selectedUsers"
+      @close-modal="isCreateGroupModalOpen = $event"
+    />
   </q-layout>
 </template>
 
