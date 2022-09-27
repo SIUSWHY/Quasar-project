@@ -26,7 +26,7 @@
           <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
             <div v-if="$store.state.userList.chats[0] !== undefined">
               <ChatComponentLayout
-                v-for="newChat in $store.getters['userList/getChats']"
+                v-for="newChat in $store.getters['userList/getChatsFromState']"
                 :key="newChat._id"
                 v-bind="newChat"
               />
@@ -97,7 +97,7 @@
 import { defineComponent, ref } from 'vue';
 import UserInfo from '../components/UserInfo/index.vue';
 import ChatComponentLayout from './Chat/index.vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
 
 const toolsIsActive = ref(false);
@@ -112,11 +112,12 @@ export default defineComponent({
     UserInfo,
   },
   async created() {
+    await this.prepareData();
     await this.loadUsers();
-    this.getChatsForCurrentUser();
     this.redireckToLayout();
     socket.connect();
   },
+
   unmounted() {
     socket.disconnect();
   },
@@ -146,12 +147,15 @@ export default defineComponent({
     },
   },
   methods: {
-    async getChatsForCurrentUser() {
-      setTimeout(async () => {
-        const userId = this.$store.state.userList.currentUser._id;
-        this.getChats(userId);
-      }, 1000);
-    },
+    ...mapActions('userList', {
+      loadUsers: 'loadUsers',
+      prepareData: 'prepareData',
+    }),
+    ...mapGetters('userList', {
+      getChatsFromState: 'getChatsFromState',
+      getCurrentUser: 'getCurrentUser',
+    }),
+
     redireckToLayout() {
       if (rightDrawerOpen.value === false) {
         this.$router.push({ path: '/chat_layout' });
@@ -161,10 +165,7 @@ export default defineComponent({
       this.toggleRightDrawer();
       // this.$router.push({ path: 'chat_layout/write_message' });
     },
-    ...mapActions('userList', {
-      loadUsers: 'loadUsers',
-      getChats: 'getChats',
-    }),
+
     async refreshUserList(done: () => void) {
       setTimeout(() => {
         this.loadUsers();

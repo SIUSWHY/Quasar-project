@@ -19,6 +19,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    unreadMessagesCount: {
+      type: Number,
+    },
   },
   data() {
     return {};

@@ -15,7 +15,7 @@ export const getters: GetterTree<UserList, RootState> = {
     const users = state.selectedUsers;
     return users;
   },
-  getChats(state) {
+  getChatsFromState(state) {
     const chats = state.chats;
     return chats;
   },

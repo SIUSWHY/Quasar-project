@@ -9,6 +9,12 @@
       <q-item-section>
         <q-item-label>{{ room_name }}</q-item-label>
       </q-item-section>
+      <q-item-section side>
+        <div v-if="unreadMessagesCount >= 1">
+          <q-badge rounded color="primary" :label="unreadMessagesCount"></q-badge>
+        </div>
+        <div v-else></div>
+      </q-item-section>
     </q-item>
   </div>
 </template>

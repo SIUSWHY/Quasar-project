@@ -7,6 +7,7 @@ import {
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
   SET_NEW_CHAT,
+  SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
 import { ChatsType, CurrentUser, UserList, UserType } from './types';
 
@@ -55,6 +56,10 @@ export const mutations: MutationTree<UserList> = {
     });
 
     state.chats = chats;
+  },
+
+  [SET_UNREAD_MESSAGES_COUNT](state, counts: Record<string, number>) {
+    state.chats = state.chats.map(chat => ({ ...chat, unreadMessagesCount: counts[chat.roomId] || 0 }));
   },
 
   [SET_NEW_CHAT](state, chat: ChatsType) {
