@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'ChatItemLayout',
@@ -26,5 +27,12 @@ export default defineComponent({
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    ...mapActions('chatData', {
+      setCompanionData: 'setCompanionData',
+    }),
+    pushCompanionData() {
+      this.setCompanionData({ _id: this.$props._id, avatar: this.$props.room_img, name: this.$props.room_name });
+    },
+  },
 });

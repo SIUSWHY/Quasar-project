@@ -21,13 +21,14 @@
     </q-drawer>
 
     <q-page-container style="padding-top: 50px">
-      <div v-if="tab === 'chats'">
-        <transition appear enter-active-class="animated fadeInLeft">
-          <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
+      <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
+        <div v-if="tab === 'chats'">
+          <transition appear enter-active-class="animated fadeInLeft">
             <div v-if="$store.state.userList.chats[0] !== undefined">
               <ChatComponentLayout
                 v-for="newChat in $store.getters['userList/getChatsFromState']"
                 :key="newChat._id"
+                @click="isMessageModalOpen = !isMessageModalOpen"
                 v-bind="newChat"
               />
             </div>
@@ -43,18 +44,19 @@
                 </q-item>
               </div>
             </div>
-          </q-pull-to-refresh>
-        </transition>
-      </div>
-      <div v-else>
-        <transition appear enter-active-class="animated fadeInRight">
-          <div>
-            <h6 style="justify-content: center; display: flex">NO CALLS !?!?!??!</h6>
-            <img width="412" src="https://i.imgflip.com/64sz4u.png?a462000" alt="" />
-          </div>
-        </transition>
-      </div>
+          </transition>
+        </div>
+        <div v-else>
+          <transition appear enter-active-class="animated fadeInRight">
+            <div>
+              <h6 style="justify-content: center; display: flex">NO CALLS !?!?!??!</h6>
+              <img width="412" src="https://i.imgflip.com/64sz4u.png?a462000" alt="" />
+            </div>
+          </transition>
+        </div>
+      </q-pull-to-refresh>
     </q-page-container>
+    <MessageModal v-model="isMessageModalOpen" @close-modal="isMessageModalOpen = $event" />
     <div :class="{ shadowBlock: true, shadowBlockOpen: toolsIsActive }"></div>
     <div v-if="tab === 'chats'">
       <transition appear enter-active-class="animated fadeIn">
@@ -99,6 +101,7 @@ import UserInfo from '../components/UserInfo/index.vue';
 import ChatComponentLayout from './Chat/index.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
+import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
@@ -110,12 +113,16 @@ export default defineComponent({
   components: {
     ChatComponentLayout,
     UserInfo,
+    MessageModal,
   },
   async created() {
     await this.prepareData();
-    await this.loadUsers();
     this.redireckToLayout();
     socket.connect();
+
+    socket.on('newMessNotify', data => {
+      this.changeCountUnreadMessage(data);
+    });
   },
 
   unmounted() {
@@ -131,6 +138,7 @@ export default defineComponent({
       width,
       rightDrawerOpen,
       tab: ref('chats'),
+      isMessageModalOpen: ref(false),
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
@@ -148,8 +156,9 @@ export default defineComponent({
   },
   methods: {
     ...mapActions('userList', {
-      loadUsers: 'loadUsers',
       prepareData: 'prepareData',
+      changeCountUnreadMessage: 'changeCountUnreadMessage',
+      getChats: 'getChats',
     }),
     ...mapGetters('userList', {
       getChatsFromState: 'getChatsFromState',
@@ -168,7 +177,7 @@ export default defineComponent({
 
     async refreshUserList(done: () => void) {
       setTimeout(() => {
-        this.loadUsers();
+        this.getChats();
         done();
       }, 1000);
     },

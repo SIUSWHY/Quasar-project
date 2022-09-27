@@ -4,6 +4,7 @@ import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
 import getUsers from 'src/API/getUsers';
 import { ActionTree } from 'vuex';
 import {
+  CHANGE_UNREAD_COUNT_MESSAGE,
   CLEAR_SELECTED_USERS,
   GET_CHATS,
   GET_USERS,
@@ -12,7 +13,7 @@ import {
   SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
-import { ChatsType, RootState, UserList } from './types';
+import { RootState, UserList } from './types';
 
 export const actions: ActionTree<UserList, RootState> = {
   async loadUsers({ commit }) {
@@ -34,9 +35,15 @@ export const actions: ActionTree<UserList, RootState> = {
     commit(CLEAR_SELECTED_USERS);
   },
 
-  async getChats({ commit }, currentUserId: string) {
-    const { data: chats } = await getRooms({ _id: currentUserId });
+  async getChats({ commit, state, dispatch }, currentUserId: string) {
+    const userId = state.currentUser._id;
+
+    const { data: chats } = await getRooms({ _id: currentUserId || userId });
+    const roomIds: string[] = chats.map(chat => chat.roomId);
+
     commit(GET_CHATS, chats);
+    await dispatch('getUnreadMessagesCount', { currentUserId: userId, roomId: roomIds });
+
     return chats;
   },
 
@@ -47,14 +54,16 @@ export const actions: ActionTree<UserList, RootState> = {
   async prepareData({ dispatch }) {
     await dispatch('loadUsers');
     const currentUserId: string = await dispatch('setCurrentUser');
-    const chats: ChatsType[] = await dispatch('getChats', currentUserId);
-    const roomId: string[] = chats.map(chat => chat.roomId);
-    await dispatch('getUnreadMessagesCount', { currentUserId, roomId: roomId });
+    await dispatch('getChats', currentUserId);
   },
 
   async getUnreadMessagesCount({ commit }, { currentUserId, roomId }) {
     const { data: counts } = await unreadMessagesCount({ currentUserId: currentUserId, roomId: roomId });
 
     commit(SET_UNREAD_MESSAGES_COUNT, counts);
+  },
+
+  changeCountUnreadMessage({ commit }, roomId) {
+    commit(CHANGE_UNREAD_COUNT_MESSAGE, roomId);
   },
 };

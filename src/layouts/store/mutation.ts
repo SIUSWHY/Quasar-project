@@ -1,6 +1,7 @@
 // import getUser from 'src/API/getUser';
 import { MutationTree } from 'vuex';
 import {
+  CHANGE_UNREAD_COUNT_MESSAGE,
   CLEAR_SELECTED_USERS,
   GET_CHATS,
   GET_USERS,
@@ -60,6 +61,15 @@ export const mutations: MutationTree<UserList> = {
 
   [SET_UNREAD_MESSAGES_COUNT](state, counts: Record<string, number>) {
     state.chats = state.chats.map(chat => ({ ...chat, unreadMessagesCount: counts[chat.roomId] || 0 }));
+  },
+
+  [CHANGE_UNREAD_COUNT_MESSAGE](state, roomId: string) {
+    state.chats = state.chats.map(chat => {
+      if (chat.roomId === roomId) {
+        chat.unreadMessagesCount += 1;
+      }
+      return chat;
+    });
   },
 
   [SET_NEW_CHAT](state, chat: ChatsType) {

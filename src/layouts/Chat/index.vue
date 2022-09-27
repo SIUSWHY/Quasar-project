@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-item clickable v-ripple>
+    <q-item clickable v-ripple @click="pushCompanionData()">
       <q-item-section side>
         <q-avatar class="custom-border" rounded size="50px">
           <img :src="require('src/assets/avatars/' + room_img)" />
@@ -11,7 +11,9 @@
       </q-item-section>
       <q-item-section side>
         <div v-if="unreadMessagesCount >= 1">
-          <q-badge rounded color="primary" :label="unreadMessagesCount"></q-badge>
+          <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+            <q-badge rounded color="primary" :label="unreadMessagesCount"></q-badge>
+          </transition>
         </div>
         <div v-else></div>
       </q-item-section>
