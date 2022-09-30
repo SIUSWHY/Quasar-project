@@ -17,6 +17,7 @@ export default defineComponent({
       user,
       isLoading,
       accept: null,
+      isPassword: ref(true),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       triggerNotify(err: any) {
         $q.notify({ type: err.type, message: err.message });

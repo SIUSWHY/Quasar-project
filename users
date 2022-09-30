@@ -5,8 +5,6 @@
     },
     "name": "Achilles",
     "password": "Achilles",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Achilles.png"
   },
   {
@@ -15,8 +13,6 @@
     },
     "name": "Aphrodite",
     "password": "Aphrodite",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Aphrodite.png"
   },
   {
@@ -25,8 +21,6 @@
     },
     "name": "Ares",
     "password": "Ares",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Ares.png"
   },
   {
@@ -35,8 +29,6 @@
     },
     "name": "Artemis",
     "password": "Artemis",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Artemis.png"
   },
   {
@@ -45,8 +37,6 @@
     },
     "name": "Athena",
     "password": "Athena",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Athena.png"
   },
   {
@@ -55,8 +45,6 @@
     },
     "name": "Chaos",
     "password": "Chaos",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Chaos.png"
   },
   {
@@ -65,8 +53,6 @@
     },
     "name": "Hades",
     "password": "Hades",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Hades.png"
   },
   {
@@ -75,8 +61,6 @@
     },
     "name": "Hermes",
     "password": "Hermes",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Hermes.png"
   },
   {
@@ -85,8 +69,6 @@
     },
     "name": "Megaera",
     "password": "Megaera",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Megaera.png"
   },
   {
@@ -95,8 +77,6 @@
     },
     "name": "Nyx",
     "password": "Nyx",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Nyx.png"
   },
   {
@@ -105,8 +85,6 @@
     },
     "name": "Poseidon",
     "password": "Poseidon",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Poseidon.png"
   },
   {
@@ -115,8 +93,6 @@
     },
     "name": "Theseus",
     "password": "Theseus",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Theseus.png"
   },
   {
@@ -125,8 +101,6 @@
     },
     "name": "Thanatos",
     "password": "Thanatos",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Thanatos.png"
   },
   {
@@ -135,8 +109,6 @@
     },
     "name": "Zeus",
     "password": "Zeus",
-    "caption": "21",
-    "time": "2",
     "avatar": "FP_Zeus.png"
   }
 ]

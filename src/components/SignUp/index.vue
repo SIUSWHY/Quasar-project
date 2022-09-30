@@ -6,29 +6,42 @@
         <q-form class="q-gutter-md">
           <q-input filled v-model="user.name" label="Your username"></q-input>
           <q-input filled v-model="user.email" label="Your email"></q-input>
+          <q-input filled v-model="user.phone" label="Your phone number"></q-input>
 
-          <q-input filled type="password" v-model="user.password" :label="$t('login.your_password')"></q-input>
+          <q-input
+            filled
+            :type="isPassword ? 'password' : 'text'"
+            v-model="user.password"
+            :label="$t('login.your_password')"
+          >
+            <template v-slot:append>
+              <q-icon
+                :name="isPassword ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPassword = !isPassword"
+              ></q-icon> </template
+          ></q-input>
           <!-- <div>
             Don't have an account?
             <router-link to="/sign_up">Sign up</router-link>
           </div> -->
-
-          <div>
-            <q-btn
-              @click="
-                () => {
-                  loginUser();
-                }
-              "
-              :loading="isLoading"
-              label="Submit"
-              type="submit"
-              color="primary"
-            >
-            </q-btn>
-          </div>
         </q-form>
       </div>
+      <q-card-actions align="around">
+        <q-btn to="/" label="Cansel" type="submit" color="grey"> </q-btn>
+        <q-btn
+          @click="
+            () => {
+              createNewUser();
+            }
+          "
+          :loading="isLoading"
+          label="Submit"
+          type="submit"
+          color="primary"
+        >
+        </q-btn>
+      </q-card-actions>
     </q-card>
   </div>
 </template>
