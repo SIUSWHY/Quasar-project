@@ -1,3 +1,4 @@
+import { socket } from 'src/SocketInstance';
 import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
 
@@ -32,7 +33,14 @@ export default defineComponent({
       setCompanionData: 'setCompanionData',
     }),
     pushCompanionData() {
-      this.setCompanionData({ _id: this.$props._id, avatar: this.$props.room_img, name: this.$props.room_name });
+      const companion = { _id: this.$props._id, avatar: this.$props.room_img, name: this.$props.room_name };
+      this.setCompanionData(companion);
+    },
+    getRoomId() {
+      socket.emit('getRoomId', {
+        roomId: this.$props.roomId,
+      });
+      console.log(this.$props.roomId);
     },
   },
 });

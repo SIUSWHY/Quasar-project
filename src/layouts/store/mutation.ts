@@ -75,7 +75,7 @@ export const mutations: MutationTree<UserList> = {
   [SET_NEW_CHAT](state, chat: ChatsType) {
     const filtred = state.chats.filter(chats => chat._id.includes(chats._id));
     // const currentUserId = state.currentUser._id;
-    console.log(chat);
+    // console.log(chat);
 
     // if (filtred.length === 0) {
     //   const userWithoutCurrentUser = chat.users_id.find(user => user._id !== currentUserId);
@@ -100,6 +100,6 @@ export const mutations: MutationTree<UserList> = {
 
     //   state.chats = [...state.chats, chat];
     // }
-    console.log(filtred);
+    // console.log(filtred);
   },
 };

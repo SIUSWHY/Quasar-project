@@ -1,6 +1,15 @@
 <template>
   <div>
-    <q-item clickable v-ripple @click="pushCompanionData()">
+    <q-item
+      clickable
+      v-ripple
+      @click="
+        () => {
+          pushCompanionData();
+          getRoomId();
+        }
+      "
+    >
       <q-item-section side>
         <q-avatar class="custom-border" rounded size="50px">
           <img :src="require('src/assets/avatars/' + room_img)" />
