@@ -36,10 +36,11 @@ export default defineComponent({
       console.log(data.data.message);
     });
 
-    socket.on('join', data => {
+    socket.on('join', async data => {
       this.setNewChat(data.room);
       const arrMessages = data.messages;
-      this.pushMessages(arrMessages);
+      await this.pushMessages(arrMessages);
+      this.scrollIntoLastMessage();
     });
   },
 
@@ -86,7 +87,8 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const textInput: any = this.$refs.textInput;
       textInput.focus();
-
+    },
+    scrollIntoLastMessage() {
       setTimeout(() => {
         const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
         elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
