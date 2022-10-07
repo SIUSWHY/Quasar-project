@@ -25,8 +25,14 @@ export interface UserList {
   currentUser: CurrentUser;
   selectedUsers: SelectedUsers[];
   chats: ChatsType[];
+  currentChat: CurrentChatsType;
 }
-
+export interface CurrentChatsType {
+  chatType: string;
+  room_name?: string;
+  room_img?: string;
+  roomId: string;
+}
 export interface ChatsType {
   __v: number;
   _id: string;

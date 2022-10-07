@@ -11,6 +11,12 @@ export const state: UserList = {
     avatar: '',
     _id: '',
   },
+  currentChat: {
+    chatType: '',
+    roomId: '',
+    room_img: '',
+    room_name: '',
+  },
   chats: [],
   selectedUsers: [],
 };

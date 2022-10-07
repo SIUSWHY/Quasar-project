@@ -23,4 +23,8 @@ export const getters: GetterTree<UserList, RootState> = {
     const currentUser = state.currentUser;
     return currentUser;
   },
+  getUserDataForMessage(state) {
+    const mapUsers = state.users.map(user => [user._id, { name: user.name, avatar: user.avatar }]);
+    return Object.fromEntries(mapUsers);
+  },
 };

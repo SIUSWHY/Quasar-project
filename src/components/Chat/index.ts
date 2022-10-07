@@ -22,6 +22,9 @@ export default defineComponent({
   unmounted() {
     this.clearCompanionStore();
     this.clearMessageStore();
+
+    socket.off('ok');
+    socket.off('join');
   },
 
   async created() {
@@ -41,6 +44,7 @@ export default defineComponent({
       const arrMessages = data.messages;
       await this.pushMessages(arrMessages);
       this.scrollIntoLastMessage();
+      this.handleScroll();
     });
   },
 
@@ -87,13 +91,39 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const textInput: any = this.$refs.textInput;
       textInput.focus();
-    },
-    scrollIntoLastMessage() {
+
       setTimeout(() => {
         const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
         elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
         console.log(elementFromArrayElements);
       }, 300);
+    },
+    scrollIntoLastMessage() {
+      const scroll = document.getElementById('scrollPoint');
+      if (scroll) scroll.scrollTop = scroll.scrollHeight;
+    },
+    handleScroll() {
+      const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
+      console.log('elem', scroll);
+
+      if (scroll) {
+        // Создаем новый observer (наблюдатель)
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            // Выводим в консоль сам элемент
+            console.log(entry.target);
+            // Выводим в консоль true (если элемент виден) или false (если нет)
+            console.log(entry.isIntersecting);
+          });
+        });
+
+        scroll.map(elem => {
+          observer.observe(elem);
+        });
+
+        // Прикрепляем его к «наблюдателю»
+      }
     },
   },
 });

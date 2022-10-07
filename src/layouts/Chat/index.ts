@@ -24,6 +24,9 @@ export default defineComponent({
     unreadMessagesCount: {
       type: Number,
     },
+    chatType: {
+      type: String,
+    },
   },
   data() {
     return {};
@@ -32,15 +35,18 @@ export default defineComponent({
     ...mapActions('chatData', {
       setCompanionData: 'setCompanionData',
     }),
+    ...mapActions('userList', {
+      setCurrentChat: 'setCurrentChat',
+    }),
     pushCompanionData() {
       const companion = { _id: this.$props._id, avatar: this.$props.room_img, name: this.$props.room_name };
       this.setCompanionData(companion);
+      this.setCurrentChat(this.$props);
     },
     getRoomId() {
       socket.emit('getRoomId', {
         roomId: this.$props.roomId,
       });
-      console.log(this.$props.roomId);
     },
   },
 });

@@ -5,8 +5,8 @@
       <q-card-section>
         <q-input v-model="text" label="Name of group"></q-input>
       </q-card-section>
-      <q-card-section>Group image</q-card-section>
-      <q-card-section>
+      <!-- <q-card-section>Group image</q-card-section> -->
+      <!-- <q-card-section>
         <q-input
           @update:model-value="
             val => {
@@ -16,7 +16,7 @@
           filled
           type="file"
         ></q-input>
-      </q-card-section>
+      </q-card-section> -->
       <q-card-section>Group members</q-card-section>
       <q-card-section class="chip-position">
         <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">

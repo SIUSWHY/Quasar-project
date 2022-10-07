@@ -2,6 +2,7 @@ import getCurrentUser from 'src/API/getCurrnetUser';
 import getRooms from 'src/API/getRooms';
 import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
 import getUsers from 'src/API/getUsers';
+import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
@@ -10,6 +11,7 @@ import {
   GET_USERS,
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
+  SET_CURRNT_CHAT,
   SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
@@ -19,6 +21,10 @@ export const actions: ActionTree<UserList, RootState> = {
   async loadUsers({ commit }) {
     const { data: users } = await getUsers();
     commit(GET_USERS, users);
+  },
+
+  setCurrentChat({ commit }, chat: ChatData) {
+    commit(SET_CURRNT_CHAT, chat);
   },
 
   async setCurrentUser({ commit }) {

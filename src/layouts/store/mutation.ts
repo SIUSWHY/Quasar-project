@@ -1,4 +1,5 @@
 // import getUser from 'src/API/getUser';
+import { ChatData } from 'src/components/Chat/store/types';
 import { MutationTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
@@ -7,10 +8,11 @@ import {
   GET_USERS,
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
+  SET_CURRNT_CHAT,
   SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
-import { ChatsType, CurrentUser, UserList, UserType } from './types';
+import { ChatsType, CurrentChatsType, CurrentUser, UserList, UserType } from './types';
 
 export const mutations: MutationTree<UserList> = {
   [GET_USERS](state, users: UserType[]) {
@@ -36,24 +38,30 @@ export const mutations: MutationTree<UserList> = {
   [CLEAR_SELECTED_USERS](state) {
     state.selectedUsers = [];
   },
+  [SET_CURRNT_CHAT](state, chat: CurrentChatsType) {
+    state.currentChat = { roomId: chat.roomId, chatType: chat.chatType };
+  },
 
   [GET_CHATS](state, chats: ChatsType[]) {
     const currentUserId = state.currentUser._id;
 
     chats.forEach((chat: ChatsType) => {
-      const userWithoutCurrentUser = chat.users_id.filter(user => !currentUserId.includes(user._id));
-      let chatData!: { name: string; avatar: string };
+      if (chat.chatType === 'double') {
+        const userWithoutCurrentUser = chat.users_id.filter(user => !currentUserId.includes(user._id));
+        let chatData!: { name: string; avatar: string };
 
-      if (userWithoutCurrentUser.length !== 0) {
-        userWithoutCurrentUser.forEach((user: UserType) => {
-          chatData = { name: user.name, avatar: user.avatar };
-        });
-      } else {
-        return;
+        if (userWithoutCurrentUser.length !== 0) {
+          userWithoutCurrentUser.forEach((user: UserType) => {
+            chatData = { name: user.name, avatar: user.avatar };
+          });
+        } else {
+          return;
+        }
+
+        chat.room_img = chatData.avatar;
+        chat.room_name = chatData.name;
       }
-
-      chat.room_img = chatData.avatar;
-      chat.room_name = chatData.name;
+      return chat;
     });
 
     state.chats = chats;
