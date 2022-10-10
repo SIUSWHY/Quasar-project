@@ -6,6 +6,7 @@ import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
+  CLEAR_CHAT_DATA,
   CLEAR_SELECTED_USERS,
   GET_CHATS,
   GET_USERS,
@@ -51,6 +52,10 @@ export const actions: ActionTree<UserList, RootState> = {
     await dispatch('getUnreadMessagesCount', { currentUserId: userId, roomId: roomIds });
 
     return chats;
+  },
+
+  clearChatData({ commit }) {
+    commit(CLEAR_CHAT_DATA);
   },
 
   // setNewChat({ commit }, chat) {

@@ -20,6 +20,8 @@ export default defineComponent({
   },
 
   unmounted() {
+    socket.emit('disconnectRoom');
+    this.clearChatData();
     this.clearCompanionStore();
     this.clearMessageStore();
 
@@ -55,6 +57,9 @@ export default defineComponent({
       clearMessageStore: 'clearMessageStore',
       getCompanionData: 'getCompanionData',
       clearCompanionStore: 'clearCompanionStore',
+    }),
+    ...mapActions('userList', {
+      clearChatData: 'clearChatData',
     }),
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',
