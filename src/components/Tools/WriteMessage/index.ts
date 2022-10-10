@@ -15,10 +15,8 @@ export default defineComponent({
     };
   },
   methods: {
-    toggleRightDrawer() {
-      setTimeout(() => {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
-      }, 10);
+    goChatLayout() {
+      this.$router.push('/chat_layout');
     },
   },
 });

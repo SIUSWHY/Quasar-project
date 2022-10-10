@@ -7,6 +7,7 @@
           size="1.5em"
           @click="
             () => {
+              $emit('close-modal', false);
               goChatLayout();
             }
           "
@@ -45,6 +46,7 @@
           <div style="width: 100%; height: 100%">
             <div>
               <div v-if="$store.getters['chatData/getMessages'][0] !== undefined">
+                <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
                 <MessageComponent
                   v-for="message in $store.getters['chatData/getMessages']"
                   :key="message.userId"
@@ -60,7 +62,6 @@
                   <q-skeleton class="custom-right-skeleon" width="200px" height="40px"></q-skeleton>
                 </div>
               </div>
-              <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
             </div>
           </div>
         </div>

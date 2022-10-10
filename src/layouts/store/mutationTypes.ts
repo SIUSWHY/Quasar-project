@@ -1,5 +1,5 @@
 export const GET_USERS = 'GET_USERS';
-export const SET_NEW_CHAT = 'SET_NEW_CHAT';
+// export const SET_NEW_CHAT = 'SET_NEW_CHAT';
 export const GET_CHATS = 'GET_CHATS';
 export const SET_CURRNT_CHAT = 'SET_CURRNT_CHAT';
 export const CHANGE_UNREAD_COUNT_MESSAGE = 'CHANGE_UNREAD_COUNT_MESSAGE';

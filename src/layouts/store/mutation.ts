@@ -1,5 +1,5 @@
 // import getUser from 'src/API/getUser';
-import { ChatData } from 'src/components/Chat/store/types';
+// import { ChatData } from 'src/components/Chat/store/types';
 import { MutationTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
@@ -9,7 +9,7 @@ import {
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
   SET_CURRNT_CHAT,
-  SET_NEW_CHAT,
+  // SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
 import { ChatsType, CurrentChatsType, CurrentUser, UserList, UserType } from './types';
@@ -80,34 +80,34 @@ export const mutations: MutationTree<UserList> = {
     });
   },
 
-  [SET_NEW_CHAT](state, chat: ChatsType) {
-    const filtred = state.chats.filter(chats => chat._id.includes(chats._id));
-    // const currentUserId = state.currentUser._id;
-    // console.log(chat);
+  // [SET_NEW_CHAT](state, chat: ChatsType) {
+  //   const filtred = state.chats.filter(chats => chat._id.includes(chats._id));
+  //   // const currentUserId = state.currentUser._id;
+  //   // console.log(chat);
 
-    // if (filtred.length === 0) {
-    //   const userWithoutCurrentUser = chat.users_id.find(user => user._id !== currentUserId);
-    //   let chatData!: { name: string; avatar: string };
-    //   debugger;
+  //   // if (filtred.length === 0) {
+  //   //   const userWithoutCurrentUser = chat.users_id.find(user => user._id !== currentUserId);
+  //   //   let chatData!: { name: string; avatar: string };
+  //   //   debugger;
 
-    //   console.log(userWithoutCurrentUser);
+  //   //   console.log(userWithoutCurrentUser);
 
-    //   if (userWithoutCurrentUser !== undefined) {
-    //     userWithoutCurrentUser.forEach(async userId => {
-    //       const { data: user }: any = await getUser({ _id: userId });
+  //   //   if (userWithoutCurrentUser !== undefined) {
+  //   //     userWithoutCurrentUser.forEach(async userId => {
+  //   //       const { data: user }: any = await getUser({ _id: userId });
 
-    //       chatData = { name: user.name, avatar: user.avatar };
-    //       console.log(chatData);
-    //     });
-    //   } else {
-    //     return;
-    //   }
+  //   //       chatData = { name: user.name, avatar: user.avatar };
+  //   //       console.log(chatData);
+  //   //     });
+  //   //   } else {
+  //   //     return;
+  //   //   }
 
-    //   chat.room_img = chatData.avatar;
-    //   chat.room_name = chatData.name;
+  //   //   chat.room_img = chatData.avatar;
+  //   //   chat.room_name = chatData.name;
 
-    //   state.chats = [...state.chats, chat];
-    // }
-    // console.log(filtred);
-  },
+  //   //   state.chats = [...state.chats, chat];
+  //   // }
+  //   // console.log(filtred);
+  // },
 };

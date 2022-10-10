@@ -12,7 +12,7 @@ import {
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
   SET_CURRNT_CHAT,
-  SET_NEW_CHAT,
+  // SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
 import { RootState, UserList } from './types';
@@ -53,9 +53,9 @@ export const actions: ActionTree<UserList, RootState> = {
     return chats;
   },
 
-  setNewChat({ commit }, chat) {
-    commit(SET_NEW_CHAT, chat);
-  },
+  // setNewChat({ commit }, chat) {
+  //   commit(SET_NEW_CHAT, chat);
+  // },
 
   async prepareData({ dispatch }) {
     await dispatch('loadUsers');

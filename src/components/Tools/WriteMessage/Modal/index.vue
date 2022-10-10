@@ -7,7 +7,7 @@
     transition-hide="slide-right"
     style="background: #1d1d1d"
   >
-    <Chat />
+    <Chat @closeModal="$emit('close-modal', false)" />
   </q-dialog>
 </template>
 
