@@ -34,7 +34,12 @@
             <q-skeleton type="text"></q-skeleton>
           </div>
         </div>
-        <q-item-label caption>online</q-item-label>
+        <div v-if="chatType === 'group'">
+          <q-item-label caption>{{ countOfMembers }} members</q-item-label>
+        </div>
+        <div v-else>
+          <q-item-label caption>online</q-item-label>
+        </div>
       </q-item-section>
       <q-item-section side>
         <q-icon name="more_vert" size="1.5em"></q-icon>

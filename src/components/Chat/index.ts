@@ -12,10 +12,12 @@ export default defineComponent({
     MessageComponent,
   },
 
-  setup() {
+  data() {
     return {
       companionData,
       messageText,
+      countOfMembers: this.$store.getters['userList/getCountMembersFromCurrentChat'],
+      chatType: this.$store.getters['userList/getCurrentChat']?.chatType,
     };
   },
 
@@ -73,7 +75,7 @@ export default defineComponent({
     },
 
     postMessage() {
-      if (messageText.value === null || undefined || '') {
+      if (messageText.value === null || undefined || '' || ' ') {
         return;
       }
 

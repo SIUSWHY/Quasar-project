@@ -27,4 +27,16 @@ export const getters: GetterTree<UserList, RootState> = {
     const mapUsers = state.users.map(user => [user._id, { name: user.name, avatar: user.avatar }]);
     return Object.fromEntries(mapUsers);
   },
+  getCurrentChat(state, getCountMembersFromCurrentChat) {
+    const currentChatId = state.currentChat.roomId;
+    const chat = state.chats.find(chat => chat.roomId === currentChatId);
+    getCountMembersFromCurrentChat;
+    return chat;
+  },
+  getCountMembersFromCurrentChat(state) {
+    const currentChatId = state.currentChat.roomId;
+    const chat = state.chats.find(chat => chat.roomId === currentChatId);
+    const membersCount = chat?.users_id.length;
+    return membersCount;
+  },
 };
