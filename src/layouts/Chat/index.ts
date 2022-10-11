@@ -44,7 +44,7 @@ export default defineComponent({
       this.setCurrentChat(this.$props);
     },
     getRoomId() {
-      socket.emit('getRoomId', {
+      socket.emit('get_room_id', {
         roomId: this.$props.roomId,
       });
     },

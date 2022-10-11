@@ -20,28 +20,28 @@ export default defineComponent({
   },
 
   unmounted() {
-    socket.emit('disconnectRoom');
+    socket.emit('disconnect_from_rooms');
     this.clearChatData();
     this.clearCompanionStore();
     this.clearMessageStore();
 
-    socket.off('ok');
-    socket.off('join');
+    socket.off('sent_message_to_room');
+    socket.off('send_room_data_to_clent');
   },
 
   async created() {
     const companion = await this.getCompanion();
     // this.getCompanionData({ _id: companion._id });
-    socket.emit('companionId', {
+    socket.emit('get_companion_id', {
       companionId: companion._id,
     });
 
-    socket.on('ok', data => {
+    socket.on('sent_message_to_room', data => {
       this.pushNewMessage(data.data.message);
       console.log(data.data.message);
     });
 
-    socket.on('join', async data => {
+    socket.on('send_room_data_to_clent', async data => {
       // this.setNewChat(data.room);
       const arrMessages = data.messages;
       await this.pushMessages(arrMessages);
@@ -87,7 +87,7 @@ export default defineComponent({
         whoRead: [postUserId],
       };
 
-      socket.emit('message', {
+      socket.emit('save_message_to_db', {
         message: message,
       });
 

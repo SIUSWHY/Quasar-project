@@ -120,7 +120,7 @@ export default defineComponent({
     this.redireckToLayout();
     socket.connect();
 
-    socket.on('newMessNotify', data => {
+    socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
   },

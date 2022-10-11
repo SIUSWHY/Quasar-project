@@ -2,7 +2,7 @@ import { ChatType } from 'src/components/Chat/store/types';
 import { UserType } from 'src/layouts/store/types';
 import { socket } from 'src/SocketInstance';
 import { defineComponent, ref } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'CreateGroupModal',
@@ -19,8 +19,9 @@ export default defineComponent({
   },
   methods: {
     ...mapGetters('userList', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
+    ...mapActions('userList', { getChats: 'getChats' }),
 
-    createGroup() {
+    async createGroup() {
       const usersArr: UserType[] = this.getUsersDataForGroupChat();
       const usersIds: string[] = usersArr.map(user => {
         return user._id;
@@ -34,9 +35,9 @@ export default defineComponent({
         groupType: ChatType.Group,
       };
 
-      socket.emit('getdataForGroup', groupData);
-      // groupData.groupMembers.
-      console.log(groupData);
+      socket.emit('get_data_for_group', groupData);
+      await this.getChats();
+      this.$router.push('/chat_layout');
     },
   },
 });
