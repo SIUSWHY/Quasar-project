@@ -23,7 +23,7 @@
           <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeInDown">
             <q-chip>
               <q-avatar size="21px">
-                <img :src="require('src/assets/avatars/' + chip.avatar)" />
+                <img :src="require('src/assets/avatars/' + chip.avatar)" alt="pic" />
               </q-avatar>
               {{ chip.name }}
             </q-chip>

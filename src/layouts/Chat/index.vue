@@ -12,7 +12,7 @@
     >
       <q-item-section side>
         <q-avatar class="custom-border" rounded size="50px">
-          <img :src="require('src/assets/avatars/' + room_img)" />
+          <img :src="require('src/assets/avatars/' + room_img)" alt="pic" />
         </q-avatar>
       </q-item-section>
       <q-item-section>
