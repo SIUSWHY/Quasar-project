@@ -4,7 +4,7 @@
       <div class="q-pa-md">
         <q-card-section class="text-h6 text-center">Sign Up</q-card-section>
         <q-form class="q-gutter-md">
-          <q-input filled v-model="user.name" label="Your username"></q-input>
+          <q-input filled v-model="user.name" label="Your name"></q-input>
           <q-input filled v-model="user.email" label="Your email"></q-input>
           <q-input filled v-model="user.phone" label="Your phone number"></q-input>
 

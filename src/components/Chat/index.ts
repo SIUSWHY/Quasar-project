@@ -75,7 +75,7 @@ export default defineComponent({
     },
 
     postMessage() {
-      if (messageText.value === null || undefined || '' || ' ') {
+      if (messageText.value === null || undefined || '') {
         return;
       }
 
@@ -92,6 +92,7 @@ export default defineComponent({
       socket.emit('save_message_to_db', {
         message: message,
       });
+      console.log(message);
 
       messageText.value = null;
 

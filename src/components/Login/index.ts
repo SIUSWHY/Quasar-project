@@ -4,7 +4,7 @@ import { mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
 
 const user = {
-  name: 'Ares',
+  name: 'Ares@gmail.com',
   password: 'Ares',
 };
 
