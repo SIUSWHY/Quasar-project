@@ -6,7 +6,7 @@
         <q-form class="q-gutter-md">
           <q-input filled v-model="user.name" label="Your name"></q-input>
           <q-input filled v-model="user.email" label="Your email"></q-input>
-          <q-input filled v-model="user.phone" label="Your phone number"></q-input>
+          <q-input filled v-model="user.phone" mask="# (###) ### - ####" label="Your phone number"></q-input>
 
           <q-input
             filled
@@ -21,10 +21,7 @@
                 @click="isPassword = !isPassword"
               ></q-icon> </template
           ></q-input>
-          <!-- <div>
-            Don't have an account?
-            <router-link to="/sign_up">Sign up</router-link>
-          </div> -->
+          <q-file filled v-model="user.avatar" label="Your avatar"></q-file>
         </q-form>
       </div>
       <q-card-actions align="around">

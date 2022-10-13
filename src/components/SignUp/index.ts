@@ -3,11 +3,11 @@ import signUpUser from 'src/API/signUpUser';
 import { defineComponent, ref } from 'vue';
 
 const user = {
-  name: 'Poseidon',
-  password: 'Poseidon',
-  phone: '0000000013',
-  email: 'Poseidon@gmail.com',
-  avatar: 'FP_Poseidon.png',
+  name: 'Test',
+  password: 'Test',
+  phone: '00000000000',
+  email: 'Test@gmail.com',
+  avatar: '',
 };
 
 export default defineComponent({
@@ -26,9 +26,16 @@ export default defineComponent({
   },
   methods: {
     async createNewUser() {
+      const response = new FormData();
+      response.append('name', user.name);
+      response.append('password', user.password);
+      response.append('phone', user.phone);
+      response.append('email', user.email);
+      response.append('avatar', user.avatar);
       try {
-        await signUpUser(user);
-        this.$router.push('/');
+        await signUpUser(response);
+        // this.$router.push('/');
+        console.log(user);
       } catch (err) {
         this.triggerNotify(err);
       }
