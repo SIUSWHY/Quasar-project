@@ -6,7 +6,13 @@
         <q-form class="q-gutter-md">
           <q-input filled v-model="user.name" label="Your name"></q-input>
           <q-input filled v-model="user.email" label="Your email"></q-input>
-          <q-input filled v-model="user.phone" mask="# (###) ### - ####" label="Your phone number"></q-input>
+          <q-input
+            filled
+            v-model="user.phone"
+            :unmasked-value="true"
+            mask="# (###) ### - ####"
+            label="Your phone number"
+          ></q-input>
 
           <q-input
             filled

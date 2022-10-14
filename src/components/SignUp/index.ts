@@ -34,8 +34,8 @@ export default defineComponent({
       response.append('avatar', user.avatar);
       try {
         await signUpUser(response);
-        // this.$router.push('/');
-        console.log(user);
+        this.$router.push('/');
+        // console.log(user);
       } catch (err) {
         this.triggerNotify(err);
       }
