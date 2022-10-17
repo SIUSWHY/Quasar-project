@@ -4,19 +4,17 @@ export interface UserType {
   time: string;
   password: string;
   caption: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  isOnline: boolean;
   avatar: string;
 }
 export interface CurrentUser {
   _id: string;
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   avatar: string;
 }
 export interface SelectedUsers {
   _id: string;
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   avatar: string;
 }
 

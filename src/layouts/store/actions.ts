@@ -6,6 +6,7 @@ import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
+  CHANGE_USER_STATUS,
   CLEAR_CHAT_DATA,
   CLEAR_SELECTED_USERS,
   GET_CHATS,
@@ -56,6 +57,10 @@ export const actions: ActionTree<UserList, RootState> = {
 
   clearChatData({ commit }) {
     commit(CLEAR_CHAT_DATA);
+  },
+
+  changeUserStatus({ commit }, user: object) {
+    commit(CHANGE_USER_STATUS, user);
   },
 
   // setNewChat({ commit }, chat) {

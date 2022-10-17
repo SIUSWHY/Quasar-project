@@ -3,6 +3,7 @@
 import { MutationTree } from 'vuex';
 import {
   CHANGE_UNREAD_COUNT_MESSAGE,
+  CHANGE_USER_STATUS,
   CLEAR_CHAT_DATA,
   CLEAR_SELECTED_USERS,
   GET_CHATS,
@@ -17,7 +18,7 @@ import { ChatsType, CurrentChatsType, CurrentUser, UserList, UserType } from './
 
 export const mutations: MutationTree<UserList> = {
   [GET_USERS](state, users: UserType[]) {
-    state.users = users;
+    state.users = users.map(user => ({ ...user, isOnline: false }));
   },
 
   [SET_CURRENT_USER](state, user: CurrentUser) {
@@ -88,6 +89,10 @@ export const mutations: MutationTree<UserList> = {
       }
       return chat;
     });
+  },
+
+  [CHANGE_USER_STATUS](state, data: { userId: string; isOnline: boolean }) {
+    state.users = state.users.map(user => (user._id === data.userId ? { ...user, isOnline: data.isOnline } : user));
   },
 
   // [SET_NEW_CHAT](state, chat: ChatsType) {

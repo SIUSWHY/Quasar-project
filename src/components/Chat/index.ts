@@ -2,6 +2,7 @@ import { socket } from 'src/SocketInstance';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import MessageComponent from './Message/index.vue';
+import GroupChatInfo from './GroupChatModal/index.vue';
 
 const messageText = ref(null);
 const companionData = ref(null);
@@ -10,10 +11,12 @@ export default defineComponent({
   name: 'ChatPage',
   components: {
     MessageComponent,
+    GroupChatInfo,
   },
 
   data() {
     return {
+      isGroupInfoOpen: ref(false),
       companionData,
       messageText,
       countOfMembers: this.$store.getters['userList/getCountMembersFromCurrentChat'],
@@ -22,7 +25,7 @@ export default defineComponent({
   },
 
   unmounted() {
-    socket.emit('disconnect_from_rooms');
+    // socket.emit('disconnect_from_rooms');
     this.clearChatData();
     this.clearCompanionStore();
     this.clearMessageStore();
@@ -128,6 +131,9 @@ export default defineComponent({
 
         // Прикрепляем его к «наблюдателю»
       }
+    },
+    viewGroupInfo() {
+      console.log('Hi');
     },
   },
 });

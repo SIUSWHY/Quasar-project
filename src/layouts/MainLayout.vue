@@ -124,8 +124,14 @@ export default defineComponent({
       this.changeCountUnreadMessage(data);
     });
   },
+  mounted() {
+    socket.on('send_online_status', (data: { userId: string; isOnline: boolean }) => {
+      this.changeUserStatus(data);
+    });
+  },
 
   unmounted() {
+    socket.off('send_online_status');
     socket.disconnect();
   },
 
@@ -159,6 +165,7 @@ export default defineComponent({
       prepareData: 'prepareData',
       changeCountUnreadMessage: 'changeCountUnreadMessage',
       getChats: 'getChats',
+      changeUserStatus: 'changeUserStatus',
     }),
     ...mapGetters('userList', {
       getChatsFromState: 'getChatsFromState',
