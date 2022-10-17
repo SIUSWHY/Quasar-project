@@ -13,34 +13,66 @@
           "
         ></q-icon>
       </q-item-section>
-      <q-item-section side>
-        <div>
-          <div v-if="$store.getters['chatData/getCompanion'].avatar">
-            <q-avatar :rounded="false" size="50px">
-              <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
-            </q-avatar>
+      <div class="chat-header" v-if="chatType === 'group'">
+        <q-item-section side>
+          <div>
+            <div v-if="$store.getters['chatData/getCompanion'].avatar">
+              <q-avatar :rounded="false" size="50px">
+                <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+              </q-avatar>
+            </div>
+            <div v-else>
+              <q-skeleton type="QAvatar"></q-skeleton>
+            </div>
+          </div>
+        </q-item-section>
+        <q-item-section>
+          <div>
+            <div v-if="$store.getters['chatData/getCompanion']?.name">
+              <q-item-label>{{ $store.getters['chatData/getCompanion']?.name }}</q-item-label>
+            </div>
+            <div v-else>
+              <q-skeleton type="text"></q-skeleton>
+            </div>
+          </div>
+          <div v-if="chatType === 'group'">
+            <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
-            <q-skeleton type="QAvatar"></q-skeleton>
+            <q-item-label caption>online</q-item-label>
           </div>
-        </div>
-      </q-item-section>
-      <q-item-section>
-        <div>
-          <div v-if="$store.getters['chatData/getCompanion']?.name">
-            <q-item-label>{{ $store.getters['chatData/getCompanion']?.name }}</q-item-label>
+        </q-item-section>
+      </div>
+      <div class="chat-header" v-else>
+        <q-item-section side>
+          <div>
+            <div v-if="$store.getters['chatData/getCompanion'].avatar">
+              <q-avatar :rounded="false" size="50px">
+                <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+              </q-avatar>
+            </div>
+            <div v-else>
+              <q-skeleton type="QAvatar"></q-skeleton>
+            </div>
+          </div>
+        </q-item-section>
+        <q-item-section>
+          <div>
+            <div v-if="$store.getters['chatData/getCompanion']?.name">
+              <q-item-label>{{ $store.getters['chatData/getCompanion']?.name }}</q-item-label>
+            </div>
+            <div v-else>
+              <q-skeleton type="text"></q-skeleton>
+            </div>
+          </div>
+          <div v-if="chatType === 'group'">
+            <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
-            <q-skeleton type="text"></q-skeleton>
+            <q-item-label caption>online</q-item-label>
           </div>
-        </div>
-        <div v-if="chatType === 'group'">
-          <q-item-label caption>{{ countOfMembers }} members</q-item-label>
-        </div>
-        <div v-else>
-          <q-item-label caption>online</q-item-label>
-        </div>
-      </q-item-section>
+        </q-item-section>
+      </div>
       <q-item-section side>
         <q-icon name="more_vert" size="1.5em"></q-icon>
       </q-item-section>
