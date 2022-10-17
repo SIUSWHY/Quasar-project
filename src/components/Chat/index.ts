@@ -40,7 +40,6 @@ export default defineComponent({
 
     socket.on('sent_message_to_room', data => {
       this.pushNewMessage(data.data.message);
-      console.log(data.data.message);
     });
 
     socket.on('send_room_data_to_clent', async data => {
@@ -92,7 +91,6 @@ export default defineComponent({
       socket.emit('save_message_to_db', {
         message: message,
       });
-      console.log(message);
 
       messageText.value = null;
 
@@ -103,7 +101,6 @@ export default defineComponent({
       setTimeout(() => {
         const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
         elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
-        console.log(elementFromArrayElements);
       }, 300);
     },
     scrollIntoLastMessage() {
@@ -112,7 +109,6 @@ export default defineComponent({
     },
     handleScroll() {
       const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
-      console.log('elem', scroll);
 
       if (scroll) {
         // Создаем новый observer (наблюдатель)

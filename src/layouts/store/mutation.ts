@@ -98,7 +98,6 @@ export const mutations: MutationTree<UserList> = {
   //   // if (filtred.length === 0) {
   //   //   const userWithoutCurrentUser = chat.users_id.find(user => user._id !== currentUserId);
   //   //   let chatData!: { name: string; avatar: string };
-  //   //   debugger;
 
   //   //   console.log(userWithoutCurrentUser);
 

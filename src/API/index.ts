@@ -2,8 +2,8 @@ import axios, { AxiosError } from 'axios';
 import { Cookies } from 'quasar';
 
 export const axiosInstance = axios.create({
-  // baseURL: 'https://quasar-server.onrender.com/',
-  baseURL: 'http://192.168.88.47:3000',
+  baseURL: 'https://quasar-server.onrender.com/',
+  // baseURL: 'http://192.168.88.47:3000',
 });
 
 axiosInstance.interceptors.request.use(
