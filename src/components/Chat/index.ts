@@ -20,12 +20,11 @@ export default defineComponent({
       companionData,
       messageText,
       countOfMembers: this.$store.getters['userList/getCountMembersFromCurrentChat'],
-      chatType: this.$store.getters['userList/getCurrentChat']?.chatType,
+      chat: this.$store.getters['userList/getCurrentChat'],
     };
   },
 
   unmounted() {
-    // socket.emit('disconnect_from_rooms');
     this.clearChatData();
     this.clearCompanionStore();
     this.clearMessageStore();
@@ -36,7 +35,6 @@ export default defineComponent({
 
   async created() {
     const companion = await this.getCompanion();
-    // this.getCompanionData({ _id: companion._id });
     socket.emit('get_companion_id', {
       companionId: companion._id,
     });
@@ -46,7 +44,6 @@ export default defineComponent({
     });
 
     socket.on('send_room_data_to_clent', async data => {
-      // this.setNewChat(data.room);
       const arrMessages = data.messages;
       await this.pushMessages(arrMessages);
       this.scrollIntoLastMessage();
@@ -68,9 +65,6 @@ export default defineComponent({
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',
     }),
-    // ...mapActions('userList', {
-    //   setNewChat: 'setNewChat',
-    // }),
 
     goChatLayout() {
       this.$router.push('/chat_layout');
@@ -131,9 +125,6 @@ export default defineComponent({
 
         // Прикрепляем его к «наблюдателю»
       }
-    },
-    viewGroupInfo() {
-      console.log('Hi');
     },
   },
 });

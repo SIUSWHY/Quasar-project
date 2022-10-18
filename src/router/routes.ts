@@ -12,7 +12,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/chat_layout',
-    component: () => import('src/layouts/MainLayout.vue'),
+    component: () => import('src/layouts/index.vue'),
     beforeEnter: (to, from, next) => {
       const cookie = Cookies.get('Token');
       if (cookie === null || undefined || '') {

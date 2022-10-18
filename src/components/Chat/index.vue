@@ -13,7 +13,7 @@
           "
         ></q-icon>
       </q-item-section>
-      <div @click="isGroupInfoOpen = !isGroupInfoOpen" class="chat-header" v-if="chatType === 'group'">
+      <div @click="isGroupInfoOpen = !isGroupInfoOpen" class="chat-header" v-if="chat.chatType === 'group'">
         <q-item-section side>
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
@@ -35,7 +35,7 @@
               <q-skeleton type="text"></q-skeleton>
             </div>
           </div>
-          <div v-if="chatType === 'group'">
+          <div v-if="chat.chatType === 'group'">
             <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
@@ -66,11 +66,16 @@
               <q-skeleton type="text"></q-skeleton>
             </div>
           </div>
-          <div v-if="chatType === 'group'">
+          <div v-if="chat.chatType === 'group'">
             <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
-            <q-item-label caption>online</q-item-label>
+            <div v-if="$store.getters['userList/getCurrentChat'].isOnline === true">
+              <q-item-label caption>online</q-item-label>
+            </div>
+            <div v-else>
+              <q-item-label caption>offline</q-item-label>
+            </div>
           </div>
         </q-item-section>
       </div>

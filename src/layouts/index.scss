@@ -1,0 +1,22 @@
+.shadowBlock {
+  opacity: 0;
+  width: 0;
+  background-color: black;
+  transition: opacity 0.25s;
+  position: fixed;
+  height: 100vh;
+  z-index: 2002;
+  top: 0;
+}
+.shadowBlockOpen {
+  opacity: 0.5;
+  width: 100vw;
+}
+.btn_z-index {
+  z-index: 2002;
+}
+::v-deep {
+  .q-drawer__opener.fixed-right {
+    display: none;
+  }
+}
