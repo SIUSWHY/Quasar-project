@@ -13,6 +13,11 @@
       <q-item-section side>
         <q-avatar class="custom-border" rounded size="50px">
           <img :src="require('src/assets/avatars/' + room_img)" alt="pic" />
+          <div v-if="chatType === 'double' && isOnline === true">
+            <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+              <q-badge class="q-badge-position" rounded floating color="green"></q-badge>
+            </transition>
+          </div>
         </q-avatar>
       </q-item-section>
       <q-item-section>

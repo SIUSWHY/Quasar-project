@@ -27,6 +27,9 @@ export default defineComponent({
     chatType: {
       type: String,
     },
+    isOnline: {
+      type: Boolean,
+    },
   },
   data() {
     return {};

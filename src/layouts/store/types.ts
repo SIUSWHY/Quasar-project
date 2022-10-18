@@ -40,6 +40,7 @@ export interface ChatsType {
   roomId: string;
   users_id: UserType[];
   unreadMessagesCount: number;
+  isOnline?: boolean;
 }
 
 export interface ChatsTypeWithOutUsersData {

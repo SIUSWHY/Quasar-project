@@ -5,6 +5,7 @@ import getUsers from 'src/API/getUsers';
 import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
+  CHANGE_CHAT_STATUS,
   CHANGE_UNREAD_COUNT_MESSAGE,
   CHANGE_USER_STATUS,
   CLEAR_CHAT_DATA,
@@ -59,13 +60,14 @@ export const actions: ActionTree<UserList, RootState> = {
     commit(CLEAR_CHAT_DATA);
   },
 
-  changeUserStatus({ commit }, user: object) {
+  changeUserStatus({ commit, dispatch }, user: { userId: string; isOnlin: boolean }) {
     commit(CHANGE_USER_STATUS, user);
+    dispatch('changeChatStatus', user);
   },
 
-  // setNewChat({ commit }, chat) {
-  //   commit(SET_NEW_CHAT, chat);
-  // },
+  changeChatStatus({ commit }, user: { userId: string; isOnlin: boolean }) {
+    commit(CHANGE_CHAT_STATUS, user);
+  },
 
   async prepareData({ dispatch }) {
     await dispatch('loadUsers');
