@@ -6,15 +6,14 @@
       </q-avatar>
     </div>
     <div v-else>
-      <q-skeleton size="300px" type="avatar"></q-skeleton>
+      <q-skeleton size="300px" type="QAvatar"></q-skeleton>
     </div>
   </div>
   <q-list>
     <strong>
       <UserActions
-        @click="toggleRightDrawer"
-        :to="link.link"
         v-for="link in userActions"
+        @click="isUserModalInfoOpen = !isUserModalInfoOpen"
         :key="link.title"
         v-bind="link"
       />
@@ -33,6 +32,8 @@
       </q-item>
     </strong>
   </q-list>
+  <UserModalInfo v-model="isUserModalInfoOpen" @close-modal="isUserModalInfoOpen = $event" />
+  <!-- <vue-qr text="Hello world!" qid="testid"></vue-qr> -->
 </template>
 
 <script lang="ts" src="./index.ts" />
