@@ -24,8 +24,8 @@ export default defineComponent({
   },
 
   methods: {
-    ...mapActions('userList', { pushSecelectedUsers: 'pushSecelectedUsers', clearSelectedUsers: 'clearSelectedUsers' }),
-    ...mapGetters('userList', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
+    ...mapActions('appData', { pushSecelectedUsers: 'pushSecelectedUsers', clearSelectedUsers: 'clearSelectedUsers' }),
+    ...mapGetters('appData', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
 
     clickToChouseChat(chip: UserData) {
       this.pushSecelectedUsers(chip);

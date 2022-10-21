@@ -11,10 +11,11 @@ import {
   SET_CURRENT_USER,
   SET_CURRNT_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
+  SET_USER_DEVICE_INFO,
 } from './mutationTypes';
-import { ChatsType, CurrentChatsType, CurrentUser, UserList, UserType } from './types';
+import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType } from './types';
 
-export const mutations: MutationTree<UserList> = {
+export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
     state.users = users.map(user => ({ ...user, isOnline: false }));
   },
@@ -109,5 +110,12 @@ export const mutations: MutationTree<UserList> = {
     });
 
     state.chats = newChatsStatus;
+  },
+  [SET_USER_DEVICE_INFO](state) {
+    const deviceInfo = navigator.userAgent;
+    const deviceLanguage = navigator.language;
+    const device = deviceInfo.includes('Android' || 'iPhone') ? 'Mobile' : 'PC';
+
+    state.userDevice = { ...state.userDevice, allInfo: deviceInfo, language: deviceLanguage, device: device };
   },
 };

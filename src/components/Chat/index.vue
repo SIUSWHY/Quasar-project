@@ -18,7 +18,10 @@
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
               <q-avatar :rounded="false" size="50px">
-                <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+                <img
+                  :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)"
+                  alt="avatar"
+                />
               </q-avatar>
             </div>
             <div v-else>
@@ -49,7 +52,10 @@
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
               <q-avatar :rounded="false" size="50px">
-                <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+                <img
+                  :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)"
+                  alt="avatar"
+                />
               </q-avatar>
             </div>
             <div v-else>
@@ -70,7 +76,7 @@
             <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
-            <div v-if="$store.getters['userList/getCurrentChat'].isOnline === true">
+            <div v-if="$store.getters['appData/getCurrentChat'].isOnline === true">
               <q-item-label caption>
                 <q-badge rounded color="green"></q-badge>
                 online</q-item-label

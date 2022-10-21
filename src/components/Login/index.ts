@@ -25,7 +25,7 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapMutations('userList', {
+    ...mapMutations('appData', {
       setCurrentUser: 'SET_CURRENT_USER',
     }),
 

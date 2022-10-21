@@ -5,9 +5,9 @@ export default defineComponent({
   props: {},
   data() {
     return {
-      countOfMembers: this.$store.getters['userList/getCountMembersFromCurrentChat'],
+      countOfMembers: this.$store.getters['appData/getCountMembersFromCurrentChat'],
       isNotify: ref(true),
-      chat: this.$store.getters['userList/getCurrentChat'],
+      chat: this.$store.getters['appData/getCurrentChat'],
     };
   },
   methods: {},

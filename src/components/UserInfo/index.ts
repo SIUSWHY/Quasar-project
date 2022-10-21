@@ -1,18 +1,20 @@
 import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import UserActions from '../../components/EssentialLink.vue';
+import vueQr from 'vue-qr/src/packages/vue-qr.vue';
+import UserModalInfo from './Modal/index.vue';
 
 const actions = [
-  {
-    title: 'Contacts',
-    icon: 'perm_contact_calendar',
-    link: '/chat_layout/settings',
-  },
-  {
-    title: 'Favorites',
-    icon: 'bookmark',
-    link: '/chat_layout/settings',
-  },
+  // {
+  //   title: 'Contacts',
+  //   icon: 'perm_contact_calendar',
+  //   link: '/chat_layout/settings',
+  // },
+  // {
+  //   title: 'Favorites',
+  //   icon: 'bookmark',
+  //   link: '/chat_layout/settings',
+  // },
   {
     title: 'Settings',
     icon: 'settings',
@@ -24,10 +26,11 @@ const darkModeStatus = ref(true);
 
 export default defineComponent({
   name: 'UserInfo',
-  components: { UserActions },
+  components: { UserActions, vueQr, UserModalInfo },
   data() {
     const rightDrawerOpen = ref(false);
     return {
+      isUserModalInfoOpen: ref(false),
       userActions: actions,
       currentUserAvatar,
       darkModeStatus,
@@ -50,7 +53,7 @@ export default defineComponent({
 
   methods: {
     setCurrentuserAvatar() {
-      const avatar = this.$store.state.userList.currentUser.avatar;
+      const avatar = this.$store.state.appData.currentUser.avatar;
       return avatar;
     },
   },

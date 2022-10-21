@@ -12,13 +12,13 @@
           "
         ></q-icon>
         <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-          <div v-if="$store.state.userList.selectedUsers[0] !== undefined" class="container-widht">
+          <div v-if="$store.state.appData.selectedUsers[0] !== undefined" class="container-widht">
             <div class="chip-position">
-              <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
+              <div v-for="chip in $store.state.appData.selectedUsers" :key="chip._id">
                 <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeInDown">
                   <q-chip clickable @click="clickToChouseChat(chip)">
                     <q-avatar size="21px">
-                      <img :src="require('src/assets/avatars/' + chip.avatar)" />
+                      <img :src="require('src/assets/avatars/' + chip.avatar)" alt="avatar" />
                     </q-avatar>
                     {{ chip.name }}
                   </q-chip>
@@ -35,11 +35,11 @@
       </q-toolbar>
     </q-header>
     <q-page-container>
-      <UserComponent v-for="chat in $store.state.userList.users" :key="chat.name" v-bind="chat" />
+      <UserComponent v-for="chat in $store.state.appData.users" :key="chat.name" v-bind="chat" />
     </q-page-container>
     <CreateGroupModal
       v-model="isCreateGroupModalOpen"
-      :users="$store.state.userList.selectedUsers"
+      :users="$store.state.appData.selectedUsers"
       @close-modal="isCreateGroupModalOpen = $event"
     />
   </q-layout>

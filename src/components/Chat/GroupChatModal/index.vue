@@ -9,7 +9,10 @@
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
               <q-avatar :rounded="false" size="50px">
-                <img :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)" />
+                <img
+                  :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)"
+                  alt="avatar"
+                />
               </q-avatar>
             </div>
             <div v-else>
@@ -39,7 +42,7 @@
       <div>
         <q-item v-for="user in chat.users_id" :key="user._id">
           <q-item-section side>
-            <q-avatar size="50px"> <img :src="require('src/assets/avatars/' + user.avatar)" /> </q-avatar>
+            <q-avatar size="50px"> <img :src="require('src/assets/avatars/' + user.avatar)" alt="avatar" /> </q-avatar>
           </q-item-section>
           <q-item-section> {{ user.name }}</q-item-section>
         </q-item>

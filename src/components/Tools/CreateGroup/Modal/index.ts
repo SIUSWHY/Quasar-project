@@ -18,19 +18,19 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapGetters('userList', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
-    ...mapActions('userList', { getChats: 'getChats' }),
+    ...mapGetters('appData', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
+    ...mapActions('appData', { getChats: 'getChats' }),
 
     async createGroup() {
       const usersArr: UserType[] = this.getUsersDataForGroupChat();
       const usersIds: string[] = usersArr.map(user => {
         return user._id;
       });
-      usersIds.push(this.$store.state.userList.currentUser._id);
+      usersIds.push(this.$store.state.appData.currentUser._id);
 
       const groupData = {
         groupName: this.text,
-        groupImage: this.$store.state.userList.currentUser.avatar,
+        groupImage: this.$store.state.appData.currentUser.avatar,
         groupMembers: usersIds,
         groupType: ChatType.Group,
       };

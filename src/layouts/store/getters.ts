@@ -1,8 +1,8 @@
 import getUsers from 'src/API/getUsers';
 import { GetterTree } from 'vuex';
-import { RootState, UserList } from './types';
+import { RootState, AppData } from './types';
 
-export const getters: GetterTree<UserList, RootState> = {
+export const getters: GetterTree<AppData, RootState> = {
   getCompanionData: state => async (companionId: string) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const user = state.users.find(user => user._id === companionId);
@@ -38,5 +38,9 @@ export const getters: GetterTree<UserList, RootState> = {
     const chat = state.chats.find(chat => chat.roomId === currentChatId);
     const membersCount = chat?.users_id.length;
     return membersCount;
+  },
+  getUserDevice(state) {
+    const userDeviceInfo = state.userDevice;
+    return userDeviceInfo;
   },
 };

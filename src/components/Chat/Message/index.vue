@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="$store.state.userList.currentChat.chatType === 'double'">
-      <div v-if="this.message.userId === $store.state.userList.currentUser?._id">
+    <div v-if="$store.state.appData.currentChat.chatType === 'double'">
+      <div v-if="this.message.userId === $store.state.appData.currentUser?._id">
         <q-chat-message :text="this.message.messageText" bg-color="light-blue-9" :sent="true" text-color="white">
           <template v-slot:stamp>
             <div class="stepm-direction">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div v-else>
-      <div v-if="this.message.userId === $store.state.userList.currentUser?._id">
+      <div v-if="this.message.userId === $store.state.appData.currentUser?._id">
         <q-chat-message :text="this.message.messageText" bg-color="light-blue-9" :sent="true" text-color="white">
           <template v-slot:stamp>
             <div class="stepm-direction">

@@ -2,9 +2,9 @@ import { Module, ModuleTree } from 'vuex';
 import { actions } from './actions';
 import { mutations } from './mutation';
 import { getters } from './getters';
-import { UserList, RootState } from './types';
+import { AppData, RootState } from './types';
 
-export const state: UserList = {
+export const state: AppData = {
   users: [],
   currentUser: {
     name: '',
@@ -19,11 +19,16 @@ export const state: UserList = {
   },
   chats: [],
   selectedUsers: [],
+  userDevice: {
+    allInfo: '',
+    device: '',
+    language: '',
+  },
 };
 
 const namespaced = true;
 
-export const userList: Module<UserList, ModuleTree<RootState>> = {
+export const appData: Module<AppData, ModuleTree<RootState>> = {
   namespaced,
   state,
   getters,

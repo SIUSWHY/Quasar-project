@@ -24,9 +24,9 @@
       <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
         <div v-if="tab === 'chats'">
           <transition appear enter-active-class="animated fadeInLeft">
-            <div v-if="$store.state.userList.chats[0] !== undefined">
+            <div v-if="$store.state.appData.chats[0] !== undefined">
               <ChatComponentLayout
-                v-for="newChat in $store.getters['userList/getChatsFromState']"
+                v-for="newChat in $store.getters['appData/getChatsFromState']"
                 :key="newChat._id"
                 @click="isMessageModalOpen = !isMessageModalOpen"
                 v-bind="newChat"
