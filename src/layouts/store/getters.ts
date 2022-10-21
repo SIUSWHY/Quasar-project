@@ -39,4 +39,8 @@ export const getters: GetterTree<AppData, RootState> = {
     const membersCount = chat?.users_id.length;
     return membersCount;
   },
+  getUserDevice(state) {
+    const userDeviceInfo = state.userDevice;
+    return userDeviceInfo;
+  },
 };

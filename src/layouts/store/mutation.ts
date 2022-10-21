@@ -11,6 +11,7 @@ import {
   SET_CURRENT_USER,
   SET_CURRNT_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
+  SET_USER_DEVICE_INFO,
 } from './mutationTypes';
 import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType } from './types';
 
@@ -109,5 +110,12 @@ export const mutations: MutationTree<AppData> = {
     });
 
     state.chats = newChatsStatus;
+  },
+  [SET_USER_DEVICE_INFO](state) {
+    const deviceInfo = navigator.userAgent;
+    const deviceLanguage = navigator.language;
+    const device = deviceInfo.includes('Android' || 'iPhone') ? 'Mobile' : 'PC';
+
+    state.userDevice = { ...state.userDevice, allInfo: deviceInfo, language: deviceLanguage, device: device };
   },
 };

@@ -29,11 +29,12 @@ export default defineComponent({
     socket.emit('get_all_user_status');
   },
   mounted() {
-    socket.on('send_all_users_status', (data: UserStatus[]) => {
-      data.map(data => {
-        this.changeUserStatus(data);
-      });
-    });
+    this.setUserDeviceInfo();
+    // socket.on('send_all_users_status', (data: UserStatus[]) => {
+    //   data.map(data => {
+    //     this.changeUserStatus(data);
+    //   });
+    // });
 
     socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
@@ -46,9 +47,8 @@ export default defineComponent({
     socket.disconnect();
   },
 
-  setup() {
+  data() {
     const leftDrawerOpen = ref(false);
-
     return {
       toolsIsActive,
       leftDrawerOpen,
@@ -77,6 +77,7 @@ export default defineComponent({
       changeCountUnreadMessage: 'changeCountUnreadMessage',
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
+      setUserDeviceInfo: 'setUserDeviceInfo',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
@@ -94,10 +95,8 @@ export default defineComponent({
     },
 
     async refreshUserList(done: () => void) {
-      setTimeout(() => {
-        this.getChats();
-        done();
-      }, 1000);
+      await this.getChats();
+      done();
     },
     togleTools() {
       toolsIsActive.value = !toolsIsActive.value;

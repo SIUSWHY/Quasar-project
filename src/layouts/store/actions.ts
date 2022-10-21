@@ -15,8 +15,8 @@ import {
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
   SET_CURRNT_CHAT,
-  // SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
+  SET_USER_DEVICE_INFO,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
@@ -83,5 +83,8 @@ export const actions: ActionTree<AppData, RootState> = {
 
   changeCountUnreadMessage({ commit }, roomId) {
     commit(CHANGE_UNREAD_COUNT_MESSAGE, roomId);
+  },
+  setUserDeviceInfo({ commit }) {
+    commit(SET_USER_DEVICE_INFO);
   },
 };

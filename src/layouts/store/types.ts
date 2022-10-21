@@ -18,12 +18,19 @@ export interface SelectedUsers {
   avatar: string;
 }
 
+export interface UserDevice {
+  allInfo: string;
+  device: string;
+  language: string;
+}
+
 export interface AppData {
   users: UserType[];
   currentUser: CurrentUser;
   selectedUsers: SelectedUsers[];
   chats: ChatsType[];
   currentChat: CurrentChatsType;
+  userDevice: UserDevice;
 }
 export interface CurrentChatsType {
   chatType: string;

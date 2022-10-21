@@ -19,6 +19,11 @@ export const state: AppData = {
   },
   chats: [],
   selectedUsers: [],
+  userDevice: {
+    allInfo: '',
+    device: '',
+    language: '',
+  },
 };
 
 const namespaced = true;
