@@ -90,7 +90,10 @@ export const mutations: MutationTree<UserList> = {
   },
 
   [CHANGE_USER_STATUS](state, data: { userId: string; isOnline: boolean }) {
-    state.users = state.users.map(user => (user._id === data.userId ? { ...user, isOnline: data.isOnline } : user));
+    const usersWithChangeStatus = state.users.map(user =>
+      user._id === data.userId ? { ...user, isOnline: data.isOnline } : user
+    );
+    state.users = usersWithChangeStatus;
   },
 
   [CHANGE_CHAT_STATUS](state, data: { userId: string; isOnline: boolean }) {

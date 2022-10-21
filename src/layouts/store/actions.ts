@@ -18,7 +18,7 @@ import {
   // SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
-import { RootState, UserList } from './types';
+import { RootState, UserList, UserStatus } from './types';
 
 export const actions: ActionTree<UserList, RootState> = {
   async loadUsers({ commit }) {
@@ -60,12 +60,12 @@ export const actions: ActionTree<UserList, RootState> = {
     commit(CLEAR_CHAT_DATA);
   },
 
-  changeUserStatus({ commit, dispatch }, user: { userId: string; isOnlin: boolean }) {
+  async changeUserStatus({ commit, dispatch }, user: UserStatus) {
     commit(CHANGE_USER_STATUS, user);
-    dispatch('changeChatStatus', user);
+    await dispatch('changeChatStatus', user);
   },
 
-  changeChatStatus({ commit }, user: { userId: string; isOnlin: boolean }) {
+  changeChatStatus({ commit }, user: UserStatus) {
     commit(CHANGE_CHAT_STATUS, user);
   },
 

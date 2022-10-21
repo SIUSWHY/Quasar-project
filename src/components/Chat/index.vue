@@ -71,10 +71,16 @@
           </div>
           <div v-else>
             <div v-if="$store.getters['userList/getCurrentChat'].isOnline === true">
-              <q-item-label caption>online</q-item-label>
+              <q-item-label caption>
+                <q-badge rounded color="green"></q-badge>
+                online</q-item-label
+              >
             </div>
             <div v-else>
-              <q-item-label caption>offline</q-item-label>
+              <q-item-label caption>
+                <q-badge rounded color="grey"></q-badge>
+                offline</q-item-label
+              >
             </div>
           </div>
         </q-item-section>

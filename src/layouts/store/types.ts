@@ -31,6 +31,12 @@ export interface CurrentChatsType {
   room_img?: string;
   roomId: string;
 }
+
+export interface UserStatus {
+  userId: string;
+  isOnline: boolean;
+}
+
 export interface ChatsType {
   __v: number;
   _id: string;

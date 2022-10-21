@@ -4,6 +4,7 @@ import ChatComponentLayout from './Chat/index.vue';
 import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
 import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
+import { UserStatus } from './store/types';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
@@ -25,14 +26,22 @@ export default defineComponent({
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
+    socket.emit('get_all_user_status');
   },
   mounted() {
-    socket.on('send_online_status', (data: { userId: string; isOnline: boolean }) => {
+    socket.on('send_all_users_status', (data: UserStatus[]) => {
+      data.map(data => {
+        this.changeUserStatus(data);
+      });
+    });
+
+    socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
     });
   },
 
   unmounted() {
+    socket.off('send_all_users_status');
     socket.off('send_online_status');
     socket.disconnect();
   },
