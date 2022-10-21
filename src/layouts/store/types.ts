@@ -18,7 +18,7 @@ export interface SelectedUsers {
   avatar: string;
 }
 
-export interface UserList {
+export interface AppData {
   users: UserType[];
   currentUser: CurrentUser;
   selectedUsers: SelectedUsers[];

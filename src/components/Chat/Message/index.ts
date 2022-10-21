@@ -14,7 +14,7 @@ export default defineComponent({
   data() {
     return {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      user: this.$store.getters['userList/getUserDataForMessage'][this.$props.message!.userId],
+      user: this.$store.getters['appData/getUserDataForMessage'][this.$props.message!.userId],
     };
   },
 });

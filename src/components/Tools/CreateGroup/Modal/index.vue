@@ -6,7 +6,7 @@
       </q-card-section>
       <q-card-section>Group members</q-card-section>
       <q-card-section class="chip-position">
-        <div v-for="chip in $store.state.userList.selectedUsers" :key="chip._id">
+        <div v-for="chip in $store.state.appData.selectedUsers" :key="chip._id">
           <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeInDown">
             <q-chip>
               <q-avatar size="21px">

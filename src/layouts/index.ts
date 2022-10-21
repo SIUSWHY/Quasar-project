@@ -72,13 +72,13 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapActions('userList', {
+    ...mapActions('appData', {
       prepareData: 'prepareData',
       changeCountUnreadMessage: 'changeCountUnreadMessage',
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
     }),
-    ...mapGetters('userList', {
+    ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
       getCurrentUser: 'getCurrentUser',
     }),

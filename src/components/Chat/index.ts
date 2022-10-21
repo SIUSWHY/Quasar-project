@@ -19,8 +19,8 @@ export default defineComponent({
       isGroupInfoOpen: ref(false),
       companionData,
       messageText,
-      countOfMembers: this.$store.getters['userList/getCountMembersFromCurrentChat'],
-      chat: this.$store.getters['userList/getCurrentChat'],
+      countOfMembers: this.$store.getters['appData/getCountMembersFromCurrentChat'],
+      chat: this.$store.getters['appData/getCurrentChat'],
     };
   },
 
@@ -59,7 +59,7 @@ export default defineComponent({
       getCompanionData: 'getCompanionData',
       clearCompanionStore: 'clearCompanionStore',
     }),
-    ...mapActions('userList', {
+    ...mapActions('appData', {
       clearChatData: 'clearChatData',
     }),
     ...mapGetters('chatData', {
@@ -76,7 +76,7 @@ export default defineComponent({
       }
 
       const currentTime = new Date();
-      const postUserId = this.$store.state.userList.currentUser._id;
+      const postUserId = this.$store.state.appData.currentUser._id;
 
       const message = {
         messageText: [messageText.value],

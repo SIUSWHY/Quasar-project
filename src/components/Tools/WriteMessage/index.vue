@@ -19,7 +19,7 @@
       </q-header>
       <q-page-container>
         <UserList
-          v-for="chat in $store.state.userList.users"
+          v-for="chat in $store.state.appData.users"
           @click="isMessageModalOpen = !isMessageModalOpen"
           :key="chat._id"
           v-bind="chat"

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="$store.getters['userList/getCurrentUser'].avatar">
+    <div v-if="$store.getters['appData/getCurrentUser'].avatar">
       <q-avatar square size="300px">
-        <img :src="require('../../assets/avatars/' + $store.getters['userList/getCurrentUser'].avatar)" alt="avatar" />
+        <img :src="require('../../assets/avatars/' + $store.getters['appData/getCurrentUser'].avatar)" alt="avatar" />
       </q-avatar>
     </div>
     <div v-else>

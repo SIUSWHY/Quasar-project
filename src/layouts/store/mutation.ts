@@ -12,9 +12,9 @@ import {
   SET_CURRNT_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
-import { ChatsType, CurrentChatsType, CurrentUser, UserList, UserType } from './types';
+import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType } from './types';
 
-export const mutations: MutationTree<UserList> = {
+export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
     state.users = users.map(user => ({ ...user, isOnline: false }));
   },

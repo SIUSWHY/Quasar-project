@@ -76,7 +76,7 @@
             <q-item-label caption>{{ countOfMembers }} members</q-item-label>
           </div>
           <div v-else>
-            <div v-if="$store.getters['userList/getCurrentChat'].isOnline === true">
+            <div v-if="$store.getters['appData/getCurrentChat'].isOnline === true">
               <q-item-label caption>
                 <q-badge rounded color="green"></q-badge>
                 online</q-item-label

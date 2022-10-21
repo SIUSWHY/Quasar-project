@@ -50,7 +50,7 @@ export default defineComponent({
 
   methods: {
     setCurrentuserAvatar() {
-      const avatar = this.$store.state.userList.currentUser.avatar;
+      const avatar = this.$store.state.appData.currentUser.avatar;
       return avatar;
     },
   },

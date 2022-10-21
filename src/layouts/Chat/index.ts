@@ -38,7 +38,7 @@ export default defineComponent({
     ...mapActions('chatData', {
       setCompanionData: 'setCompanionData',
     }),
-    ...mapActions('userList', {
+    ...mapActions('appData', {
       setCurrentChat: 'setCurrentChat',
     }),
     pushCompanionData() {

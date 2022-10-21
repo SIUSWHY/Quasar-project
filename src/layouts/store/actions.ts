@@ -18,9 +18,9 @@ import {
   // SET_NEW_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
 } from './mutationTypes';
-import { RootState, UserList, UserStatus } from './types';
+import { RootState, AppData, UserStatus } from './types';
 
-export const actions: ActionTree<UserList, RootState> = {
+export const actions: ActionTree<AppData, RootState> = {
   async loadUsers({ commit }) {
     const { data: users } = await getUsers();
     commit(GET_USERS, users);
