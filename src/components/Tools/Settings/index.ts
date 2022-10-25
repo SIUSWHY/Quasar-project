@@ -1,14 +1,16 @@
 import { defineComponent, ref } from 'vue';
-import QrCodeModal from './QrCodeModel/index.vue';
+import Modal from './Modal/index.vue';
+import Gadgets from './Actions/Gadgets/index.vue';
 
 export default defineComponent({
   name: 'SettingsPage',
   components: {
-    QrCodeModal,
+    Modal,
+    Gadgets,
   },
   data() {
     return {
-      isQrCodeModalOpen: ref(false),
+      isActionModalOpen: ref(false),
     };
   },
   methods: {},
