@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable target="_blank">
+  <q-item @click="goTo()" clickable target="_blank">
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
@@ -32,11 +32,17 @@ export default defineComponent({
 
     link: {
       type: String,
+      required: true,
     },
 
     icon: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    goTo() {
+      this.$router.push(this.$props.link);
     },
   },
 });

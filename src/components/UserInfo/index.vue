@@ -11,12 +11,7 @@
   </div>
   <q-list>
     <strong>
-      <UserActions
-        v-for="link in userActions"
-        @click="isUserModalInfoOpen = !isUserModalInfoOpen"
-        :key="link.title"
-        v-bind="link"
-      />
+      <UserActions v-for="link in userActions" :key="link.title" v-bind="link" />
     </strong>
     <strong>
       <q-item>
@@ -32,7 +27,6 @@
       </q-item>
     </strong>
   </q-list>
-  <UserModalInfo v-model="isUserModalInfoOpen" @close-modal="isUserModalInfoOpen = $event" />
   <!-- <vue-qr text="Hello world!" qid="testid"></vue-qr> -->
 </template>
 

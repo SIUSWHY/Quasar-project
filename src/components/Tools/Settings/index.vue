@@ -4,7 +4,15 @@
       <div class="header-bg-color">
         <q-item>
           <q-item-section>
-            <q-icon name="west" @click="$emit('close-modal', false)" size="1.5em"></q-icon>
+            <q-icon
+              name="west"
+              @click="
+                () => {
+                  goTochatLayout();
+                }
+              "
+              size="1.5em"
+            ></q-icon>
           </q-item-section>
           <q-item-section side>
             <q-icon name="qr_code" size="1.5em"></q-icon>
@@ -53,7 +61,6 @@
         </q-item>
       </div>
     </q-card>
-    <Modal v-bind="isActionModalOpen" />
   </div>
 </template>
 

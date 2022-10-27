@@ -2,7 +2,6 @@ import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import UserActions from '../../components/EssentialLink.vue';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
-import UserModalInfo from './Modal/index.vue';
 
 const actions = [
   // {
@@ -26,11 +25,10 @@ const darkModeStatus = ref(true);
 
 export default defineComponent({
   name: 'UserInfo',
-  components: { UserActions, vueQr, UserModalInfo },
+  components: { UserActions, vueQr },
   data() {
     const rightDrawerOpen = ref(false);
     return {
-      isUserModalInfoOpen: ref(false),
       userActions: actions,
       currentUserAvatar,
       darkModeStatus,

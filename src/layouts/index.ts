@@ -29,6 +29,8 @@ export default defineComponent({
     socket.emit('get_all_user_status');
   },
   mounted() {
+    console.log(this.$route.fullPath);
+
     this.setUserDeviceInfo();
     // socket.on('send_all_users_status', (data: UserStatus[]) => {
     //   data.map(data => {

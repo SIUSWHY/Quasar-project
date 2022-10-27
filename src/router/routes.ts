@@ -15,7 +15,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('src/layouts/index.vue'),
     beforeEnter: (to, from, next) => {
       const cookie = Cookies.get('Token');
-      if (cookie === null || undefined || '') {
+      if (!Boolean(cookie)) {
         next('/');
       }
       next();
