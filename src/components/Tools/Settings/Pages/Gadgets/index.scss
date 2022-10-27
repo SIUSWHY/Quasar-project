@@ -1,0 +1,15 @@
+.page-color {
+  background: $dark;
+}
+.header-pisition {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  .lable-position {
+    text-align: center;
+    &::after {
+      content: '';
+      margin-bottom: 15px;
+    }
+  }
+}

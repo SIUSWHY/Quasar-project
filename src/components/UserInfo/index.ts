@@ -17,7 +17,7 @@ const actions = [
   {
     title: 'Settings',
     icon: 'settings',
-    link: '/chat_layout/settings',
+    link: '/chat_layout/settings/main',
   },
 ];
 const currentUserAvatar = ref('avatar.jpg');

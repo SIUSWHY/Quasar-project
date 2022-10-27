@@ -21,7 +21,20 @@ const routes: RouteRecordRaw[] = [
       next();
     },
     children: [
-      { path: 'settings', component: () => import('components/Tools/Settings/index.vue') },
+      {
+        path: 'settings',
+        component: () => import('components/Tools/Settings/index.vue'),
+        children: [
+          {
+            path: 'main',
+            component: () => import('components/Tools/Settings/Layout/index.vue'),
+          },
+          {
+            path: 'gadgets',
+            component: () => import('components/Tools/Settings/Pages/Gadgets/index.vue'),
+          },
+        ],
+      },
       {
         path: 'chat',
         component: () => import('components/Chat/index.vue'),
