@@ -33,6 +33,7 @@ export default defineComponent({
   created() {
     socket.connect();
     socket.on('send_room_data_to_clent', data => {
+      console.log(data.socketId);
       this.socket_id = data.socketId;
     });
   },
