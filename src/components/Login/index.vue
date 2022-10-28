@@ -19,6 +19,10 @@
                 @click="isPassword = !isPassword"
               ></q-icon> </template
           ></q-input>
+          <div class="spacer">OR</div>
+          <div class="spacer">
+            <vue-qr :text="socket_id"></vue-qr>
+          </div>
           <div>
             Don't have an account?
             <router-link style="color: #1976d2 !important" to="/sign_up">Sign up</router-link>

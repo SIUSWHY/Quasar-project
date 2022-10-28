@@ -17,8 +17,11 @@
     <q-item class="header-pisition">
       <q-item-section class="lable-position"> You can access the application with QR-code </q-item-section>
       <q-item-section>
-        <q-btn color="primary" icon="qr_code" label="Add gadget"></q-btn>
+        <q-btn @click="isAddNewGadget = !isAddNewGadget" color="primary" icon="qr_code" label="Add gadget"></q-btn>
       </q-item-section>
+      <div v-if="isAddNewGadget">
+        <qrcode-stream @decode="onDecode"></qrcode-stream>
+      </div>
     </q-item>
   </div>
 </template>

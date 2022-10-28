@@ -21,7 +21,7 @@ export default defineComponent({
   async created() {
     await this.prepareData();
     this.redireckToLayout();
-    socket.connect();
+    // socket.connect();
 
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);

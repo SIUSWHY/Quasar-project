@@ -2,6 +2,8 @@ import { Cookies, useQuasar } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import { mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
+import { socket } from 'src/SocketInstance';
+import vueQr from 'vue-qr/src/packages/vue-qr.vue';
 
 const user = {
   name: 'Ares@gmail.com',
@@ -11,6 +13,9 @@ const user = {
 const isLoading = ref(false);
 export default defineComponent({
   name: 'LoginPage',
+  components: {
+    vueQr,
+  },
   data() {
     const $q = useQuasar();
     return {
@@ -22,7 +27,14 @@ export default defineComponent({
       triggerNotify(err: any) {
         $q.notify({ type: err.type, message: err.message });
       },
+      socket_id: ref('Hello'),
     };
+  },
+  created() {
+    socket.connect();
+    socket.on('send_room_data_to_clent', data => {
+      this.socket_id = data.socketId;
+    });
   },
   methods: {
     ...mapMutations('appData', {

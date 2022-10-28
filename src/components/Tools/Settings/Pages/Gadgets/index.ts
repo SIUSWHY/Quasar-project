@@ -1,10 +1,13 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
+const { QrcodeStream } = require('vue3-qrcode-reader');
 
 export default defineComponent({
   name: 'GadgetsPage',
-  components: {},
+  components: { QrcodeStream },
   data() {
-    return {};
+    return {
+      isAddNewGadget: ref(false),
+    };
   },
   methods: {
     goBack() {

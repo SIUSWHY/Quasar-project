@@ -27,7 +27,6 @@
       </q-item>
     </strong>
   </q-list>
-  <!-- <vue-qr text="Hello world!" qid="testid"></vue-qr> -->
 </template>
 
 <script lang="ts" src="./index.ts" />

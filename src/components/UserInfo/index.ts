@@ -1,7 +1,6 @@
 import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import UserActions from '../../components/EssentialLink.vue';
-import vueQr from 'vue-qr/src/packages/vue-qr.vue';
 
 const actions = [
   // {
@@ -25,7 +24,7 @@ const darkModeStatus = ref(true);
 
 export default defineComponent({
   name: 'UserInfo',
-  components: { UserActions, vueQr },
+  components: { UserActions },
   data() {
     const rightDrawerOpen = ref(false);
     return {
