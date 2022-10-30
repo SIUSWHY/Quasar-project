@@ -21,7 +21,7 @@
           ></q-input>
           <div class="spacer">OR</div>
           <div class="spacer">
-            <vue-qr :text="socket_id"></vue-qr>
+            <vue-qr class="qr" :logoSrc="require('../../../src/assets/app-icon.svg')" :text="socket_id"></vue-qr>
           </div>
           <div>
             Don't have an account?

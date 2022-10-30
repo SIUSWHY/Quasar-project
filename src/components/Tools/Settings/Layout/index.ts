@@ -1,3 +1,4 @@
+import { Cookies } from 'quasar';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -13,5 +14,9 @@ export default defineComponent({
     goTochatLayout() {
       this.$router.push('/chat_layout');
     },
+    logout() {
+      Cookies.remove('Token')
+      this.$router.push('/');
+    }
   },
 });

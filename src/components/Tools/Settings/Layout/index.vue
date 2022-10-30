@@ -18,6 +18,9 @@
             <q-icon name="qr_code" size="1.5em"></q-icon>
           </q-item-section>
           <q-item-section side>
+            <q-icon name="logout" @click="logout()" size="1.5em"></q-icon>
+          </q-item-section>
+          <q-item-section side>
             <q-icon name="more_vert" size="1.5em"></q-icon>
           </q-item-section>
         </q-item>
