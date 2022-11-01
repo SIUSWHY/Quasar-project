@@ -47,7 +47,7 @@ export default defineComponent({
       const arrMessages = data.messages;
       await this.pushMessages(arrMessages);
       this.scrollIntoLastMessage();
-      this.handleScroll();
+      // this.handleScroll();
     });
   },
 
@@ -104,27 +104,27 @@ export default defineComponent({
       const scroll = document.getElementById('scrollPoint');
       if (scroll) scroll.scrollTop = scroll.scrollHeight;
     },
-    handleScroll() {
-      const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
+    // handleScroll() {
+    //   const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
 
-      if (scroll) {
-        // Создаем новый observer (наблюдатель)
+    //   if (scroll) {
+    //     // Создаем новый observer (наблюдатель)
 
-        const observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            // Выводим в консоль сам элемент
-            console.log(entry.target);
-            // Выводим в консоль true (если элемент виден) или false (если нет)
-            console.log(entry.isIntersecting);
-          });
-        });
+    //     const observer = new IntersectionObserver(function (entries) {
+    //       entries.forEach(function (entry) {
+    //         // Выводим в консоль сам элемент
+    //         // console.log(entry.target);
+    //         // Выводим в консоль true (если элемент виден) или false (если нет)
+    //         // console.log(entry.isIntersecting);
+    //       });
+    //     });
 
-        scroll.map(elem => {
-          observer.observe(elem);
-        });
+    //     scroll.map(elem => {
+    //       observer.observe(elem);
+    //     });
 
-        // Прикрепляем его к «наблюдателю»
-      }
-    },
+    //     // Прикрепляем его к «наблюдателю»
+    //   }
+    // },
   },
 });

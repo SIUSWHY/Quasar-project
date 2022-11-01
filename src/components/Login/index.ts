@@ -27,15 +27,30 @@ export default defineComponent({
       triggerNotify(err: any) {
         $q.notify({ type: err.type, message: err.message });
       },
-      socket_id: ref('Hello'),
+      socket_id: ref(null),
     };
   },
   created() {
     socket.connect();
+    socket.emit('is_user_need_qr', {});
+
     socket.on('send_room_data_to_clent', data => {
       console.log(data.socketId);
       this.socket_id = data.socketId;
     });
+
+    socket.on('send_user_token_to_socket', data => {
+      Cookies.set('Token', data.token);
+      this.$router.push('/chat_layout');
+
+      socket.emit('destroy_room_for_auth_qr', {
+        roomId: data.roomId,
+      });
+    });
+  },
+  unmounted() {
+    socket.off('send_room_data_to_clent');
+    socket.off('send_user_token_to_socket');
   },
   methods: {
     ...mapMutations('appData', {
@@ -49,6 +64,11 @@ export default defineComponent({
           data: { token },
         } = await loginUser(user);
         Cookies.set('Token', token);
+        socket.io.opts.query = {
+          token: token,
+        };
+        socket.disconnect();
+        socket.connect();
         isLoading.value = false;
         this.$router.push({ path: 'chat_layout' });
       } catch (err) {

@@ -20,9 +20,17 @@
         <q-btn @click="isAddNewGadget = !isAddNewGadget" color="primary" icon="qr_code" label="Add gadget"></q-btn>
       </q-item-section>
       <div v-if="isAddNewGadget">
-        <qrcode-stream camera="auto" @init="logErrors" @decode="onDecode"></qrcode-stream>
+        <div class="fullscreen">
+          <qrcode-stream camera="auto" :track="this.paintOutline" @init="logErrors" @decode="onDecode">
+            <q-btn
+              @click="isAddNewGadget = !isAddNewGadget"
+              class="fullscreen-button"
+              color="primary"
+              label="Cancel"
+            ></q-btn>
+          </qrcode-stream>
+        </div>
       </div>
-      <div>DecodeString:{{ dencodeString }}</div>
     </q-item>
   </div>
 </template>

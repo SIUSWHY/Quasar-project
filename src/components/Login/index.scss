@@ -1,5 +1,9 @@
 .spacer {
   text-align: center;
+  .skeleton-position {
+    display: flex;
+    justify-content: center;
+  }
 }
 .qr {
   border-radius: 10px;

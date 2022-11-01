@@ -21,7 +21,12 @@
           ></q-input>
           <div class="spacer">OR</div>
           <div class="spacer">
-            <vue-qr class="qr" :logoSrc="require('../../../src/assets/app-icon.svg')" :text="socket_id"></vue-qr>
+            <div class="skeleton-position" v-if="socket_id === null">
+              <q-skeleton height="200px" width="200px"></q-skeleton>
+            </div>
+            <div v-else>
+              <vue-qr class="qr" :logoSrc="require('../../../src/assets/app-icon.svg')" :text="socket_id"></vue-qr>
+            </div>
           </div>
           <div>
             Don't have an account?

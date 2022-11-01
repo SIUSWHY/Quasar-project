@@ -1,4 +1,5 @@
 import { Cookies } from 'quasar';
+import { socket } from 'src/SocketInstance';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -15,8 +16,13 @@ export default defineComponent({
       this.$router.push('/chat_layout');
     },
     logout() {
-      Cookies.remove('Token')
+      Cookies.remove('Token');
+      socket.io.opts.query = {
+        token: null,
+      };
+      socket.disconnect();
+      socket.connect();
       this.$router.push('/');
-    }
+    },
   },
 });
