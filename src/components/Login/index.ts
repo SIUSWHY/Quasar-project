@@ -1,6 +1,6 @@
 import { Cookies, useQuasar } from 'quasar';
 import { defineComponent, ref } from 'vue';
-import { mapMutations } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
 import { socket } from 'src/SocketInstance';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
@@ -23,6 +23,7 @@ export default defineComponent({
       isLoading,
       accept: null,
       isPassword: ref(true),
+      userDevice: ref(null),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       triggerNotify(err: any) {
         $q.notify({ type: err.type, message: err.message });
@@ -31,6 +32,8 @@ export default defineComponent({
     };
   },
   created() {
+    this.setUserDeviceInfo();
+    this.userDevice = this.getUserDevice();
     socket.connect();
     socket.emit('is_user_need_qr', {});
 
@@ -53,6 +56,12 @@ export default defineComponent({
     socket.off('send_user_token_to_socket');
   },
   methods: {
+    ...mapActions('appData', {
+      setUserDeviceInfo: 'setUserDeviceInfo',
+    }),
+    ...mapGetters('appData', {
+      getUserDevice: 'getUserDevice',
+    }),
     ...mapMutations('appData', {
       setCurrentUser: 'SET_CURRENT_USER',
     }),
