@@ -15,13 +15,26 @@ const routes: RouteRecordRaw[] = [
     component: () => import('src/layouts/index.vue'),
     beforeEnter: (to, from, next) => {
       const cookie = Cookies.get('Token');
-      if (cookie === null || undefined || '') {
+      if (!Boolean(cookie)) {
         next('/');
       }
       next();
     },
     children: [
-      { path: 'settings', component: () => import('components/Tools/Settings/index.vue') },
+      {
+        path: 'settings',
+        component: () => import('components/Tools/Settings/index.vue'),
+        children: [
+          {
+            path: 'main',
+            component: () => import('components/Tools/Settings/Layout/index.vue'),
+          },
+          {
+            path: 'gadgets',
+            component: () => import('components/Tools/Settings/Pages/Gadgets/index.vue'),
+          },
+        ],
+      },
       {
         path: 'chat',
         component: () => import('components/Chat/index.vue'),

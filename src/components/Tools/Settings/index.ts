@@ -1,15 +1,16 @@
 import { defineComponent, ref } from 'vue';
-import QrCodeModal from './QrCodeModel/index.vue';
 
 export default defineComponent({
   name: 'SettingsPage',
-  components: {
-    QrCodeModal,
-  },
+  components: {},
   data() {
     return {
-      isQrCodeModalOpen: ref(false),
+      isActionModalOpen: ref(false),
     };
   },
-  methods: {},
+  methods: {
+    goTochatLayout() {
+      this.$router.push('/chat_layout');
+    },
+  },
 });

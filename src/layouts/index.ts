@@ -21,12 +21,12 @@ export default defineComponent({
   async created() {
     await this.prepareData();
     this.redireckToLayout();
-    socket.connect();
+    // socket.connect();
 
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
-    socket.emit('get_all_user_status');
+    // socket.emit('get_all_user_status');
   },
   mounted() {
     this.setUserDeviceInfo();
@@ -43,8 +43,9 @@ export default defineComponent({
 
   unmounted() {
     socket.off('send_all_users_status');
+    socket.off('set_new_message_notify');
     socket.off('send_online_status');
-    socket.disconnect();
+    // socket.disconnect();
   },
 
   data() {

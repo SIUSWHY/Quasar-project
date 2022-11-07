@@ -1,0 +1,35 @@
+.page-color {
+  background: $dark;
+}
+.header-pisition {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  .lable-position {
+    text-align: center;
+    &::after {
+      content: '';
+      margin-bottom: 15px;
+    }
+  }
+}
+.error {
+  font-weight: bold;
+  color: red;
+}
+.fullscreen {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  .fullscreen-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1rem;
+    width: 90%;
+    height: 50px;
+  }
+}
