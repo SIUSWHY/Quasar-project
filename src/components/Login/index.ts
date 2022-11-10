@@ -1,4 +1,4 @@
-import { Cookies, useQuasar } from 'quasar';
+import { Cookies, LocalStorage, useQuasar } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
@@ -43,13 +43,20 @@ export default defineComponent({
     });
 
     socket.on('send_user_token_to_socket', data => {
-      Cookies.set('Token', data.token);
+      Cookies.set('Token', data.token, { expires: 14 });
+      LocalStorage.set('user_login_token', data.token);
       this.$router.push('/chat_layout');
 
       socket.emit('destroy_room_for_auth_qr', {
         roomId: data.roomId,
       });
     });
+
+    const token: string | null = LocalStorage.getItem('user_login_token');
+    if (token) {
+      Cookies.set('Token', token, { expires: 14 });
+      this.$router.push({ path: 'chat_layout' });
+    }
   },
   unmounted() {
     socket.off('send_room_data_to_clent');
@@ -72,12 +79,15 @@ export default defineComponent({
         const {
           data: { token },
         } = await loginUser(user);
-        Cookies.set('Token', token);
+        Cookies.set('Token', token, { expires: 14 });
+        LocalStorage.set('user_login_token', token);
+
         socket.io.opts.query = {
           token: token,
         };
         socket.disconnect();
         socket.connect();
+
         isLoading.value = false;
         this.$router.push({ path: 'chat_layout' });
       } catch (err) {

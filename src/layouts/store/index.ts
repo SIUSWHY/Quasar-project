@@ -20,9 +20,8 @@ export const state: AppData = {
   chats: [],
   selectedUsers: [],
   userDevice: {
-    allInfo: '',
-    device: '',
-    language: '',
+    name: '',
+    platform: '',
   },
 };
 

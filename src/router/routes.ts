@@ -5,6 +5,13 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('components/Login/index.vue'),
+    beforeEnter: (to, from, next) => {
+      const token = Cookies.get('Token');
+      if (Boolean(token)) {
+        next('/chat_layout');
+      }
+      next();
+    },
   },
   {
     path: '/sign_up',

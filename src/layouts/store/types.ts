@@ -1,3 +1,4 @@
+import { Platform } from 'quasar';
 export interface UserType {
   _id: string;
   name: string;
@@ -17,20 +18,13 @@ export interface SelectedUsers {
   name: string;
   avatar: string;
 }
-
-export interface UserDevice {
-  allInfo: string;
-  device: string;
-  language: string;
-}
-
 export interface AppData {
   users: UserType[];
   currentUser: CurrentUser;
   selectedUsers: SelectedUsers[];
   chats: ChatsType[];
   currentChat: CurrentChatsType;
-  userDevice: UserDevice;
+  userDevice: Platform['is'];
 }
 export interface CurrentChatsType {
   chatType: string;

@@ -1,3 +1,4 @@
+import { Platform } from 'quasar';
 import { MutationTree } from 'vuex';
 import {
   CHANGE_CHAT_STATUS,
@@ -112,10 +113,6 @@ export const mutations: MutationTree<AppData> = {
     state.chats = newChatsStatus;
   },
   [SET_USER_DEVICE_INFO](state) {
-    const deviceInfo = navigator.userAgent;
-    const deviceLanguage = navigator.language;
-    const device = deviceInfo.includes('Android' || 'iPhone') ? 'Mobile' : 'PC';
-
-    state.userDevice = { ...state.userDevice, allInfo: deviceInfo, language: deviceLanguage, device: device };
+    state.userDevice = Platform.is;
   },
 };
