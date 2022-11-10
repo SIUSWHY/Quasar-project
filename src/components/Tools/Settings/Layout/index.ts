@@ -1,4 +1,4 @@
-import { Cookies } from 'quasar';
+import { Cookies, LocalStorage } from 'quasar';
 import { socket } from 'src/SocketInstance';
 import { defineComponent } from 'vue';
 
@@ -17,6 +17,7 @@ export default defineComponent({
     },
     logout() {
       Cookies.remove('Token');
+      LocalStorage.remove('user_login_token');
       socket.io.opts.query = {
         token: null,
       };
