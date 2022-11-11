@@ -6,8 +6,8 @@ import { socket } from 'src/SocketInstance';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
 
 const user = {
-  name: 'Ares@gmail.com',
-  password: 'Ares',
+  name: 'Daniil@gmail.com',
+  password: 'Daniil',
 };
 
 const isLoading = ref(false);
