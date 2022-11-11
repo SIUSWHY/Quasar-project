@@ -40,6 +40,12 @@
         <q-item-section side> <q-toggle v-model="isNotify"></q-toggle> </q-item-section>
       </q-item>
       <div>
+        <q-item>
+          <q-item-section side>
+            <q-icon name="person_add" color="primary" size="1.5em"></q-icon>
+          </q-item-section>
+          <q-item-section class="add-member-color"> Add Member</q-item-section>
+        </q-item>
         <q-item v-for="user in chat.users_id" :key="user._id">
           <q-item-section side>
             <q-avatar size="50px"> <img :src="require('src/assets/avatars/' + user.avatar)" alt="avatar" /> </q-avatar>

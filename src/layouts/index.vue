@@ -17,9 +17,9 @@
         <UserInfo />
       </q-drawer>
 
-      <q-drawer show-if-above v-model="rightDrawerOpen" :width="width" side="right">
+      <!-- <q-drawer show-if-above v-model="rightDrawerOpen" :width="width" side="right">
         <router-view></router-view>
-      </q-drawer>
+      </q-drawer> -->
 
       <q-page-container style="padding-top: 50px">
         <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">

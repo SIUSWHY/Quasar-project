@@ -8,7 +8,7 @@ import { UserStatus } from './store/types';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
-const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+const width = window.innerWidth >= 1240 ? 500 : screen.width;
 
 export default defineComponent({
   name: 'MainLayout',
@@ -94,13 +94,34 @@ export default defineComponent({
       this.toggleRightDrawer();
       // this.$router.push({ path: 'chat_layout/write_message' });
     },
-
     async refreshUserList(done: () => void) {
       await this.getChats();
       done();
     },
     togleTools() {
       toolsIsActive.value = !toolsIsActive.value;
+    },
+    longClick() {
+      console.log('click');
+
+      // let mouseTimer: number;
+      // function mouseDown() {
+      //   mouseUp();
+      //   mouseTimer = window.setTimeout(execMouseDown, 1000); //set timeout to fire in 2 seconds when the user presses mouse button down
+      // }
+
+      // function mouseUp() {
+      //   if (mouseTimer) window.clearTimeout(mouseTimer); //cancel timer when mouse button is released
+      //   div.style.backgroundColor = '#FFFFFF';
+      // }
+
+      // function execMouseDown() {
+      //   div.style.backgroundColor = '#CFCF00';
+      // }
+
+      // const div = document.getElementById('bam');
+      // div.addEventListener('mousedown', mouseDown);
+      // document.body.addEventListener('mouseup', mouseUp); //listen for mouse up event on body, not just the element you originally clicked on
     },
   },
 });
