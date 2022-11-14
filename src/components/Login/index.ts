@@ -107,9 +107,7 @@ export default defineComponent({
     },
 
     async send() {
-      const register = await navigator.serviceWorker.register('/service-worker.js', {
-        scope: './',
-      });
+      const register = await navigator.serviceWorker.register('/service-worker.js');
 
       const subscription = await register.pushManager.subscribe({
         userVisibleOnly: true,
