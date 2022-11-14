@@ -4,11 +4,13 @@ import { mapActions, mapGetters, mapMutations } from 'vuex';
 import loginUser from '../../API/loginUser';
 import { socket } from 'src/SocketInstance';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
+import subNotifications from 'src/API/subNotification';
 
 const user = {
   name: 'Daniil@gmail.com',
   password: 'Daniil',
 };
+const publicVapidKey = 'BArd5G2Tzdi5VO37aXZbKPTnwox-LlcHn7G-fHPqCbwes3NkDEPklXJhD0S2_icJgxwd47OB3Uz35lCucwR4XJw';
 
 const isLoading = ref(false);
 export default defineComponent({
@@ -57,6 +59,14 @@ export default defineComponent({
       Cookies.set('Token', token, { expires: 14 });
       this.$router.push({ path: 'chat_layout' });
     }
+
+    if ('serviceWorker' in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log('[PWA Builder] active service worker found, no need to register');
+      } else {
+        this.send().catch(err => console.error(err));
+      }
+    }
   },
   unmounted() {
     socket.off('send_room_data_to_clent');
@@ -94,6 +104,32 @@ export default defineComponent({
         isLoading.value = false;
         this.triggerNotify(err);
       }
+    },
+
+    async send() {
+      const register = await navigator.serviceWorker.register('/service-worker.js', {
+        scope: './',
+      });
+
+      const subscription = await register.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: this.urlBase64ToUint8Array(publicVapidKey),
+      });
+
+      await subNotifications(subscription);
+    },
+
+    urlBase64ToUint8Array(base64String: string) {
+      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+      const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
+
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
     },
   },
 });
