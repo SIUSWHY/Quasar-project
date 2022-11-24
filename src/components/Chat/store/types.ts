@@ -6,6 +6,7 @@ export interface CompanionUserData {
 export interface MessageData {
   userId: string;
   stamp: string;
+  label: string;
   messageText: string[];
 }
 export interface ChatData {
