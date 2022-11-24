@@ -3,6 +3,7 @@ import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import MessageComponent from './Message/index.vue';
 import GroupChatInfo from './GroupChatModal/index.vue';
+import readMessagesFromChat from 'src/API/readMssagesFromChat';
 
 const messageText = ref(null);
 const companionData = ref(null);
@@ -49,6 +50,7 @@ export default defineComponent({
       this.scrollIntoLastMessage();
       // this.handleScroll();
     });
+    this.readAllUnreadMessages();
   },
 
   methods: {
@@ -61,6 +63,9 @@ export default defineComponent({
     }),
     ...mapActions('appData', {
       clearChatData: 'clearChatData',
+    }),
+    ...mapGetters('appData', {
+      getCurrentChat: 'getCurrentChat',
     }),
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',
@@ -103,6 +108,12 @@ export default defineComponent({
     scrollIntoLastMessage() {
       const scroll = document.getElementById('scrollPoint');
       if (scroll) scroll.scrollTop = scroll.scrollHeight;
+    },
+    readAllUnreadMessages() {
+      const chat = this.getCurrentChat();
+      if (chat.unreadMessagesCount >= 1) {
+        readMessagesFromChat(chat.roomId);
+      }
     },
     // handleScroll() {
     //   const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));

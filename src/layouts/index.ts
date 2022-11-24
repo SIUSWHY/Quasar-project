@@ -26,6 +26,7 @@ export default defineComponent({
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
+    this.getUnreadMessagesCount();
     // socket.emit('get_all_user_status');
   },
   mounted() {
@@ -79,6 +80,7 @@ export default defineComponent({
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
       setUserDeviceInfo: 'setUserDeviceInfo',
+      getUnreadMessagesCount: 'getUnreadMessagesCount',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
