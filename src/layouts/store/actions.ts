@@ -75,8 +75,13 @@ export const actions: ActionTree<AppData, RootState> = {
     await dispatch('getChats', currentUserId);
   },
 
-  async getUnreadMessagesCount({ commit }, { currentUserId, roomId }) {
-    const { data: counts } = await unreadMessagesCount({ currentUserId: currentUserId, roomId: roomId });
+  // TODO: fix undefined
+  async getUnreadMessagesCount(
+    { commit, state },
+    { currentUserId, roomId }: { currentUserId: string; roomId: string[] }
+  ) {
+    const userId = state.currentUser._id;
+    const { data: counts } = await unreadMessagesCount({ currentUserId: userId || currentUserId, roomId: roomId });
 
     commit(SET_UNREAD_MESSAGES_COUNT, counts);
   },
