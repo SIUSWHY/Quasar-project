@@ -43,4 +43,8 @@ export const getters: GetterTree<AppData, RootState> = {
     const userDeviceInfo = state.userDevice;
     return userDeviceInfo;
   },
+  getUsers(state) {
+    const users = state.users;
+    return users;
+  },
 };

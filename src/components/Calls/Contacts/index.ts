@@ -1,0 +1,32 @@
+import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
+
+export default defineComponent({
+  name: 'ContactItem',
+  props: {
+    isOnline: {
+      type: Boolean,
+    },
+    name: {
+      type: String,
+    },
+    avatar: {
+      type: String,
+    },
+    _id: {
+      type: String,
+    },
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    ...mapActions('appData', {
+      setCurrentUserForCall: 'setCurrentUserForCall',
+    }),
+    goToCall() {
+      this.$router.push('/chat_layout/calls/' + this.$props._id);
+      this.setCurrentUserForCall(this.$props._id);
+    },
+  },
+});

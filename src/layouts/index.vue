@@ -7,7 +7,7 @@
           <q-space />
           <q-tabs v-model="tab">
             <q-tab name="chats" label="Chats"></q-tab>
-            <!-- <q-tab name="calls" label="Calls"></q-tab> -->
+            <q-tab name="calls" label="Calls"></q-tab>
           </q-tabs>
           <q-space />
         </q-toolbar>
@@ -49,49 +49,64 @@
           </div>
           <div v-else>
             <transition appear enter-active-class="animated fadeInRight">
-              <div>
+              <div></div>
+              <!-- <div>
                 <h6 style="justify-content: center; display: flex">NO CALLS !?!?!??!</h6>
                 <img width="412" src="https://i.imgflip.com/64sz4u.png?a462000" alt="" />
-              </div>
+              </div> -->
             </transition>
           </div>
         </q-pull-to-refresh>
       </q-page-container>
       <MessageModal v-model="isMessageModalOpen" @close-modal="isMessageModalOpen = $event" />
       <div :class="{ shadowBlock: true, shadowBlockOpen: toolsIsActive }"></div>
-      <div v-if="tab === 'chats'">
-        <transition appear enter-active-class="animated fadeIn">
-          <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
-            <q-fab icon="edit" direction="up" color="blue">
-              <q-fab-action
-                @click="toggleRightDrawer()"
-                label="Create secret chat"
-                external-label
-                color="green-6"
-                label-position="left"
-                icon="lock"
-              ></q-fab-action>
-              <q-fab-action
-                @click="writeMessage()"
-                to="/chat_layout/write_message"
-                label="Write message"
-                external-label
-                color="red-5"
-                label-position="left"
-                icon="person"
-              ></q-fab-action>
-              <q-fab-action
-                @click="toggleRightDrawer()"
-                label="Create group"
-                to="/chat_layout/create_group"
-                external-label
-                color="orange-6"
-                label-position="left"
-                icon="people"
-              ></q-fab-action>
-            </q-fab>
-          </q-page-sticky>
-        </transition>
+      <div>
+        <div v-if="tab === 'chats'">
+          <transition appear enter-active-class="animated fadeIn">
+            <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
+              <q-fab icon="edit" direction="up" color="blue">
+                <q-fab-action
+                  @click="toggleRightDrawer()"
+                  label="Create secret chat"
+                  external-label
+                  color="green-6"
+                  label-position="left"
+                  icon="lock"
+                ></q-fab-action>
+                <q-fab-action
+                  @click="writeMessage()"
+                  to="/chat_layout/write_message"
+                  label="Write message"
+                  external-label
+                  color="red-5"
+                  label-position="left"
+                  icon="person"
+                ></q-fab-action>
+                <q-fab-action
+                  @click="toggleRightDrawer()"
+                  label="Create group"
+                  to="/chat_layout/create_group"
+                  external-label
+                  color="orange-6"
+                  label-position="left"
+                  icon="people"
+                ></q-fab-action>
+              </q-fab>
+            </q-page-sticky>
+          </transition>
+        </div>
+        <div v-else>
+          <transition appear enter-active-class="animated fadeIn">
+            <q-page-sticky position="bottom-right" class="btn_z-index" :offset="[18, 18]">
+              <q-btn
+                class="q-btn q-btn-item non-selectable no-outline q-btn--standard q-btn--rectangle q-btn--rounded bg-blue text-white q-btn--actionable q-focusable q-hoverable q-btn--fab q-btn--no-uppercase q-fab--form-rounded"
+                color="blue"
+                icon="call"
+                to="/chat_layout/calls"
+              ></q-btn>
+            </q-page-sticky>
+          </transition>
+        </div>
       </div>
     </q-layout>
   </div>

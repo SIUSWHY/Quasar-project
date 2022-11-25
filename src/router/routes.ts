@@ -54,6 +54,14 @@ const routes: RouteRecordRaw[] = [
         path: 'create_group',
         component: () => import('components/Tools/CreateGroup/index.vue'),
       },
+      {
+        path: 'calls',
+        component: () => import('components/Calls/index.vue'),
+      },
+      {
+        path: '/chat_layout/calls/:id',
+        component: () => import('components/Calls/CallLayout/index.vue'),
+      },
     ],
   },
   // Always leave this as last one,

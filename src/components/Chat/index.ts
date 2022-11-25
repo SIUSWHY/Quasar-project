@@ -74,6 +74,9 @@ export default defineComponent({
     goChatLayout() {
       this.$router.push('/chat_layout');
     },
+    goToCall() {
+      this.$router.push('/chat_layout/calls/' + this.chat._id);
+    },
 
     postMessage() {
       if (messageText.value === null || undefined || '') {

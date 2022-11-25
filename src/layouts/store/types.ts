@@ -25,6 +25,7 @@ export interface AppData {
   chats: ChatsType[];
   currentChat: CurrentChatsType;
   userDevice: Platform['is'];
+  currentUserForCall: SelectedUsers;
 }
 export interface CurrentChatsType {
   chatType: string;

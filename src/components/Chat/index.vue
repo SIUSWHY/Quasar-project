@@ -85,6 +85,17 @@
           </div>
         </q-item-section>
       </div>
+      <q-item-section
+        v-if="chat.chatType === 'double'"
+        side
+        @click="
+          () => {
+            goToCall();
+          }
+        "
+      >
+        <q-icon name="call" size="1.5em"></q-icon>
+      </q-item-section>
       <q-item-section side>
         <q-icon name="more_vert" size="1.5em"></q-icon>
       </q-item-section>

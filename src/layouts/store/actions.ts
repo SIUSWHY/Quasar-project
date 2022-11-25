@@ -14,6 +14,7 @@ import {
   GET_USERS,
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
+  SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
@@ -91,5 +92,9 @@ export const actions: ActionTree<AppData, RootState> = {
   },
   setUserDeviceInfo({ commit }) {
     commit(SET_USER_DEVICE_INFO);
+  },
+  setCurrentUserForCall({ commit, state }, userId: string) {
+    const currentUser = state.users.find(user => user._id === userId);
+    commit(SET_CURRENT_USER_FOR_CALL, currentUser);
   },
 };

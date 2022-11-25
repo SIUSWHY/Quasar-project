@@ -10,6 +10,7 @@ import {
   GET_USERS,
   PUSH_SELECTED_USERS,
   SET_CURRENT_USER,
+  SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
@@ -114,5 +115,8 @@ export const mutations: MutationTree<AppData> = {
   },
   [SET_USER_DEVICE_INFO](state) {
     state.userDevice = Platform.is;
+  },
+  [SET_CURRENT_USER_FOR_CALL](state, user) {
+    state.currentUserForCall = user;
   },
 };
