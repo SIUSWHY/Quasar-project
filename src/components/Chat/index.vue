@@ -18,10 +18,7 @@
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
               <q-avatar :rounded="false" size="50px">
-                <img
-                  :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)"
-                  alt="avatar"
-                />
+                <img :src="$store.getters['chatData/getCompanion'].avatar" alt="avatar" />
               </q-avatar>
             </div>
             <div v-else>
@@ -52,10 +49,7 @@
           <div>
             <div v-if="$store.getters['chatData/getCompanion'].avatar">
               <q-avatar :rounded="false" size="50px">
-                <img
-                  :src="require('src/assets/avatars/' + $store.getters['chatData/getCompanion'].avatar)"
-                  alt="avatar"
-                />
+                <img :src="$store.getters['chatData/getCompanion'].avatar" alt="avatar" />
               </q-avatar>
             </div>
             <div v-else>

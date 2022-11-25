@@ -2,7 +2,7 @@
   <q-item clickable @click="selectData()">
     <q-item-section side>
       <q-avatar rounded size="50px">
-        <img :src="require('src/assets/avatars/' + avatar)" alt="avatar" />
+        <img :src="avatar" alt="avatar" />
       </q-avatar>
     </q-item-section>
     <q-item-section>

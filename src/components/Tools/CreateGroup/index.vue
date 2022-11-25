@@ -18,7 +18,7 @@
                 <transition appear enter-active-class="animated fadeInDown" leave-active-class="animated fadeInDown">
                   <q-chip clickable @click="clickToChouseChat(chip)">
                     <q-avatar size="21px">
-                      <img :src="require('src/assets/avatars/' + chip.avatar)" alt="avatar" />
+                      <img :src="chip.avatar" alt="avatar" />
                     </q-avatar>
                     {{ chip.name }}
                   </q-chip>

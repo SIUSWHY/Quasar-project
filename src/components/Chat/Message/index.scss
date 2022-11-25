@@ -1,4 +1,10 @@
 ::v-deep {
+  .q-message-label {
+    background-color: #302e2e;
+    border-radius: 10px;
+    width: 108px;
+    margin: auto;
+  }
   .q-message-text--sent {
     border-radius: 15px 4px 4px 15px;
   }

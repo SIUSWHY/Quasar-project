@@ -2,7 +2,7 @@
   <div>
     <div v-if="$store.getters['appData/getCurrentUser'].avatar">
       <q-avatar square size="300px">
-        <img :src="require('../../assets/avatars/' + $store.getters['appData/getCurrentUser'].avatar)" alt="avatar" />
+        <img :src=" $store.getters['appData/getCurrentUser'].avatar" alt="avatar" />
       </q-avatar>
     </div>
     <div v-else>
