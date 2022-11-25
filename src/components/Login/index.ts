@@ -88,11 +88,11 @@ export default defineComponent({
         socket.disconnect();
         socket.connect();
 
-        isLoading.value = false;
         this.$router.push({ path: 'chat_layout' });
       } catch (err) {
-        isLoading.value = false;
         this.triggerNotify(err);
+      } finally {
+        isLoading.value = false;
       }
     },
   },

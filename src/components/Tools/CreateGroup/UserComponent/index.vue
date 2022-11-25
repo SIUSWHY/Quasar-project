@@ -10,7 +10,7 @@
   >
     <q-item-section side>
       <q-avatar rounded size="50px">
-        <img style="border-radius: 25px" :src="require('src/assets/avatars/' + avatar)" alt="avatar" />
+        <img style="border-radius: 25px" :src="avatar" alt="avatar" />
         <div v-if="$store.state.appData.selectedUsers.some(user => user._id === _id)">
           <q-badge class="bottom-position" align="bottom" floating rounded>
             <q-icon name="done" size="11px"></q-icon>

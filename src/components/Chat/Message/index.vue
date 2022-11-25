@@ -63,7 +63,7 @@
         >
           <template v-slot:avatar>
             <q-avatar :rounded="false" size="30px" style="margin-right: 10px">
-              <img :src="require('src/assets/avatars/' + user?.avatar)" alt="pic" />
+              <img :src=" user?.avatar" alt="pic" />
             </q-avatar>
           </template>
         </q-chat-message>

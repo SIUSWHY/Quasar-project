@@ -28,7 +28,7 @@
           <q-item-section side>
             <q-avatar class="round-avatar" size="50px">
               <img
-                :src="require('../../../../assets/avatars/' + $store.getters['appData/getCurrentUser'].avatar)"
+                :src=" $store.getters['appData/getCurrentUser'].avatar"
                 alt="avatar"
               />
             </q-avatar>
