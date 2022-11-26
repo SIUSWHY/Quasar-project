@@ -1,0 +1,23 @@
+.fullscreen {
+  position: fixed;
+  z-index: 1000;
+  max-width: 1000px;
+  max-height: 1000px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.btn-position {
+  z-index: 1001;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  margin: 0 12%;
+  .btn {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin: 10px 15px;
+  }
+}
