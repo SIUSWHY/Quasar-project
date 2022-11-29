@@ -1,22 +1,17 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
-let stream: any;
-const constraints = {
-  audio: true,
-  video: {
-    // width: { min: 1024, ideal: 1280, max: 1920 },
-    // height: { min: 576, ideal: 720, max: 1080 },
-    facingMode: 'environment',
-  },
-};
+let streamDataObj: MediaStream;
 
 export default defineComponent({
   name: 'CallLayout',
   components: {},
   data() {
     return {
-      stream,
-      constraints,
+      streamData: {
+        audio: true,
+        video: true,
+      },
+      streamDataObj,
     };
   },
   async mounted() {
@@ -27,24 +22,38 @@ export default defineComponent({
   },
   methods: {
     async getStream() {
-      stream = await navigator.mediaDevices.getUserMedia(constraints);
+      navigator.mediaDevices
+        .getUserMedia({
+          audio: true,
+          video: true,
+        })
+        .then(stream => {
+          this.streamDataObj = stream;
+        });
+
       console.log('Start stream');
     },
     stopStream() {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      stream.value.getTracks().forEach((track: any) => () => track.stop());
+      this.streamDataObj.getVideoTracks().forEach(track => {
+        track.stop();
+      });
+
       console.log('Stop stream');
     },
     toggleMute() {
-      constraints.audio = !constraints.audio
-      this.getStream()
+      const enabled = this.streamData.audio;
+      this.streamDataObj.getAudioTracks()[0].enabled = !enabled;
+      this.streamData.audio = !enabled;
+      console.log('Toggle Mic');
     },
     toggleCam() {
-      this.stopStream()
+      const enabled = this.streamData.video;
+      this.streamDataObj.getVideoTracks()[0].enabled = !enabled;
+      this.streamData.video = !enabled;
+      console.log('Toggle Cam');
     },
     stopCall() {
-      this.stopStream()
-      this.$router.push('/chat_layout/calls')
-    }
+      this.$router.push('/chat_layout/calls');
+    },
   },
 });

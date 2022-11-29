@@ -1,8 +1,8 @@
 .fullscreen {
   position: fixed;
   z-index: 1000;
-  max-width: 1000px;
-  max-height: 1000px;
+  max-width: unset;
+  height: 100vh;
   top: 0;
   bottom: 0;
   right: 0;
@@ -13,7 +13,8 @@
   position: absolute;
   bottom: 0;
   display: flex;
-  margin: 0 12%;
+  left: 50%;
+  transform: translateX(-50%);
   .btn {
     height: 50px;
     width: 50px;
