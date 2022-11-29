@@ -22,3 +22,12 @@
     margin: 10px 15px;
   }
 }
+.bg-color {
+  height: 100vh;
+  background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+  .call-avatar {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

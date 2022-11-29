@@ -10,6 +10,7 @@ export default defineComponent({
       streamData: {
         audio: true,
         video: true,
+        cam: 'front',
       },
       streamDataObj,
     };
@@ -25,13 +26,36 @@ export default defineComponent({
       navigator.mediaDevices
         .getUserMedia({
           audio: true,
-          video: true,
+          video: { facingMode: 'user' },
         })
         .then(stream => {
           this.streamDataObj = stream;
         });
+      this.streamData.cam = 'front';
 
       console.log('Start stream');
+    },
+    switchCam() {
+      if (this.streamData.cam === 'front') {
+        navigator.mediaDevices
+          .getUserMedia({
+            video: { facingMode: { exact: 'environment' } },
+          })
+          .then(stream => {
+            this.streamDataObj = stream;
+          });
+        this.streamData.cam = 'back';
+      } else {
+        navigator.mediaDevices
+          .getUserMedia({
+            video: { facingMode: 'user' },
+          })
+          .then(stream => {
+            this.streamDataObj = stream;
+          });
+        this.streamData.cam = 'front';
+      }
+      console.log('Switch Cam');
     },
     stopStream() {
       this.streamDataObj.getVideoTracks().forEach(track => {

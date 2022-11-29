@@ -1,7 +1,16 @@
 <template>
   <div>
     <div id="videoCall">
-      <video class="fullscreen" :srcObject="streamDataObj" autoplay></video>
+      <div>
+        <div v-if="streamData.video">
+          <video class="fullscreen" :srcObject="streamDataObj" autoplay></video>
+        </div>
+        <div class="bg-color" v-else>
+          <q-avatar class="call-avatar" :rounded="false" size="20vh">
+            <img :src="$store.state.appData.currentUser?.avatar" alt="avatar" />
+          </q-avatar>
+        </div>
+      </div>
       <div class="btn-position">
         <div>
           <q-btn
@@ -20,7 +29,7 @@
           ></q-btn>
         </div>
         <div>
-          <q-btn class="btn" disable color="primary" icon="cameraswitch"></q-btn>
+          <q-btn class="btn" @click="switchCam" disable color="primary" icon="cameraswitch"></q-btn>
         </div>
         <div>
           <q-btn class="btn" @click="stopCall()" color="red" icon="phone_disabled"></q-btn>
