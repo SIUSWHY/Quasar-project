@@ -5,10 +5,13 @@ import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
 import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 import { UserStatus } from './store/types';
+import { useQuasar } from 'quasar';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
 const width = window.innerWidth >= 1240 ? 500 : screen.width;
+const $q = useQuasar();
+
 
 export default defineComponent({
   name: 'MainLayout',
@@ -39,6 +42,13 @@ export default defineComponent({
     socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
     });
+    socket.on('send_notify_to_companion', (data: string) => {
+      const arrUsers = this.getUsers()
+      const callingUser = arrUsers.find((user: { _id: string; }) => user._id === data)
+      this.triggerCallNotify(callingUser, data)
+      console.log('call!!', callingUser);
+
+    })
   },
 
   unmounted() {
@@ -65,6 +75,19 @@ export default defineComponent({
           rightDrawerOpen.value = !rightDrawerOpen.value;
         }, 10);
       },
+      triggerCallNotify(user: { avatar: string }, userId: string) {
+        $q.notify({
+          message: 'Incomming call...',
+          color: 'dark',
+          avatar: user.avatar,
+          multiLine: true,
+          timeout: 5000,
+          actions: [
+            { label: 'Cancel', color: 'negative', handler: () => { /* ... */ } },
+            { label: 'Accept', color: 'positive', handler: () => { /* ... */ } }
+          ]
+        })
+      },
     };
   },
   watch: {
@@ -83,6 +106,7 @@ export default defineComponent({
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
       getCurrentUser: 'getCurrentUser',
+      getUsers: 'getUsers'
     }),
 
     redireckToLayout() {

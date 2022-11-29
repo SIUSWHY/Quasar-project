@@ -47,4 +47,8 @@ export const getters: GetterTree<AppData, RootState> = {
     const users = state.users;
     return users;
   },
+  getCurrentUserForCall(state) {
+    const userForCall = state.currentUserForCall
+    return userForCall
+  }
 };

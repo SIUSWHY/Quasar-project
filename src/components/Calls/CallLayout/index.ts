@@ -1,6 +1,11 @@
 import { defineComponent } from 'vue';
+import { Peer } from 'peerjs';
+import { socket } from 'src/SocketInstance';
+import { mapActions, mapGetters } from 'vuex';
 
-let streamDataObj: MediaStream;
+let myStreamData: MediaStream;
+const companionStreamData = false;
+const peer = new Peer();
 
 export default defineComponent({
   name: 'CallLayout',
@@ -12,7 +17,8 @@ export default defineComponent({
         video: true,
         cam: 'front',
       },
-      streamDataObj,
+      myStreamData,
+      companionStreamData
     };
   },
   async mounted() {
@@ -22,6 +28,9 @@ export default defineComponent({
     this.stopStream();
   },
   methods: {
+    ...mapGetters('appData', {
+      getCurrentUserForCall: 'getCurrentUserForCall'
+    }),
     async getStream() {
       navigator.mediaDevices
         .getUserMedia({
@@ -29,11 +38,17 @@ export default defineComponent({
           video: { facingMode: 'user' },
         })
         .then(stream => {
-          this.streamDataObj = stream;
+          this.myStreamData = stream;
         });
-      this.streamData.cam = 'front';
 
+      this.streamData.cam = 'front';
       console.log('Start stream');
+
+      this.startCall()
+    },
+    startCall() {
+      const companionId = this.getCurrentUserForCall()._id
+      socket.emit('send_companion_id_for_call_to_server', companionId)
     },
     switchCam() {
       if (this.streamData.cam === 'front') {
@@ -42,7 +57,7 @@ export default defineComponent({
             video: { facingMode: { exact: 'environment' } },
           })
           .then(stream => {
-            this.streamDataObj = stream;
+            this.myStreamData = stream;
           });
         this.streamData.cam = 'back';
       } else {
@@ -51,14 +66,14 @@ export default defineComponent({
             video: { facingMode: 'user' },
           })
           .then(stream => {
-            this.streamDataObj = stream;
+            this.myStreamData = stream;
           });
         this.streamData.cam = 'front';
       }
       console.log('Switch Cam');
     },
     stopStream() {
-      this.streamDataObj.getVideoTracks().forEach(track => {
+      this.myStreamData.getVideoTracks().forEach(track => {
         track.stop();
       });
 
@@ -66,13 +81,13 @@ export default defineComponent({
     },
     toggleMute() {
       const enabled = this.streamData.audio;
-      this.streamDataObj.getAudioTracks()[0].enabled = !enabled;
+      this.myStreamData.getAudioTracks()[0].enabled = !enabled;
       this.streamData.audio = !enabled;
       console.log('Toggle Mic');
     },
     toggleCam() {
       const enabled = this.streamData.video;
-      this.streamDataObj.getVideoTracks()[0].enabled = !enabled;
+      this.myStreamData.getVideoTracks()[0].enabled = !enabled;
       this.streamData.video = !enabled;
       console.log('Toggle Cam');
     },

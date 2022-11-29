@@ -8,6 +8,16 @@
   right: 0;
   left: 0;
 }
+.min-screen {
+  max-width: unset;
+  max-height: unset;
+  bottom: 12%;
+  left: 70%;
+  position: fixed;
+  z-index: 1001;
+  width: 100px;
+  border-radius: 10px;
+}
 .btn-position {
   z-index: 1001;
   position: absolute;
@@ -25,6 +35,21 @@
 .bg-color {
   height: 100vh;
   background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+  .call-avatar {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.min-bg-color {
+  position: absolute;
+  width: 100px;
+  height: 130px;
+  border-radius: 10px;
+  z-index: 1001;
+  bottom: 12%;
+  left: 70%;
+  background: linear-gradient(180deg, #d53369 0%, #daae51 100%);
   .call-avatar {
     top: 20%;
     left: 50%;
