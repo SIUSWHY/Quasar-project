@@ -1,11 +1,14 @@
 import { defineComponent } from 'vue';
 import { Peer } from 'peerjs';
 import { socket } from 'src/SocketInstance';
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 let myStreamData: MediaStream;
 const companionStreamData = false;
-const peer = new Peer();
+const peerId = uuidv4();
 
 export default defineComponent({
   name: 'CallLayout',
@@ -18,7 +21,8 @@ export default defineComponent({
         cam: 'front',
       },
       myStreamData,
-      companionStreamData
+      companionStreamData,
+      peer: new Peer(peerId)
     };
   },
   async mounted() {
@@ -48,7 +52,7 @@ export default defineComponent({
     },
     startCall() {
       const companionId = this.getCurrentUserForCall()._id
-      socket.emit('send_companion_id_for_call_to_server', companionId)
+      socket.emit('send_companion_id_for_call_to_server', { companionId: companionId, peerId: peerId })
     },
     switchCam() {
       if (this.streamData.cam === 'front') {
@@ -92,7 +96,7 @@ export default defineComponent({
       console.log('Toggle Cam');
     },
     stopCall() {
-      this.$router.push('/chat_layout/calls');
+      this.$router.push('/chat_layout');
     },
   },
 });

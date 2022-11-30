@@ -42,10 +42,13 @@ export default defineComponent({
     socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
     });
-    socket.on('send_notify_to_companion', (data: string) => {
+    socket.on('send_notify_to_companion', (data: { userId: string, peerId: string }) => {
       const arrUsers = this.getUsers()
-      const callingUser = arrUsers.find((user: { _id: string; }) => user._id === data)
-      this.triggerCallNotify(callingUser, data)
+      console.log(data);
+
+      const callingUser = arrUsers.find((user: { _id: string; }) => user._id === data.userId)
+      // this.triggerCallNotify(callingUser, data)
+      this.$router.push('chat_layout/calls/' + callingUser._id)
       console.log('call!!', callingUser);
 
     })
