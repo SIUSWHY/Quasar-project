@@ -18,6 +18,13 @@ export interface SelectedUsers {
   name: string;
   avatar: string;
 }
+
+export interface CurrentUserForCall {
+  _id: string;
+  name: string;
+  avatar: string;
+  peerId: string;
+}
 export interface AppData {
   users: UserType[];
   currentUser: CurrentUser;
@@ -25,7 +32,7 @@ export interface AppData {
   chats: ChatsType[];
   currentChat: CurrentChatsType;
   userDevice: Platform['is'];
-  currentUserForCall: SelectedUsers;
+  currentUserForCall: CurrentUserForCall;
 }
 export interface CurrentChatsType {
   chatType: string;
@@ -62,4 +69,4 @@ export interface ChatsTypeWithOutUsersData {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface RootState {}
+export interface RootState { }

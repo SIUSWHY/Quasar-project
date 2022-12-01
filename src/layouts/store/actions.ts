@@ -16,6 +16,7 @@ import {
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
+  SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
 } from './mutationTypes';
@@ -97,4 +98,7 @@ export const actions: ActionTree<AppData, RootState> = {
     const currentUser = state.users.find(user => user._id === userId);
     commit(SET_CURRENT_USER_FOR_CALL, currentUser);
   },
+  setPeerId({ commit }, peerId: string) {
+    commit(SET_PEER_ID, peerId)
+  }
 };

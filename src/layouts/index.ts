@@ -42,11 +42,12 @@ export default defineComponent({
     socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
     });
+
     socket.on('send_notify_to_companion', (data: { userId: string, peerId: string }) => {
       const arrUsers = this.getUsers()
-      console.log(data);
 
       const callingUser = arrUsers.find((user: { _id: string; }) => user._id === data.userId)
+      this.setPeerId(data.peerId)
       // this.triggerCallNotify(callingUser, data)
       this.$router.push('chat_layout/calls/' + callingUser._id)
       console.log('call!!', callingUser);
@@ -87,7 +88,7 @@ export default defineComponent({
           timeout: 5000,
           actions: [
             { label: 'Cancel', color: 'negative', handler: () => { /* ... */ } },
-            { label: 'Accept', color: 'positive', handler: () => { /* ... */ } }
+            { label: 'Accept', color: 'positive', handler: () => { userId } }
           ]
         })
       },
@@ -105,6 +106,7 @@ export default defineComponent({
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
       setUserDeviceInfo: 'setUserDeviceInfo',
+      setPeerId: 'setPeerId',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',

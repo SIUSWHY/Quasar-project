@@ -3,7 +3,7 @@
     <div id="videoCall">
       <div>
         <div v-if="streamData.video">
-          <video class="min-screen" :srcObject="myStreamData" autoplay></video>
+          <video class="min-screen" :srcObject="companionStreamData" autoplay></video>
         </div>
         <div class="min-bg-color" v-else>
           <q-avatar class="call-avatar" :rounded="false" size="5vh">

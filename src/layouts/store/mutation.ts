@@ -12,6 +12,7 @@ import {
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
+  SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
 } from './mutationTypes';
@@ -119,4 +120,7 @@ export const mutations: MutationTree<AppData> = {
   [SET_CURRENT_USER_FOR_CALL](state, user) {
     state.currentUserForCall = user;
   },
+  [SET_PEER_ID](state, peerId: string) {
+    state.currentUserForCall = { ...state.currentUserForCall, peerId }
+  }
 };

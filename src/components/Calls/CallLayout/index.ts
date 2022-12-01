@@ -7,8 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 let myStreamData: MediaStream;
-const companionStreamData = false;
+let companionStreamData: MediaStream;
 const peerId = uuidv4();
+const peer = new Peer(peerId)
 
 export default defineComponent({
   name: 'CallLayout',
@@ -22,19 +23,55 @@ export default defineComponent({
       },
       myStreamData,
       companionStreamData,
-      peer: new Peer(peerId)
+      peerIdFromState: this.getPeerId()
     };
   },
   async mounted() {
     this.getStream();
+    this.startCallByPeer()
+    // this.answerTheCallByPeeer()
+    peer.on('call', (call) => {
+      call.answer(this.myStreamData); // Answer the call with an A/V stream.
+      call.on('stream', (remoteStream: any) => {
+        this.companionStreamData = remoteStream
+      });
+    });
+
+    // const peerId = this.getPeerId()
+    if (this.peerIdFromState) {
+      const call = peer.call(this.peerIdFromState, this.myStreamData);
+      call.on('stream', (remoteStream: any) => {
+        this.companionStreamData = remoteStream
+      });
+    }
   },
   unmounted() {
     this.stopStream();
   },
   methods: {
     ...mapGetters('appData', {
-      getCurrentUserForCall: 'getCurrentUserForCall'
+      getCurrentUserForCall: 'getCurrentUserForCall',
+      getPeerId: 'getPeerId'
     }),
+    startCallByPeer() {
+      // const peerId = this.getPeerId()
+      // if (peerId) {
+      //   const call = peer.call(peerId, this.myStreamData);
+      //   call.on('stream', (remoteStream: any) => {
+      //     this.companionStreamData = remoteStream
+      //   });
+      // }
+    },
+    // answerTheCallByPeeer() {
+    //   peer.on('call', (call) => {
+    //     call.answer(this.myStreamData); // Answer the call with an A/V stream.
+    //     call.on('stream', (remoteStream: any) => {
+    //       console.log(remoteStream);
+    //       this.companionStreamData = remoteStream
+    //     });
+    //   });
+
+    // },
     async getStream() {
       navigator.mediaDevices
         .getUserMedia({

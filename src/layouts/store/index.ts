@@ -27,6 +27,7 @@ export const state: AppData = {
     name: '',
     avatar: '',
     _id: '',
+    peerId: '',
   },
 };
 

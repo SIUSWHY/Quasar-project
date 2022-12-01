@@ -38,7 +38,6 @@ export default defineComponent({
     socket.emit('is_user_need_qr', {});
 
     socket.on('send_room_data_to_clent', data => {
-      console.log(data.socketId);
       this.socket_id = data.socketId;
     });
 
