@@ -21,6 +21,11 @@ export default defineComponent({
         video: true,
         cam: 'front',
       },
+      comStreamData: {
+        audio: true,
+        video: true,
+        cam: 'front',
+      },
       myStreamData,
       companionStreamData,
       peerIdFromState: this.getPeerId()
@@ -28,22 +33,7 @@ export default defineComponent({
   },
   async mounted() {
     this.getStream();
-    this.startCallByPeer()
-    // this.answerTheCallByPeeer()
-    peer.on('call', (call) => {
-      call.answer(this.myStreamData); // Answer the call with an A/V stream.
-      call.on('stream', (remoteStream: any) => {
-        this.companionStreamData = remoteStream
-      });
-    });
 
-    // const peerId = this.getPeerId()
-    if (this.peerIdFromState) {
-      const call = peer.call(this.peerIdFromState, this.myStreamData);
-      call.on('stream', (remoteStream: any) => {
-        this.companionStreamData = remoteStream
-      });
-    }
   },
   unmounted() {
     this.stopStream();
@@ -53,25 +43,20 @@ export default defineComponent({
       getCurrentUserForCall: 'getCurrentUserForCall',
       getPeerId: 'getPeerId'
     }),
-    startCallByPeer() {
-      // const peerId = this.getPeerId()
-      // if (peerId) {
-      //   const call = peer.call(peerId, this.myStreamData);
-      //   call.on('stream', (remoteStream: any) => {
-      //     this.companionStreamData = remoteStream
-      //   });
-      // }
+    startCallByPeer(stream: MediaStream) {
+      this.myStreamData = stream;
+      const call = peer.call(this.peerIdFromState, stream);
+      call.on('stream', (remoteStream: MediaStream) => {
+        this.companionStreamData = remoteStream
+      });
+      peer.on('call', (call) => {
+        call.answer(stream); // Answer the call with an A/V stream.
+        call.on('stream', (remoteStream: MediaStream) => {
+          this.companionStreamData = remoteStream
+        });
+      });
     },
-    // answerTheCallByPeeer() {
-    //   peer.on('call', (call) => {
-    //     call.answer(this.myStreamData); // Answer the call with an A/V stream.
-    //     call.on('stream', (remoteStream: any) => {
-    //       console.log(remoteStream);
-    //       this.companionStreamData = remoteStream
-    //     });
-    //   });
 
-    // },
     async getStream() {
       navigator.mediaDevices
         .getUserMedia({
@@ -79,7 +64,7 @@ export default defineComponent({
           video: { facingMode: 'user' },
         })
         .then(stream => {
-          this.myStreamData = stream;
+          this.startCallByPeer(stream)
         });
 
       this.streamData.cam = 'front';

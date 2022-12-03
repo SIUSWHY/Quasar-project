@@ -106,6 +106,7 @@ export default defineComponent({
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
       setUserDeviceInfo: 'setUserDeviceInfo',
+      setCurrentUserForCall: 'setCurrentUserForCall',
       setPeerId: 'setPeerId',
     }),
     ...mapGetters('appData', {

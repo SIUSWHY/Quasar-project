@@ -2,12 +2,12 @@
   <div>
     <div id="videoCall">
       <div>
-        <div v-if="streamData.video">
+        <div v-if="comStreamData.video">
           <video class="min-screen" :srcObject="companionStreamData" autoplay></video>
         </div>
         <div class="min-bg-color" v-else>
           <q-avatar class="call-avatar" :rounded="false" size="5vh">
-            <img :src="$store.state.appData.currentUser?.avatar" alt="avatar" />
+            <img :src="$store.state.appData.currentUserForCall?.avatar" alt="avatar" />
           </q-avatar>
         </div>
         <div v-if="streamData.video">
