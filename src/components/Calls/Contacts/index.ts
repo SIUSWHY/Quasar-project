@@ -15,6 +15,7 @@ export default defineComponent({
     },
     _id: {
       type: String,
+      required: true,
     },
   },
   data() {
@@ -25,8 +26,8 @@ export default defineComponent({
       setCurrentUserForCall: 'setCurrentUserForCall',
     }),
     goToCall() {
-      this.$router.push('/chat_layout/calls/' + this.$props._id);
       this.setCurrentUserForCall(this.$props._id);
+      this.$router.push('/chat_layout/calls/' + this.$props._id);
     },
   },
 });

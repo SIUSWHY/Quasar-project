@@ -44,14 +44,12 @@ export default defineComponent({
     });
 
     socket.on('send_notify_to_companion', (data: { userId: string, peerId: string }) => {
-      const arrUsers = this.getUsers()
-
-      const callingUser = arrUsers.find((user: { _id: string; }) => user._id === data.userId)
+      this.setCurrentUserForCall(data.userId)
       this.setPeerId(data.peerId)
       // this.triggerCallNotify(callingUser, data)
-      this.$router.push('chat_layout/calls/' + callingUser._id)
-      console.log('call!!', callingUser);
-
+      if (this.$route.fullPath === '/chat_layout') {
+        this.$router.push('chat_layout/calls/' + data.userId)
+      }
     })
   },
 

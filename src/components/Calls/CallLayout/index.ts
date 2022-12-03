@@ -4,8 +4,6 @@ import { socket } from 'src/SocketInstance';
 import { mapGetters } from 'vuex';
 import { v4 as uuidv4 } from 'uuid';
 
-
-
 let myStreamData: MediaStream;
 let companionStreamData: MediaStream;
 const peerId = uuidv4();
@@ -34,21 +32,31 @@ export default defineComponent({
   async mounted() {
     this.getStream();
 
+    socket.on('send_video_status_to_client', data => {
+      this.comStreamData.video = !data
+    })
+    socket.on('send_stop_status_to_client', () => {
+      this.$router.push('/chat_layout')
+    })
   },
   unmounted() {
     this.stopStream();
+    socket.off('send_video_status_to_client')
+    socket.off('send_stop_status_to_client')
   },
   methods: {
     ...mapGetters('appData', {
       getCurrentUserForCall: 'getCurrentUserForCall',
       getPeerId: 'getPeerId'
     }),
+    ...mapGetters('appData', { getCurrentUserForCall: 'getCurrentUserForCall' }),
     startCallByPeer(stream: MediaStream) {
       this.myStreamData = stream;
       const call = peer.call(this.peerIdFromState, stream);
       call.on('stream', (remoteStream: MediaStream) => {
         this.companionStreamData = remoteStream
       });
+
       peer.on('call', (call) => {
         call.answer(stream); // Answer the call with an A/V stream.
         call.on('stream', (remoteStream: MediaStream) => {
@@ -115,9 +123,14 @@ export default defineComponent({
       const enabled = this.streamData.video;
       this.myStreamData.getVideoTracks()[0].enabled = !enabled;
       this.streamData.video = !enabled;
+      // socket.emit(send)
+      const user = this.getCurrentUserForCall()
+      socket.emit('send_video_status', { video: enabled, userId: user._id })
       console.log('Toggle Cam');
     },
     stopCall() {
+      const user = this.getCurrentUserForCall()
+      socket.emit('stop_call', { userId: user._id })
       this.$router.push('/chat_layout');
     },
   },

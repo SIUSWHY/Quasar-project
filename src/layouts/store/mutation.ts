@@ -16,7 +16,7 @@ import {
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
 } from './mutationTypes';
-import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType } from './types';
+import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall } from './types';
 
 export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
@@ -117,10 +117,11 @@ export const mutations: MutationTree<AppData> = {
   [SET_USER_DEVICE_INFO](state) {
     state.userDevice = Platform.is;
   },
-  [SET_CURRENT_USER_FOR_CALL](state, user) {
-    state.currentUserForCall = user;
+  [SET_CURRENT_USER_FOR_CALL](state, user: CurrentUserForCall) {
+    const { _id, avatar, name } = user
+    state.currentUserForCall = { _id, avatar, name, peerId: '' };
   },
   [SET_PEER_ID](state, peerId: string) {
-    state.currentUserForCall = { ...state.currentUserForCall, peerId }
+    state.currentUserForCall = { ...state.currentUserForCall, peerId: peerId }
   }
 };
