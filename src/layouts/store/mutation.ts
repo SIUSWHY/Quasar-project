@@ -148,6 +148,6 @@ export const mutations: MutationTree<AppData> = {
       }
     })
 
-    state.callLogs = mapLogs
+    state.callLogs = mapLogs.reverse()
   }
 };

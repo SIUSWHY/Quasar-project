@@ -11,7 +11,6 @@ import CallItem from './Calls/index.vue'
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
 const width = window.innerWidth >= 1240 ? 500 : screen.width;
-const $q = useQuasar();
 
 
 export default defineComponent({
@@ -50,7 +49,9 @@ export default defineComponent({
     socket.on('send_notify_to_companion', (data: { userId: string, peerId: string }) => {
       this.setCurrentUserForCall(data.userId)
       this.setPeerId(data.peerId)
-      // this.triggerCallNotify(callingUser, data)
+      // const user = this.getCurrentUserForCall()
+      // this.triggerCallNotify(user)
+
       if (this.$route.fullPath === '/chat_layout') {
         this.$router.push('chat_layout/calls/' + data.userId)
       }
@@ -66,6 +67,7 @@ export default defineComponent({
 
   data() {
     const leftDrawerOpen = ref(false);
+    const $q = useQuasar();
     return {
       toolsIsActive,
       leftDrawerOpen,
@@ -81,16 +83,16 @@ export default defineComponent({
           rightDrawerOpen.value = !rightDrawerOpen.value;
         }, 10);
       },
-      triggerCallNotify(user: { avatar: string }, userId: string) {
+      triggerCallNotify(user: { avatar: string, name: string }) {
         $q.notify({
-          message: 'Incomming call...',
-          color: 'dark',
+          message: user.name,
+          color: 'primary',
           avatar: user.avatar,
           multiLine: true,
-          timeout: 5000,
+          timeout: 10000,
           actions: [
             { label: 'Cancel', color: 'negative', handler: () => { /* ... */ } },
-            { label: 'Accept', color: 'positive', handler: () => { userId } }
+            { label: 'Accept', color: 'positive', handler: () => { /* ... */ } }
           ]
         })
       },
@@ -115,7 +117,8 @@ export default defineComponent({
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
       getCurrentUser: 'getCurrentUser',
-      getUsers: 'getUsers'
+      getUsers: 'getUsers',
+      getCurrentUserForCall: 'getCurrentUserForCall'
     }),
 
     redireckToLayout() {
