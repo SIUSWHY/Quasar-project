@@ -1,3 +1,4 @@
+import getCallsLogs from 'src/API/getCallsLogs';
 import getCurrentUser from 'src/API/getCurrnetUser';
 import getRooms from 'src/API/getRooms';
 import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
@@ -13,6 +14,7 @@ import {
   GET_CHATS,
   GET_USERS,
   PUSH_SELECTED_USERS,
+  SET_CALLS_LOGS,
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
@@ -100,5 +102,11 @@ export const actions: ActionTree<AppData, RootState> = {
   },
   setPeerId({ commit }, peerId: string) {
     commit(SET_PEER_ID, peerId)
+  },
+  async getCallsLogs({ commit, state }) {
+    const userId = state.currentUser._id
+    const { data: logs } = await getCallsLogs({ _id: userId })
+
+    commit(SET_CALLS_LOGS, logs)
   }
 };

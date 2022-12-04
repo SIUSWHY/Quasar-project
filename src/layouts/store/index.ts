@@ -29,6 +29,7 @@ export const state: AppData = {
     _id: '',
     peerId: '',
   },
+  callLogs: [],
 };
 
 const namespaced = true;

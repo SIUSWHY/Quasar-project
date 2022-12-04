@@ -6,6 +6,7 @@ import { socket } from 'src/SocketInstance';
 import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 import { UserStatus } from './store/types';
 import { useQuasar } from 'quasar';
+import CallItem from './Calls/index.vue'
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
@@ -20,6 +21,7 @@ export default defineComponent({
     ChatComponentLayout,
     UserInfo,
     MessageModal,
+    CallItem,
   },
   async created() {
     await this.prepareData();
@@ -29,6 +31,8 @@ export default defineComponent({
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
+
+    this.getCallsLogs()
     // socket.emit('get_all_user_status');
   },
   mounted() {
@@ -106,6 +110,7 @@ export default defineComponent({
       setUserDeviceInfo: 'setUserDeviceInfo',
       setCurrentUserForCall: 'setCurrentUserForCall',
       setPeerId: 'setPeerId',
+      getCallsLogs: 'getCallsLogs'
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',

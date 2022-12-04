@@ -48,13 +48,14 @@
             </transition>
           </div>
           <div v-else>
-            <transition appear enter-active-class="animated fadeInRight">
-              <div></div>
-              <!-- <div>
-                <h6 style="justify-content: center; display: flex">NO CALLS !?!?!??!</h6>
-                <img width="412" src="https://i.imgflip.com/64sz4u.png?a462000" alt="" />
-              </div> -->
-            </transition>
+            <!-- <transition appear enter-active-class="animated fadeInRight"> -->
+            <CallItem
+              v-for="callLog in $store.getters['appData/getCallsLogs']"
+              :key="callLog._id"
+              @click="isMessageModalOpen = !isMessageModalOpen"
+              v-bind="callLog"
+            />
+            <!-- </transition> -->
           </div>
         </q-pull-to-refresh>
       </q-page-container>

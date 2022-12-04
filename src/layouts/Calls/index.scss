@@ -1,0 +1,10 @@
+.date-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-top: 5px;
+  .q-icon {
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+}

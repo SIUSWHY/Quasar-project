@@ -25,6 +25,13 @@ export interface CurrentUserForCall {
   avatar: string;
   peerId: string;
 }
+export interface CallsLogs {
+  _id: string;
+  userId: string;
+  comUserId: string;
+  timeOfStartCall: Date;
+  timeOfEndCall: Date;
+}
 export interface AppData {
   users: UserType[];
   currentUser: CurrentUser;
@@ -33,6 +40,7 @@ export interface AppData {
   currentChat: CurrentChatsType;
   userDevice: Platform['is'];
   currentUserForCall: CurrentUserForCall;
+  callLogs: CallsLogs[]
 }
 export interface CurrentChatsType {
   chatType: string;

@@ -14,7 +14,7 @@
           <video class="fullscreen" :srcObject="myStreamData" autoplay></video>
         </div>
         <div class="bg-color" v-else>
-          <q-avatar class="call-avatar" :rounded="false" size="20vh">
+          <q-avatar class="call-avatar circle" :rounded="false" size="20vh">
             <img :src="$store.state.appData.currentUser?.avatar" alt="avatar" />
           </q-avatar>
         </div>
@@ -40,7 +40,17 @@
           <q-btn class="btn" @click="switchCam" disable color="primary" icon="cameraswitch"></q-btn>
         </div>
         <div>
-          <q-btn class="btn" @click="stopCall()" color="red" icon="phone_disabled"></q-btn>
+          <q-btn
+            class="btn"
+            @click="
+              () => {
+                stopCall();
+                setCallData();
+              }
+            "
+            color="red"
+            icon="phone_disabled"
+          ></q-btn>
         </div>
       </div>
     </div>
