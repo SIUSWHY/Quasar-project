@@ -43,4 +43,20 @@ export const getters: GetterTree<AppData, RootState> = {
     const userDeviceInfo = state.userDevice;
     return userDeviceInfo;
   },
+  getUsers(state) {
+    const users = state.users;
+    return users;
+  },
+  getCurrentUserForCall(state) {
+    const userForCall = state.currentUserForCall
+    return userForCall
+  },
+  getPeerId(state) {
+    const peerId = state.currentUserForCall.peerId
+    return peerId
+  },
+  getCallsLogs(state) {
+    const callLogs = state.callLogs
+    return callLogs
+  }
 };

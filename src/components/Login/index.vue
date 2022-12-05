@@ -19,7 +19,7 @@
                 @click="isPassword = !isPassword"
               ></q-icon> </template
           ></q-input>
-          <div v-if="userDevice.desktop === true">
+          <div v-if="userDevice.desktop || userDevice.mobile === false">
             <div class="spacer">OR</div>
             <div class="spacer">
               <div class="skeleton-position" v-if="socket_id === null">

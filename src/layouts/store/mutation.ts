@@ -1,4 +1,5 @@
 import { Platform } from 'quasar';
+import { Months } from 'src/constants';
 import { MutationTree } from 'vuex';
 import {
   CHANGE_CHAT_STATUS,
@@ -9,12 +10,15 @@ import {
   GET_CHATS,
   GET_USERS,
   PUSH_SELECTED_USERS,
+  SET_CALLS_LOGS,
   SET_CURRENT_USER,
+  SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
+  SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
 } from './mutationTypes';
-import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType } from './types';
+import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall, CallsLogs } from './types';
 
 export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
@@ -115,4 +119,35 @@ export const mutations: MutationTree<AppData> = {
   [SET_USER_DEVICE_INFO](state) {
     state.userDevice = Platform.is;
   },
+  [SET_CURRENT_USER_FOR_CALL](state, user: CurrentUserForCall) {
+    const { _id, avatar, name } = user
+    state.currentUserForCall = { _id, avatar, name, peerId: '' };
+  },
+  [SET_PEER_ID](state, peerId: string) {
+    state.currentUserForCall = { ...state.currentUserForCall, peerId: peerId }
+  },
+  [SET_CALLS_LOGS](state, logs: CallsLogs[]) {
+    const currUser = state.currentUser
+    const mapLogs = logs.map(log => {
+      const time = new Date(log.timeOfStartCall);
+      const selectedMonthName = Months[time.getMonth()];
+      const date = selectedMonthName + ' ' + time.getDate();
+
+      let minutes = time.getMinutes().toString();
+      if (minutes.length !== 2) {
+        minutes = '0' + minutes;
+      }
+      const stamp = time.getHours() + ':' + minutes;
+
+      if (currUser._id === log.userId) {
+        const user = state.users.find(user => user._id === log.comUserId)
+        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp }
+      } else {
+        const user = state.users.find(user => user._id === log.userId)
+        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp }
+      }
+    })
+
+    state.callLogs = mapLogs.reverse()
+  }
 };

@@ -23,6 +23,7 @@ export const actions: ActionTree<ChatData, RootState> = {
       const time = new Date(message.stamp);
       const selectedMonthName = Months[time.getMonth()];
       const date = selectedMonthName + ', ' + time.getDate();
+
       const isDateEqual = state.messages.find(message => message.label === date);
       if (!Boolean(isDateEqual)) {
         commit(SET_NEW_MESSAGE_STAMP, date);

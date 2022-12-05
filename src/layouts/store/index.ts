@@ -23,6 +23,13 @@ export const state: AppData = {
     name: '',
     platform: '',
   },
+  currentUserForCall: {
+    name: '',
+    avatar: '',
+    _id: '',
+    peerId: '',
+  },
+  callLogs: [],
 };
 
 const namespaced = true;

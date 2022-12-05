@@ -5,10 +5,13 @@ import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
 import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 import { UserStatus } from './store/types';
+import { useQuasar } from 'quasar';
+import CallItem from './Calls/index.vue'
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
 const width = window.innerWidth >= 1240 ? 500 : screen.width;
+
 
 export default defineComponent({
   name: 'MainLayout',
@@ -17,6 +20,7 @@ export default defineComponent({
     ChatComponentLayout,
     UserInfo,
     MessageModal,
+    CallItem,
   },
   async created() {
     await this.prepareData();
@@ -26,6 +30,8 @@ export default defineComponent({
     socket.on('set_new_message_notify', data => {
       this.changeCountUnreadMessage(data);
     });
+
+    this.getCallsLogs()
     // socket.emit('get_all_user_status');
   },
   mounted() {
@@ -39,6 +45,17 @@ export default defineComponent({
     socket.on('send_online_status', (data: UserStatus) => {
       this.changeUserStatus(data);
     });
+
+    socket.on('send_notify_to_companion', (data: { userId: string, peerId: string }) => {
+      this.setCurrentUserForCall(data.userId)
+      this.setPeerId(data.peerId)
+      // const user = this.getCurrentUserForCall()
+      // this.triggerCallNotify(user)
+
+      if (this.$route.fullPath === '/chat_layout') {
+        this.$router.push('chat_layout/calls/' + data.userId)
+      }
+    })
   },
 
   unmounted() {
@@ -50,6 +67,7 @@ export default defineComponent({
 
   data() {
     const leftDrawerOpen = ref(false);
+    const $q = useQuasar();
     return {
       toolsIsActive,
       leftDrawerOpen,
@@ -65,6 +83,19 @@ export default defineComponent({
           rightDrawerOpen.value = !rightDrawerOpen.value;
         }, 10);
       },
+      triggerCallNotify(user: { avatar: string, name: string }) {
+        $q.notify({
+          message: user.name,
+          color: 'primary',
+          avatar: user.avatar,
+          multiLine: true,
+          timeout: 10000,
+          actions: [
+            { label: 'Cancel', color: 'negative', handler: () => { /* ... */ } },
+            { label: 'Accept', color: 'positive', handler: () => { /* ... */ } }
+          ]
+        })
+      },
     };
   },
   watch: {
@@ -79,10 +110,15 @@ export default defineComponent({
       getChats: 'getChats',
       changeUserStatus: 'changeUserStatus',
       setUserDeviceInfo: 'setUserDeviceInfo',
+      setCurrentUserForCall: 'setCurrentUserForCall',
+      setPeerId: 'setPeerId',
+      getCallsLogs: 'getCallsLogs'
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
       getCurrentUser: 'getCurrentUser',
+      getUsers: 'getUsers',
+      getCurrentUserForCall: 'getCurrentUserForCall'
     }),
 
     redireckToLayout() {

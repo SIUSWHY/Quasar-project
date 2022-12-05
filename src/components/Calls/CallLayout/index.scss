@@ -1,0 +1,136 @@
+.fullscreen {
+  position: fixed;
+  z-index: 1000;
+  max-width: unset;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.min-screen {
+  max-width: unset;
+  max-height: unset;
+  bottom: 12%;
+  left: 70%;
+  position: fixed;
+  z-index: 1001;
+  width: 100px;
+  border-radius: 10px;
+}
+.btn-position {
+  z-index: 1001;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  .btn {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    margin: 10px 15px;
+  }
+}
+.bg-color {
+  height: 100vh;
+  background: linear-gradient(180deg, #4b6cb7 0%, #182848 100%);
+  .call-avatar {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.min-bg-color {
+  position: absolute;
+  width: 100px;
+  height: 130px;
+  border-radius: 10px;
+  z-index: 1001;
+  bottom: 12%;
+  left: 70%;
+  background: linear-gradient(180deg, #d53369 0%, #daae51 100%);
+  .call-avatar {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  // background-color: rgb(0, 68, 255);
+
+  position: relative;
+  top: 100px;
+  left: 300px;
+
+  -webkit-transition: height 0.25s ease, width 0.25s ease;
+  transition: height 0.25s ease, width 0.25s ease;
+
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.circle:hover {
+  height: 150px;
+  width: 150px;
+}
+
+.circle:before,
+.circle:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgb(34, 113, 204);
+}
+
+.circle:before {
+  -webkit-animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
+}
+.circle:after {
+  -webkit-animation: ripple 2s linear 1s infinite;
+  animation: ripple 2s linear 1s infinite;
+}
+
+.circle:hover:before,
+.circle:hover:after {
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  75% {
+    -webkit-transform: scale(1.75);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.75);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

@@ -1,10 +1,17 @@
 import { defineComponent } from 'vue';
+import Contact from './Contacts/index.vue';
 
 export default defineComponent({
   name: 'CallsComponent',
-  props: {},
+  components: {
+    Contact,
+  },
   data() {
     return {};
   },
-  methods: {},
+  methods: {
+    goChatLayout() {
+      this.$router.push('/chat_layout');
+    },
+  },
 });
