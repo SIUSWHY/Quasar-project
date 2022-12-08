@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { Cookies } from 'quasar';
 
-const apiUrl = process.env.DEV ? 'https://192.168.0.109:3000' : 'https://quasar-server.onrender.com/';
+const apiUrl = process.env.DEV ? 'https://192.168.88.47:3000' : 'https://quasar-server.onrender.com/';
 // const apiUrl = 'https://quasar-server.onrender.com';
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
