@@ -40,12 +40,18 @@
       flex-direction: column;
       align-items: flex-end;
     }
+    .title {
+      margin: 2% auto 2% 0;
+    }
   }
   .q-message-container.row.items-end.no-wrap {
     div {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+    }
+    .title {
+      margin: 2% auto 2% 0;
     }
   }
 }
@@ -58,4 +64,27 @@
   left: 50%;
   border-radius: 5%;
   background: linear-gradient(45deg, #00d2ff 0%, #3a47d5 100%);
+}
+.url-card {
+  .q-img {
+    border-radius: 5px;
+  }
+  .title {
+    align-items: flex-start;
+  }
+  a {
+    margin-bottom: 5px;
+    text-decoration: underline;
+  }
+  .url-card-border {
+    display: flex;
+    flex-direction: row !important;
+    .border {
+      width: 5px;
+      height: 230px;
+      background-color: white;
+      margin-right: 5px;
+      border-radius: 25%;
+    }
+  }
 }

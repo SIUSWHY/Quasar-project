@@ -4,6 +4,7 @@ import { mapActions, mapGetters } from 'vuex';
 import MessageComponent from './Message/index.vue';
 import GroupChatInfo from './GroupChatModal/index.vue';
 import readMessagesFromChat from 'src/API/readMssagesFromChat';
+import detectURLs from 'src/helpers/parseUrlFromString';
 
 const messageText = ref(null);
 const companionData = ref(null);
@@ -42,7 +43,7 @@ export default defineComponent({
     });
 
     socket.on('sent_message_to_room', data => {
-      this.pushNewMessage(data.data.message);
+      this.pushNewMessage(data.message);
     });
 
     socket.on('send_room_data_to_clent', async data => {
@@ -53,9 +54,6 @@ export default defineComponent({
     });
     this.readAllUnreadMessages();
 
-    socket.on('send_url_result_to_client', data => {
-      console.log(data);
-    });
   },
 
   methods: {
@@ -91,19 +89,21 @@ export default defineComponent({
       const currentTime = new Date();
       const postUserId = this.$store.state.appData.currentUser._id;
 
+      const url = detectURLs(messageText.value);
+
       const message = {
         messageText: [messageText.value],
         stamp: currentTime,
         userId: postUserId,
         whoRead: [postUserId],
+        url: url ? url.pop() : null
       };
 
       socket.emit('save_message_to_db', {
         message: message,
       });
 
-      const url = this.detectURLs(messageText.value);
-      socket.emit('send_url_to_server', url?.pop());
+      // socket.emit('send_url_to_server', url?.pop());
 
       messageText.value = null;
 
@@ -125,10 +125,6 @@ export default defineComponent({
       if (chat.unreadMessagesCount >= 1) {
         readMessagesFromChat(chat.roomId);
       }
-    },
-    detectURLs(message: string) {
-      const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
-      return message.match(urlRegex);
     },
     // handleScroll() {
     //   const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
