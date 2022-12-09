@@ -32,6 +32,7 @@ export default defineComponent({
 
     socket.off('sent_message_to_room');
     socket.off('send_room_data_to_clent');
+    socket.off('send_url_result_to_client');
   },
 
   async created() {
@@ -51,6 +52,10 @@ export default defineComponent({
       // this.handleScroll();
     });
     this.readAllUnreadMessages();
+
+    socket.on('send_url_result_to_client', data => {
+      console.log(data);
+    });
   },
 
   methods: {
@@ -97,6 +102,9 @@ export default defineComponent({
         message: message,
       });
 
+      const url = this.detectURLs(messageText.value);
+      socket.emit('send_url_to_server', url?.pop());
+
       messageText.value = null;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,6 +125,10 @@ export default defineComponent({
       if (chat.unreadMessagesCount >= 1) {
         readMessagesFromChat(chat.roomId);
       }
+    },
+    detectURLs(message: string) {
+      const urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g;
+      return message.match(urlRegex);
     },
     // handleScroll() {
     //   const scroll = Array.from(document.querySelectorAll('.q-message-text--received'));
