@@ -5,7 +5,22 @@
         <q-chat-message text-color="white" bg-color="grey-9" :label="this.message.label"></q-chat-message>
       </div>
       <div v-if="this.message.userId === $store.state.appData.currentUser?._id">
-        <q-chat-message :text="this.message.messageText" bg-color="light-blue-9" :sent="true" text-color="white">
+        <q-chat-message @click="messActions(this.message._id)" bg-color="light-blue-9" :sent="true" text-color="white">
+          <template v-slot:default>
+            <div class="url-card" v-if="this.message?.urlData">
+              <div class="title">{{ this.message.messageText[0] }}</div>
+              <div class="url-card-border">
+                <div class="border"></div>
+                <div>
+                  <a :href="this.message.urlData.url" target="_blank">{{ this.message.urlData.url }}</a>
+                  <q-img :src="this.message.urlData.img" spinner-color="white"></q-img>
+                  <div class="title">{{ this.message.urlData.title }}</div>
+                  <div>{{ this.message.urlData.description }}</div>
+                </div>
+              </div>
+            </div>
+            <div v-else>{{ this.message.messageText[0] }}</div>
+          </template>
           <template v-slot:stamp>
             <div class="stamp-direction">
               <div class="stamp">{{ this.message.stamp }}</div>
@@ -22,13 +37,23 @@
         </q-chat-message>
       </div>
       <div v-else>
-        <q-chat-message
-          text-color="white"
-          bg-color="grey-9"
-          :text="this.message.messageText"
-          :sent="false"
-          :stamp="this.message.stamp"
-        ></q-chat-message>
+        <q-chat-message text-color="white" bg-color="grey-9" :sent="false" :stamp="this.message.stamp">
+          <template v-slot:default>
+            <div class="url-card" v-if="this.message?.urlData">
+              <div class="title">{{ this.message.messageText[0] }}</div>
+              <div class="url-card-border">
+                <div class="border"></div>
+                <div>
+                  <a :href="this.message.urlData.url" target="_blank">{{ this.message.urlData.url }}</a>
+                  <q-img :src="this.message.urlData.img" spinner-color="white"></q-img>
+                  <div class="title">{{ this.message.urlData.title }}</div>
+                  <div>{{ this.message.urlData.description }}</div>
+                </div>
+              </div>
+            </div>
+            <div v-else>{{ this.message.messageText[0] }}</div>
+          </template>
+        </q-chat-message>
       </div>
     </div>
     <div v-else>
@@ -36,7 +61,22 @@
         <q-chat-message text-color="white" bg-color="grey-9" :label="this.message.label"></q-chat-message>
       </div>
       <div v-else-if="this.message.userId === $store.state.appData.currentUser?._id">
-        <q-chat-message :text="this.message.messageText" bg-color="light-blue-9" :sent="true" text-color="white">
+        <q-chat-message bg-color="light-blue-9" :sent="true" text-color="white">
+          <template v-slot:default>
+            <div class="url-card" v-if="this.message?.urlData">
+              <div class="title">{{ this.message.messageText[0] }}</div>
+              <div class="url-card-border">
+                <div class="border"></div>
+                <div>
+                  <a :href="this.message.urlData.url" target="_blank">{{ this.message.urlData.url }}</a>
+                  <q-img :src="this.message.urlData.img" spinner-color="white"></q-img>
+                  <div class="title">{{ this.message.urlData.title }}</div>
+                  <div>{{ this.message.urlData.description }}</div>
+                </div>
+              </div>
+            </div>
+            <div v-else>{{ this.message.messageText[0] }}</div>
+          </template>
           <template v-slot:stamp>
             <div class="stamp-direction">
               <div class="stamp">{{ this.message.stamp }}</div>
@@ -56,18 +96,52 @@
         <q-chat-message
           text-color="white"
           bg-color="grey-9"
-          :text="this.message.messageText"
           :sent="false"
           :name="user?.name"
           :stamp="this.message.stamp"
         >
+          <template v-slot:default>
+            <div class="url-card" v-if="this.message?.urlData">
+              <div class="title">{{ this.message.messageText[0] }}</div>
+              <div class="url-card-border">
+                <div class="border"></div>
+                <div>
+                  <a :href="this.message.urlData.url" target="_blank">{{ this.message.urlData.url }}</a>
+                  <q-img :src="this.message.urlData.img" spinner-color="white"></q-img>
+                  <div class="title">{{ this.message.urlData.title }}</div>
+                  <div>{{ this.message.urlData.description }}</div>
+                </div>
+              </div>
+            </div>
+            <div v-else>{{ this.message.messageText[0] }}</div>
+          </template>
           <template v-slot:avatar>
             <q-avatar :rounded="false" size="30px" style="margin-right: 10px">
-              <img :src=" user?.avatar" alt="pic" />
+              <img :src="user?.avatar" alt="pic" />
             </q-avatar>
           </template>
         </q-chat-message>
       </div>
+    </div>
+    <div class="actions-bg-color" v-if="isActionsOpen">
+      <q-item>
+        <q-item-section side>
+          <q-icon name="content_copy" size="1.5em"></q-icon>
+        </q-item-section>
+        <q-item-section>Copy</q-item-section>
+      </q-item>
+      <q-item>
+        <q-item-section side>
+          <q-icon name="edit" size="1.5em"></q-icon>
+        </q-item-section>
+        <q-item-section>Edit</q-item-section>
+      </q-item>
+      <q-item>
+        <q-item-section side>
+          <q-icon name="delete" size="1.5em"></q-icon>
+        </q-item-section>
+        <q-item-section>Delete</q-item-section>
+      </q-item>
     </div>
   </div>
 </template>
