@@ -18,11 +18,14 @@ export default defineComponent({
     logout() {
       Cookies.remove('Token');
       LocalStorage.remove('user_login_token');
+
+      socket.emit('user_is_logout');
       socket.io.opts.query = {
         token: null,
       };
       socket.disconnect();
       socket.connect();
+
       this.$router.push('/');
     },
   },
