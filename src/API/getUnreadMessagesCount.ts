@@ -1,6 +1,6 @@
 import { axiosInstance } from './index';
 
 const unreadMessagesCount = (data: { currentUserId: string; roomId: string[] }) =>
-  axiosInstance.post('/getUnreadMessagesCount', data);
+  axiosInstance.post('/message/unreadCount', data);
 
 export default unreadMessagesCount;

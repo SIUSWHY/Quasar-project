@@ -1,5 +1,5 @@
 import { axiosInstance } from './index';
 
-const readMessagesFromChat = (roomId: string) => axiosInstance.post('/readMessages', { roomId: roomId });
+const readMessagesFromChat = (roomId: string) => axiosInstance.post('/message/read', { roomId: roomId });
 
 export default readMessagesFromChat;
