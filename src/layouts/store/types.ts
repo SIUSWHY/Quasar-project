@@ -31,6 +31,7 @@ export interface CallsLogs {
   comUserId: string;
   timeOfStartCall: Date;
   timeOfEndCall: Date;
+  count: number;
 }
 export interface AppData {
   users: UserType[];
@@ -40,7 +41,7 @@ export interface AppData {
   currentChat: CurrentChatsType;
   userDevice: Platform['is'];
   currentUserForCall: CurrentUserForCall;
-  callLogs: CallsLogs[]
+  callLogs: CallsLogs[];
 }
 export interface CurrentChatsType {
   chatType: string;
@@ -77,4 +78,4 @@ export interface ChatsTypeWithOutUsersData {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface RootState { }
+export interface RootState {}

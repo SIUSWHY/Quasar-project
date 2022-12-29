@@ -101,12 +101,12 @@ export const actions: ActionTree<AppData, RootState> = {
     commit(SET_CURRENT_USER_FOR_CALL, currentUser);
   },
   setPeerId({ commit }, peerId: string) {
-    commit(SET_PEER_ID, peerId)
+    commit(SET_PEER_ID, peerId);
   },
   async getCallsLogs({ commit, state }) {
-    const userId = state.currentUser._id
-    const { data: logs } = await getCallsLogs({ _id: userId })
+    const userId = state.currentUser._id;
+    const { data: logs } = await getCallsLogs({ _id: userId });
 
-    commit(SET_CALLS_LOGS, logs)
-  }
+    commit(SET_CALLS_LOGS, logs);
+  },
 };

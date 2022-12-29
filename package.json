@@ -10,7 +10,11 @@
     "build": "npx quasar build",
     "lint": "eslint --ext .js,.ts,.vue ./",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0",
+    "copy-key": "cp ./keys/my-release-key.keystore.old ./dist/capacitor/android/apk/release/",
+    "sign:apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./dist/capacitor/android/apk/release/my-release-key.keystore.old ./dist/capacitor/android/apk/release/app-release-unsigned.apk alias_name",
+    "zip:apk": "zipalign -v 4 ./dist/capacitor/android/apk/release/app-release-unsigned.apk ./dist/capacitor/android/apk/release/quasar.apk",
+    "build:apk": "npx quasar build -m capacitor -T android && npm run copy-key && npm run sign:apk && npm run zip:apk"
   },
   "dependencies": {
     "@capacitor/core": "^4.0.1",

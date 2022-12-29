@@ -120,14 +120,14 @@ export const mutations: MutationTree<AppData> = {
     state.userDevice = Platform.is;
   },
   [SET_CURRENT_USER_FOR_CALL](state, user: CurrentUserForCall) {
-    const { _id, avatar, name } = user
+    const { _id, avatar, name } = user;
     state.currentUserForCall = { _id, avatar, name, peerId: '' };
   },
   [SET_PEER_ID](state, peerId: string) {
-    state.currentUserForCall = { ...state.currentUserForCall, peerId: peerId }
+    state.currentUserForCall = { ...state.currentUserForCall, peerId: peerId };
   },
   [SET_CALLS_LOGS](state, logs: CallsLogs[]) {
-    const currUser = state.currentUser
+    const currUser = state.currentUser;
     const mapLogs = logs.map(log => {
       const time = new Date(log.timeOfStartCall);
       const selectedMonthName = Months[time.getMonth()];
@@ -140,14 +140,14 @@ export const mutations: MutationTree<AppData> = {
       const stamp = time.getHours() + ':' + minutes;
 
       if (currUser._id === log.userId) {
-        const user = state.users.find(user => user._id === log.comUserId)
-        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp }
+        const user = state.users.find(user => user._id === log.comUserId);
+        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp };
       } else {
-        const user = state.users.find(user => user._id === log.userId)
-        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp }
+        const user = state.users.find(user => user._id === log.userId);
+        return { ...log, avatar: user?.avatar, name: user?.name, date, time: stamp };
       }
-    })
+    });
 
-    state.callLogs = mapLogs.reverse()
-  }
+    state.callLogs = mapLogs.reverse();
+  },
 };
