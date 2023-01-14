@@ -12,7 +12,12 @@
     >
       <q-item-section side>
         <q-avatar class="custom-border round-avatar" size="50px">
-          <img :src="room_img" alt="pic" />
+          <div>
+            <div v-if="room_img !== 'delete'">
+              <img :src="room_img" alt="pic" />
+            </div>
+            <div v-else>D</div>
+          </div>
           <div v-if="chatType === 'double' && isOnline === true">
             <transition appear enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
               <q-badge class="q-badge-position" rounded floating color="green"></q-badge>
