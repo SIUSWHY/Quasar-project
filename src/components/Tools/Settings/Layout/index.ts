@@ -9,8 +9,8 @@ export default defineComponent({
     return {};
   },
   methods: {
-    goTo() {
-      this.$router.push('/chat_layout/settings/gadgets');
+    goTo(path: string) {
+      this.$router.push('/chat_layout/settings/' + path);
     },
     goTochatLayout() {
       this.$router.push('/chat_layout');

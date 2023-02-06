@@ -40,6 +40,10 @@ const routes: RouteRecordRaw[] = [
             path: 'gadgets',
             component: () => import('components/Tools/Settings/Pages/Gadgets/index.vue'),
           },
+          {
+            path: 'confidentiality',
+            component: () => import('components/Tools/Settings/Pages/Confidentiality/index.vue'),
+          },
         ],
       },
       {

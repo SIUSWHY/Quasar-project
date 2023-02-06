@@ -63,13 +63,15 @@ export const mutations: MutationTree<AppData> = {
     chats.forEach((chat: ChatsType) => {
       if (chat.chatType === 'double') {
         const userWithoutCurrentUser = chat.users_id.filter(user => !currentUserId.includes(user._id));
-        let chatData!: { name: string; avatar: string };
+        let chatData: { name?: string; avatar: string } = { avatar: 'delete' };
 
         if (userWithoutCurrentUser.length !== 0) {
           userWithoutCurrentUser.forEach((user: UserType) => {
             chatData = { name: user.name, avatar: user.avatar };
           });
         } else {
+          chat.room_img = 'delete';
+          chat.room_name = 'Deleted';
           return;
         }
 

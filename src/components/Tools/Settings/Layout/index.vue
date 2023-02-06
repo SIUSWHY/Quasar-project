@@ -27,10 +27,7 @@
         <q-item class="q-avatar-padding">
           <q-item-section side>
             <q-avatar class="round-avatar" size="50px">
-              <img
-                :src=" $store.getters['appData/getCurrentUser'].avatar"
-                alt="avatar"
-              />
+              <img :src="$store.getters['appData/getCurrentUser'].avatar" alt="avatar" />
             </q-avatar>
           </q-item-section>
           <q-item-section>
@@ -54,12 +51,20 @@
       <div class="spacer"></div>
       <div class="header-bg-color section">
         <q-item class="setting-lable">Settings </q-item>
-        <q-item clickable @click="goTo()">
+        <q-item clickable @click="goTo('gadgets')">
           <q-item-section side>
             <q-icon name="devices_other" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Gadgets</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable @click="goTo('confidentiality')">
+          <q-item-section side>
+            <q-icon name="lock" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Confidentiality</q-item-label>
           </q-item-section>
         </q-item>
       </div>
