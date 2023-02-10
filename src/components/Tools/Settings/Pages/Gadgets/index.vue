@@ -16,6 +16,9 @@
     </q-item>
     <q-item class="header-pisition">
       <div v-if="$store.getters['appData/getUserDevice'].device !== 'PC'">
+        <q-item-section>
+          <q-icon class="pc-image" name="laptop" size="1000%"></q-icon>
+        </q-item-section>
         <q-item-section class="lable-position"> You can access the application with QR-code </q-item-section>
         <q-item-section>
           <q-btn @click="isAddNewGadget = !isAddNewGadget" color="primary" icon="qr_code" label="Add gadget"></q-btn>

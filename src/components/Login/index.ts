@@ -5,10 +5,12 @@ import loginUser from '../../API/loginUser';
 import { socket } from 'src/SocketInstance';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
 
-const user = {
-  name: '',
-  password: '',
-};
+const user = process.env.DEV
+  ? {
+      name: 'Daniil@gmail.com',
+      password: 'Daniil',
+    }
+  : { name: '', password: '' };
 
 const isLoading = ref(false);
 export default defineComponent({
