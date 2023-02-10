@@ -139,12 +139,12 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
+        name: 'Hermes App',
+        short_name: 'Hermes',
         description: '',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
+        background_color: '#121212',
         theme_color: '#027be3',
         icons: [
           {

@@ -53,7 +53,6 @@ export default defineComponent({
       // this.handleScroll();
     });
     this.readAllUnreadMessages();
-
   },
 
   methods: {
@@ -96,7 +95,7 @@ export default defineComponent({
         stamp: currentTime,
         userId: postUserId,
         whoRead: [postUserId],
-        url: url ? url.pop() : null
+        url: url ? url.pop() : null,
       };
 
       socket.emit('save_message_to_db', {
@@ -118,7 +117,9 @@ export default defineComponent({
     },
     scrollIntoLastMessage() {
       const scroll = document.getElementById('scrollPoint');
-      if (scroll) scroll.scrollTop = scroll.scrollHeight;
+      if (scroll) {
+        scroll.scrollTop = scroll.scrollHeight;
+      }
     },
     readAllUnreadMessages() {
       const chat = this.getCurrentChat();
