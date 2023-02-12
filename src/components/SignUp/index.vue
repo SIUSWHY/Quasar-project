@@ -27,11 +27,11 @@
                 @click="isPassword = !isPassword"
               ></q-icon> </template
           ></q-input>
-          <q-file filled v-model="user.avatar" label="Your avatar"></q-file>
+          <q-file filled v-model="user.avatar" label="Your avatar" accept="image/png, image/jpeg, image/gif"></q-file>
         </q-form>
       </div>
       <q-card-actions align="around">
-        <q-btn to="/" label="Cansel" type="submit" color="grey"> </q-btn>
+        <q-btn to="/" label="Cancel" type="submit" color="grey"> </q-btn>
         <q-btn
           @click="
             () => {

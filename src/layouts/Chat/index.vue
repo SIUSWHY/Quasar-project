@@ -14,7 +14,7 @@
         <q-avatar class="custom-border round-avatar" size="50px">
           <div>
             <div v-if="room_img !== 'delete'">
-              <img :src="room_img" alt="pic" />
+              <img :src="room_img" alt="pic" class="avatar-size" />
             </div>
             <div v-else>D</div>
           </div>

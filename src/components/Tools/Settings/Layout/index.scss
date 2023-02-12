@@ -29,3 +29,12 @@
 .round-avatar {
   border-radius: 25px;
 }
+.container {
+  display: block;
+  .sub-title {
+    height: 20px;
+    color: grey;
+    font-size: 12px;
+    margin-left: 0;
+  }
+}

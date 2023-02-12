@@ -43,9 +43,18 @@
       </div>
       <div class="spacer"></div>
       <div class="header-bg-color section">
-        <q-item class="setting-lable">Accaunt </q-item>
-        <q-item>
+        <q-item class="setting-lable">Account </q-item>
+        <q-item class="container">
           <q-item-section> {{ $store.getters['appData/getCurrentUser'].phone }}</q-item-section>
+          <q-item-section class="sub-title"> Tap to change phone number</q-item-section>
+        </q-item>
+        <q-item class="container">
+          <q-item-section> @{{ $store.getters['appData/getCurrentUser'].name }}</q-item-section>
+          <q-item-section class="sub-title"> Username</q-item-section>
+        </q-item>
+        <q-item class="container">
+          <q-item-section>About me</q-item-section>
+          <q-item-section class="sub-title"> Add a few words about yourself</q-item-section>
         </q-item>
       </div>
       <div class="spacer"></div>
