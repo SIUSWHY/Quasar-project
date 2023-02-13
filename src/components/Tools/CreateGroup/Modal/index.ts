@@ -18,7 +18,10 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapGetters('appData', { getUsersDataForGroupChat: 'getUsersDataForGroupChat' }),
+    ...mapGetters('appData', {
+      getUsersDataForGroupChat: 'getUsersDataForGroupChat',
+      getCurrentUser: 'getCurrentUser',
+    }),
     ...mapActions('appData', { getChats: 'getChats' }),
 
     async createGroup() {
@@ -26,13 +29,14 @@ export default defineComponent({
       const usersIds: string[] = usersArr.map(user => {
         return user._id;
       });
-      usersIds.push(this.$store.state.appData.currentUser._id);
+      usersIds.push(this.getCurrentUser()._id);
 
       const groupData = {
         groupName: this.text,
         groupImage: this.$store.state.appData.currentUser.avatar,
         groupMembers: usersIds,
         groupType: ChatType.Group,
+        adminUserId: this.getCurrentUser()._id,
       };
 
       socket.emit('get_data_for_group', groupData);

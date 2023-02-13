@@ -17,11 +17,12 @@ import {
   SET_CALLS_LOGS,
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
-  SET_CURRNT_CHAT,
+  SET_CURRENT_CHAT,
   SET_NEW_USER_AVATAR,
   SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
+  SET_NEW_GROUP_AVATAR,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
@@ -32,7 +33,7 @@ export const actions: ActionTree<AppData, RootState> = {
   },
 
   setCurrentChat({ commit }, chat: ChatData) {
-    commit(SET_CURRNT_CHAT, chat);
+    commit(SET_CURRENT_CHAT, chat);
   },
 
   async setCurrentUser({ commit }) {
@@ -113,5 +114,9 @@ export const actions: ActionTree<AppData, RootState> = {
 
   patchUserAvatar({ commit }, user) {
     commit(SET_NEW_USER_AVATAR, user);
+  },
+
+  patchGroupAvatar({ commit }, group) {
+    commit(SET_NEW_GROUP_AVATAR, group);
   },
 };

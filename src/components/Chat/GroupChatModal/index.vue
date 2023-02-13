@@ -7,9 +7,26 @@
         </q-item-section>
         <q-item-section side>
           <div>
-            <div v-if="$store.getters['chatData/getCompanion'].avatar">
+            <div v-if="$store.getters['appData/getCurrentChat'].room_img">
               <q-avatar :rounded="false" size="50px">
-                <img :src="$store.getters['chatData/getCompanion'].avatar" alt="avatar" />
+                <img
+                  :src="$store.getters['appData/getCurrentChat'].room_img"
+                  alt="avatar"
+                  @click="
+                    () => {
+                      $store.getters['appData/getCurrentUser']._id === chat.adminUserId ? changeGroupImage() : '';
+                    }
+                  "
+                />
+                <q-badge
+                  v-if="$store.getters['appData/getCurrentUser']._id === chat.adminUserId"
+                  class="q-badge-position"
+                  rounded
+                  floating
+                  color="blue"
+                >
+                  <q-icon name="edit" color="white"></q-icon>
+                </q-badge>
               </q-avatar>
             </div>
             <div v-else>
@@ -48,6 +65,10 @@
             <q-avatar size="50px"> <img :src="user.avatar" alt="avatar" /> </q-avatar>
           </q-item-section>
           <q-item-section> {{ user.name }}</q-item-section>
+          <q-item-section class="chat-owner" side v-if="user._id === chat.adminUserId">
+            owner
+            <q-icon name="verified" size="1.5em"></q-icon>
+          </q-item-section>
         </q-item>
       </div>
     </div>

@@ -16,9 +16,9 @@
       <div @click="isGroupInfoOpen = !isGroupInfoOpen" class="chat-header" v-if="chat.chatType === 'group'">
         <q-item-section side>
           <div>
-            <div v-if="$store.getters['chatData/getCompanion'].avatar">
+            <div v-if="$store.getters['appData/getCurrentChat'].room_img">
               <q-avatar :rounded="false" size="50px">
-                <img :src="$store.getters['chatData/getCompanion'].avatar" alt="avatar" />
+                <img :src="$store.getters['appData/getCurrentChat'].room_img" alt="avatar" />
               </q-avatar>
             </div>
             <div v-else>

@@ -13,11 +13,12 @@ import {
   SET_CALLS_LOGS,
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
-  SET_CURRNT_CHAT,
+  SET_CURRENT_CHAT,
   SET_NEW_USER_AVATAR,
   SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
+  SET_NEW_GROUP_AVATAR,
 } from './mutationTypes';
 import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall, CallsLogs } from './types';
 
@@ -54,7 +55,7 @@ export const mutations: MutationTree<AppData> = {
   [CLEAR_SELECTED_USERS](state) {
     state.selectedUsers = [];
   },
-  [SET_CURRNT_CHAT](state, chat: CurrentChatsType) {
+  [SET_CURRENT_CHAT](state, chat: CurrentChatsType) {
     state.currentChat = { roomId: chat.roomId, chatType: chat.chatType };
   },
 
@@ -158,7 +159,16 @@ export const mutations: MutationTree<AppData> = {
     state.callLogs = mapLogs.reverse();
   },
 
-  [SET_NEW_USER_AVATAR](state, data) {
+  [SET_NEW_USER_AVATAR](state, data: { id: string; avatar: string }) {
     state.currentUser = { ...state.currentUser, avatar: data.avatar };
+    state.users = state.users.map(user => {
+      return user._id === data.id ? { ...user, avatar: data.avatar } : user;
+    });
+  },
+
+  [SET_NEW_GROUP_AVATAR](state, data: ChatsType) {
+    state.chats = state.chats.map(chat => {
+      return chat.roomId === data.roomId ? { ...chat, room_img: data.room_img } : chat;
+    });
   },
 };
