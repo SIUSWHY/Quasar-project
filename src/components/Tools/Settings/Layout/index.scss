@@ -38,3 +38,9 @@
     margin-left: 0;
   }
 }
+.q-badge-position {
+  top: 35px;
+  &.q-badge {
+    padding: 3px;
+  }
+}

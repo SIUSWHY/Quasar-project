@@ -18,6 +18,7 @@ import {
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
+  SET_NEW_USER_AVATAR,
   SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
@@ -108,5 +109,9 @@ export const actions: ActionTree<AppData, RootState> = {
     const { data: logs } = await getCallsLogs({ _id: userId });
 
     commit(SET_CALLS_LOGS, logs);
+  },
+
+  patchUserAvatar({ commit }, user) {
+    commit(SET_NEW_USER_AVATAR, user);
   },
 };

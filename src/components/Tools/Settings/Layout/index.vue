@@ -26,8 +26,11 @@
         </q-item>
         <q-item class="q-avatar-padding">
           <q-item-section side>
-            <q-avatar class="round-avatar" size="50px">
+            <q-avatar class="round-avatar" size="50px" @click="changeUserAvatar">
               <img :src="$store.getters['appData/getCurrentUser'].avatar" alt="avatar" />
+              <q-badge class="q-badge-position" rounded floating color="blue">
+                <q-icon name="edit" color="white"></q-icon>
+              </q-badge>
             </q-avatar>
           </q-item-section>
           <q-item-section>

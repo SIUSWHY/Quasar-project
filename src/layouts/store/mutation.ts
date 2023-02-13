@@ -14,6 +14,7 @@ import {
   SET_CURRENT_USER,
   SET_CURRENT_USER_FOR_CALL,
   SET_CURRNT_CHAT,
+  SET_NEW_USER_AVATAR,
   SET_PEER_ID,
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
@@ -118,16 +119,20 @@ export const mutations: MutationTree<AppData> = {
 
     state.chats = newChatsStatus;
   },
+
   [SET_USER_DEVICE_INFO](state) {
     state.userDevice = Platform.is;
   },
+
   [SET_CURRENT_USER_FOR_CALL](state, user: CurrentUserForCall) {
     const { _id, avatar, name } = user;
     state.currentUserForCall = { _id, avatar, name, peerId: '' };
   },
+
   [SET_PEER_ID](state, peerId: string) {
     state.currentUserForCall = { ...state.currentUserForCall, peerId: peerId };
   },
+
   [SET_CALLS_LOGS](state, logs: CallsLogs[]) {
     const currUser = state.currentUser;
     const mapLogs = logs.map(log => {
@@ -151,5 +156,9 @@ export const mutations: MutationTree<AppData> = {
     });
 
     state.callLogs = mapLogs.reverse();
+  },
+
+  [SET_NEW_USER_AVATAR](state, data) {
+    state.currentUser = { ...state.currentUser, avatar: data.avatar };
   },
 };

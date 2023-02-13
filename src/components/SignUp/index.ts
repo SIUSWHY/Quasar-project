@@ -35,7 +35,7 @@ export default defineComponent({
       try {
         await signUpUser(response);
         this.$router.push('/');
-        // console.log(user);
+        console.log(response);
       } catch (err) {
         this.triggerNotify(err);
       }

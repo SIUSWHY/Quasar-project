@@ -1,6 +1,8 @@
 import { Cookies, LocalStorage } from 'quasar';
+import changeUserAvatar from 'src/API/changeUserAvatar';
 import { socket } from 'src/SocketInstance';
 import { defineComponent } from 'vue';
+import { mapActions, mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'SettingsLayout',
@@ -9,6 +11,28 @@ export default defineComponent({
     return {};
   },
   methods: {
+    ...mapGetters('appData', {
+      getCurrentUser: 'getCurrentUser',
+    }),
+    ...mapActions('appData', {
+      patchUserAvatar: 'patchUserAvatar',
+    }),
+    changeUserAvatar() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/png, image/jpeg, image/gif';
+      input.onchange = async () => {
+        if (input.files !== null) {
+          const userId = this.getCurrentUser()._id;
+          const response = new FormData();
+          response.append('id', userId);
+          response.append('avatar', input.files[0]);
+          const { data: user } = await changeUserAvatar(response);
+          this.patchUserAvatar(user);
+        }
+      };
+      input.click();
+    },
     goTo(path: string) {
       this.$router.push('/chat_layout/settings/' + path);
     },
