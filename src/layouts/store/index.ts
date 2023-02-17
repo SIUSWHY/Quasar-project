@@ -10,6 +10,7 @@ export const state: AppData = {
     name: '',
     avatar: '',
     _id: '',
+    isDarkMode: true,
   },
   currentChat: {
     chatType: '',

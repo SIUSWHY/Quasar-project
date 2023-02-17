@@ -101,7 +101,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ['Notify', 'Dialog', 'Loading'],
+      plugins: ['Notify', 'Dialog', 'Loading', 'AddressbarColor'],
     },
 
     // animations: 'all', // --- includes all animations
@@ -144,8 +144,8 @@ module.exports = configure(function (ctx) {
         description: '',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#121212',
-        theme_color: '#027be3',
+        background_color: '#d8c3b9',
+        theme_color: '#d8c3b9',
         icons: [
           {
             src: 'icons/icon-128x128.png',

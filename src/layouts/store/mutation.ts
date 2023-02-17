@@ -19,6 +19,7 @@ import {
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
   SET_NEW_GROUP_AVATAR,
+  SET_DARK_MODE,
 } from './mutationTypes';
 import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall, CallsLogs } from './types';
 
@@ -170,5 +171,9 @@ export const mutations: MutationTree<AppData> = {
     state.chats = state.chats.map(chat => {
       return chat.roomId === data.roomId ? { ...chat, room_img: data.room_img } : chat;
     });
+  },
+
+  [SET_DARK_MODE](state, value: boolean) {
+    state.currentUser.isDarkMode = value;
   },
 };

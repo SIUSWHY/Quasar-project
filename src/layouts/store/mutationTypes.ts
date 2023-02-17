@@ -15,3 +15,4 @@ export const SET_PEER_ID = 'SET_PEER_ID';
 export const SET_CALLS_LOGS = 'SET_CALLS_LOGS';
 export const SET_NEW_USER_AVATAR = 'SET_NEW_USER_AVATAR';
 export const SET_NEW_GROUP_AVATAR = 'SET_NEW_GROUP_AVATAR';
+export const SET_DARK_MODE = 'SET_DARK_MODE';

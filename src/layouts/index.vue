@@ -1,7 +1,7 @@
 <template>
   <div v-if="this.$route.fullPath === '/chat_layout'">
     <q-layout view="lHh Lpr lFf">
-      <q-header elevated style="background-color: #121212">
+      <q-header elevated :class="`${$store.state.appData.currentUser.isDarkMode ? 'q-dark' : 'q-hermes'}`">
         <q-toolbar>
           <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
           <q-space />
@@ -13,7 +13,11 @@
         </q-toolbar>
       </q-header>
 
-      <q-drawer v-model="leftDrawerOpen" show-if-above>
+      <q-drawer
+        v-model="leftDrawerOpen"
+        show-if-above
+        :class="`${$store.state.appData.currentUser.isDarkMode ? '' : 'q-hermes'}`"
+      >
         <UserInfo />
       </q-drawer>
 

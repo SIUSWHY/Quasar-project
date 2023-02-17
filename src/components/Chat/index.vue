@@ -106,7 +106,6 @@
           <div style="width: 100%; height: 100%">
             <div>
               <div v-if="$store.getters['chatData/getMessages'][0] !== undefined">
-                <!-- <q-chat-message label="Sunday, 19th"></q-chat-message> -->
                 <MessageComponent
                   v-for="message in $store.getters['chatData/getMessages']"
                   :key="message.userId"
@@ -127,7 +126,7 @@
         </div>
       </div>
     </q-item>
-    <q-footer style="background-color: #1d1d1d">
+    <q-footer style="background-color: #1d1d1d; left: 0">
       <q-item>
         <q-item-section side>
           <q-icon size="1.7em" name="sentiment_very_satisfied"></q-icon>

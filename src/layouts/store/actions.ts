@@ -23,6 +23,7 @@ import {
   SET_UNREAD_MESSAGES_COUNT,
   SET_USER_DEVICE_INFO,
   SET_NEW_GROUP_AVATAR,
+  SET_DARK_MODE,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
@@ -118,5 +119,9 @@ export const actions: ActionTree<AppData, RootState> = {
 
   patchGroupAvatar({ commit }, group) {
     commit(SET_NEW_GROUP_AVATAR, group);
+  },
+
+  setDarkMode({ commit }, value: boolean) {
+    commit(SET_DARK_MODE, value);
   },
 };

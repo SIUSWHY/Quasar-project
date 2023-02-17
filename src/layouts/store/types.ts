@@ -7,11 +7,13 @@ export interface UserType {
   caption: string;
   isOnline: boolean;
   avatar: string;
+  isDarkMode: boolean;
 }
 export interface CurrentUser {
   _id: string;
   name: string;
   avatar: string;
+  isDarkMode: boolean;
 }
 export interface SelectedUsers {
   _id: string;

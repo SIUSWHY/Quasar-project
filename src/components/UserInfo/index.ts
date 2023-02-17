@@ -1,5 +1,6 @@
 import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
+import { mapActions } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
 
 const actions = [
@@ -40,15 +41,16 @@ export default defineComponent({
   },
   watch: {
     darkModeStatus() {
-      if (darkModeStatus.value) {
-        Dark.set(true);
-      } else {
-        Dark.set(false);
-      }
+      // https://quasar.dev/style/dark-mode#What-it-does
+      Dark.set(darkModeStatus.value);
+      this.setDarkMode(darkModeStatus.value);
     },
   },
 
   methods: {
+    ...mapActions('appData', {
+      setDarkMode: 'setDarkMode',
+    }),
     setCurrentuserAvatar() {
       const avatar = this.$store.state.appData.currentUser.avatar;
       return avatar;
