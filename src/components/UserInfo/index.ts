@@ -1,6 +1,6 @@
 import { Dark } from 'quasar';
 import { defineComponent, ref } from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
 
 const actions = [
@@ -47,10 +47,22 @@ export default defineComponent({
     },
   },
 
+  created() {
+    this.setUserTheme();
+  },
+
   methods: {
+    ...mapGetters('appData', {
+      getCurrentUser: 'getCurrentUser',
+    }),
     ...mapActions('appData', {
       setDarkMode: 'setDarkMode',
     }),
+    setUserTheme() {
+      const user = this.getCurrentUser();
+      Dark.set(user.isDarkMode);
+      this.setDarkMode(user.isDarkMode);
+    },
     setCurrentuserAvatar() {
       const avatar = this.$store.state.appData.currentUser.avatar;
       return avatar;
