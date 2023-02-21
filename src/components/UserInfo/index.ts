@@ -1,4 +1,5 @@
 import { Dark } from 'quasar';
+import changeUserTheme from 'src/API/changeUserTheme';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
@@ -40,15 +41,19 @@ export default defineComponent({
     };
   },
   watch: {
-    darkModeStatus() {
+    async darkModeStatus() {
+      const { _id }: { _id: string } = this.getCurrentUser();
+      await changeUserTheme({ _id, value: darkModeStatus.value });
       // https://quasar.dev/style/dark-mode#What-it-does
       Dark.set(darkModeStatus.value);
       this.setDarkMode(darkModeStatus.value);
     },
   },
 
-  created() {
-    this.setUserTheme();
+  mounted() {
+    setTimeout(() => {
+      this.setUserTheme();
+    }, 500);
   },
 
   methods: {
@@ -62,6 +67,7 @@ export default defineComponent({
       const user = this.getCurrentUser();
       Dark.set(user.isDarkMode);
       this.setDarkMode(user.isDarkMode);
+      darkModeStatus.value = user.isDarkMode;
     },
     setCurrentuserAvatar() {
       const avatar = this.$store.state.appData.currentUser.avatar;
