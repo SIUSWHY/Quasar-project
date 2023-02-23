@@ -25,3 +25,12 @@
     background-color: $hermes;
   }
 }
+
+.body--light {
+  .q-layout {
+    background-color: $second;
+  }
+  .q-item__label {
+    color: black;
+  }
+}

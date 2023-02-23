@@ -1,6 +1,6 @@
 <template>
   <div id="scrollPoint">
-    <q-item style="background-color: #2e2e2e; position: absolute; z-index: 1; height: 60px; width: 100%">
+    <q-item class="chat-menu-header" style="position: absolute; z-index: 1; height: 60px; width: 100%">
       <q-item-section side>
         <q-icon
           name="west"

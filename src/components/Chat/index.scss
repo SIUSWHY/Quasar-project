@@ -15,3 +15,13 @@
 .chat-header {
   display: contents;
 }
+.body--dark {
+  .chat-menu-header {
+    background-color: #2e2e2e;
+  }
+}
+.body--light {
+  .chat-menu-header {
+    background-color: $hermes;
+  }
+}
