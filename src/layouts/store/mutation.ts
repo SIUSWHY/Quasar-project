@@ -20,6 +20,7 @@ import {
   SET_USER_DEVICE_INFO,
   SET_NEW_GROUP_AVATAR,
   SET_DARK_MODE,
+  SET_NEW_CHAT_NAME,
 } from './mutationTypes';
 import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall, CallsLogs } from './types';
 
@@ -175,5 +176,11 @@ export const mutations: MutationTree<AppData> = {
 
   [SET_DARK_MODE](state, value: boolean) {
     state.currentUser.isDarkMode = value;
+  },
+
+  [SET_NEW_CHAT_NAME](state, chatData: { _id: string; room_name: string }) {
+    state.chats = state.chats.map(chat => {
+      return chat._id === chatData._id ? { ...chat, room_name: chatData.room_name } : chat;
+    });
   },
 };

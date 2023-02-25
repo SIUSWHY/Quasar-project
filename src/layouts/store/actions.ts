@@ -24,6 +24,7 @@ import {
   SET_USER_DEVICE_INFO,
   SET_NEW_GROUP_AVATAR,
   SET_DARK_MODE,
+  SET_NEW_CHAT_NAME,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
@@ -96,16 +97,20 @@ export const actions: ActionTree<AppData, RootState> = {
   changeCountUnreadMessage({ commit }, roomId) {
     commit(CHANGE_UNREAD_COUNT_MESSAGE, roomId);
   },
+
   setUserDeviceInfo({ commit }) {
     commit(SET_USER_DEVICE_INFO);
   },
+
   setCurrentUserForCall({ commit, state }, userId: string) {
     const currentUser = state.users.find(user => user._id === userId);
     commit(SET_CURRENT_USER_FOR_CALL, currentUser);
   },
+
   setPeerId({ commit }, peerId: string) {
     commit(SET_PEER_ID, peerId);
   },
+
   async getCallsLogs({ commit, state }) {
     const userId = state.currentUser._id;
     const { data: logs } = await getCallsLogs({ _id: userId });
@@ -123,5 +128,9 @@ export const actions: ActionTree<AppData, RootState> = {
 
   setDarkMode({ commit }, value: boolean) {
     commit(SET_DARK_MODE, value);
+  },
+
+  setNewChatName({ commit }, chatData: { _id: string; name: string }) {
+    commit(SET_NEW_CHAT_NAME, chatData);
   },
 };

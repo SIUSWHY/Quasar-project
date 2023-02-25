@@ -34,7 +34,7 @@
             </div>
           </div>
         </q-item-section>
-        <q-item-section>
+        <q-item-section @click="changeGroupName">
           <div>
             <div v-if="$store.getters['chatData/getCompanion']?.name">
               <q-item-label>{{ $store.getters['chatData/getCompanion']?.name }}</q-item-label>

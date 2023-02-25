@@ -4,6 +4,7 @@ import {
   CLEAR_COMPANION_STORE,
   CLEAR_MESSAGE_STORE,
   SET_COMPANION_DATA,
+  SET_NEW_GROUP_NAME,
   SET_NEW_MESSAGE,
   SET_NEW_MESSAGE_STAMP,
 } from './mutationTypes';
@@ -21,6 +22,7 @@ export const actions: ActionTree<ChatData, RootState> = {
     }
     commit(SET_NEW_MESSAGE, message);
   },
+
   pushMessages({ commit, state }, arrMessages: MessageData[]) {
     arrMessages.forEach(message => {
       const time = new Date(message.stamp);
@@ -34,13 +36,20 @@ export const actions: ActionTree<ChatData, RootState> = {
       commit(SET_NEW_MESSAGE, message);
     });
   },
+
   clearMessageStore({ commit }) {
     commit(CLEAR_MESSAGE_STORE);
   },
+
   clearCompanionStore({ commit }) {
     commit(CLEAR_COMPANION_STORE);
   },
+
   setCompanionData({ commit }, companion) {
     commit(SET_COMPANION_DATA, companion);
+  },
+
+  setNewGroupName({ commit }, newName) {
+    commit(SET_NEW_GROUP_NAME, newName);
   },
 };
