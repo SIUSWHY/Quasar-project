@@ -18,6 +18,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import('components/SignUp/index.vue'),
   },
   {
+    path: '/join_to_team',
+    component: () => import('components/Team/index.vue'),
+  },
+  {
+    path: '/create_team',
+    component: () => import('components/CreateTeam/index.vue'),
+  },
+  {
     path: '/chat_layout',
     component: () => import('src/layouts/index.vue'),
     beforeEnter: (to, from, next) => {

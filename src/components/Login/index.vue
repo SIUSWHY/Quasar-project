@@ -26,7 +26,7 @@
                 <q-skeleton height="200px" width="200px"></q-skeleton>
               </div>
               <div v-else>
-                <vue-qr class="qr" :logoSrc="require('../../../src/assets/app-icon.svg')" :text="socket_id"></vue-qr>
+                <vue-qr class="qr" :logoSrc="require('../../../src/assets/app-logo2.png')" :text="socket_id"></vue-qr>
               </div>
             </div>
           </div>

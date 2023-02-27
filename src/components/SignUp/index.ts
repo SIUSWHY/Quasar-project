@@ -2,13 +2,21 @@ import { useQuasar } from 'quasar';
 import signUpUser from 'src/API/signUpUser';
 import { defineComponent, ref } from 'vue';
 
-const user = {
-  name: 'Test',
-  password: 'Test',
-  phone: '00000000000',
-  email: 'Test@gmail.com',
-  avatar: '',
-};
+const user = process.env.DEV
+  ? {
+      name: 'Test',
+      password: 'Test',
+      phone: '00000000000',
+      email: 'Test@gmail.com',
+      avatar: '',
+    }
+  : {
+      name: '',
+      password: '',
+      phone: '',
+      email: '',
+      avatar: '',
+    };
 
 export default defineComponent({
   name: 'SignUp',
@@ -34,8 +42,7 @@ export default defineComponent({
       response.append('avatar', user.avatar);
       try {
         await signUpUser(response);
-        this.$router.push('/');
-        console.log(response);
+        this.$router.push('/join_to_team');
       } catch (err) {
         this.triggerNotify(err);
       }
