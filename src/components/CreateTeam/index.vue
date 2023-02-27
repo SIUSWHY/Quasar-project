@@ -22,7 +22,7 @@
       </q-card-section>
       <q-card-actions align="around">
         <q-btn to="/join_to_team" label="Cancel" type="submit" color="grey"> </q-btn>
-        <q-btn :loading="isLoading" label="Create" type="submit" color="primary"> </q-btn>
+        <q-btn :loading="isLoading" label="Create" type="submit" color="primary" @click="createTeam"> </q-btn>
       </q-card-actions>
     </q-card>
   </div>
