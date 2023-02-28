@@ -10,6 +10,7 @@
             <q-tab name="calls" label="Calls"></q-tab>
           </q-tabs>
           <q-space />
+          <q-btn flat dense round icon="dns" color="grey" @click="openSwitchTeam" />
         </q-toolbar>
       </q-header>
 
@@ -113,6 +114,24 @@
           </transition>
         </div>
       </div>
+      <q-dialog v-model="isSwitchTeamOpen" position="bottom">
+        <q-card style="width: 90%">
+          <div class="q-ma-md">
+            <div class="text-h6 q-my-sm">Your servers</div>
+            <div v-for="team in $store.getters['appData/getTeams']" :key="team._id">
+              <q-item
+                clickable
+                :class="`${team._id === $store.state.appData.currentTeam._id ? 'active-team q-my-sm' : 'q-my-sm'}`"
+                @click="switchTeam(team._id)"
+              >
+                <q-item-section side> <q-icon name="dns" size="30px" /> </q-item-section>
+                <q-item-section side> {{ team.teamName }} </q-item-section>
+              </q-item>
+            </div>
+            <q-btn class="q-mt-lg" color="green" style="width: 100%" label="+ Add a server" @click="addServer"></q-btn>
+          </div>
+        </q-card>
+      </q-dialog>
     </q-layout>
   </div>
   <div v-else>

@@ -8,12 +8,14 @@ export interface UserType {
   isOnline: boolean;
   avatar: string;
   isDarkMode: boolean;
+  teams: string[];
 }
 export interface CurrentUser {
   _id: string;
   name: string;
   avatar: string;
   isDarkMode: boolean;
+  defaultTeam?: string;
 }
 export interface SelectedUsers {
   _id: string;

@@ -17,8 +17,8 @@ export default defineComponent({
     async joinToTeam() {
       const user = this.getCurrentUser();
       try {
-        const team = await joinToTeam({ link: this.link, _id: user._id });
-        // this.$router.push('/chat_layout');
+        await joinToTeam({ link: this.link, _id: user._id });
+        this.$router.push('/chat_layout');
       } catch (err) {
         return;
       }

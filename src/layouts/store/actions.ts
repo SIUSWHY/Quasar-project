@@ -1,6 +1,7 @@
 import getCallsLogs from 'src/API/getCallsLogs';
 import getCurrentUser from 'src/API/getCurrnetUser';
 import getRooms from 'src/API/getRooms';
+import getTeams from 'src/API/getTeams';
 import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
 import getUsers from 'src/API/getUsers';
 import { ChatData } from 'src/components/Chat/store/types';
@@ -25,6 +26,9 @@ import {
   SET_NEW_GROUP_AVATAR,
   SET_DARK_MODE,
   SET_NEW_CHAT_NAME,
+  SET_TEAMS,
+  SET_CURRENT_TEAM,
+  SWITCH_TEAM,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
@@ -38,9 +42,10 @@ export const actions: ActionTree<AppData, RootState> = {
     commit(SET_CURRENT_CHAT, chat);
   },
 
-  async setCurrentUser({ commit }) {
+  async setCurrentUser({ commit, dispatch }) {
     const { data: user } = await getCurrentUser();
     commit(SET_CURRENT_USER, user);
+    await dispatch('setTeams', user.teams);
     return user._id;
   },
 
@@ -132,5 +137,19 @@ export const actions: ActionTree<AppData, RootState> = {
 
   setNewChatName({ commit }, chatData: { _id: string; name: string }) {
     commit(SET_NEW_CHAT_NAME, chatData);
+  },
+
+  async setTeams({ commit, dispatch }, ids: string[]) {
+    const { data: teams } = await getTeams({ ids });
+    dispatch('setCurrentTeam', teams);
+    commit(SET_TEAMS, teams);
+  },
+
+  setCurrentTeam({ commit }, teams) {
+    commit(SET_CURRENT_TEAM, teams);
+  },
+
+  setNewTeam({ commit }, id: string) {
+    commit(SWITCH_TEAM, id);
   },
 };

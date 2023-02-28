@@ -37,7 +37,8 @@ export default defineComponent({
       response.append('avatar', teamData.avatar);
       response.append('userId', user._id);
 
-      const team = await createTeam(response);
+      await createTeam(response);
+      this.$router.push({ path: '/chat_layout' });
     },
   },
 });

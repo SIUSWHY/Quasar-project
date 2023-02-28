@@ -21,8 +21,20 @@ import {
   SET_NEW_GROUP_AVATAR,
   SET_DARK_MODE,
   SET_NEW_CHAT_NAME,
+  SET_TEAMS,
+  SET_CURRENT_TEAM,
+  SWITCH_TEAM,
 } from './mutationTypes';
-import { ChatsType, CurrentChatsType, CurrentUser, AppData, UserType, CurrentUserForCall, CallsLogs } from './types';
+import {
+  ChatsType,
+  CurrentChatsType,
+  CurrentUser,
+  AppData,
+  UserType,
+  CurrentUserForCall,
+  CallsLogs,
+  TeamType,
+} from './types';
 
 export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
@@ -182,5 +194,22 @@ export const mutations: MutationTree<AppData> = {
     state.chats = state.chats.map(chat => {
       return chat._id === chatData._id ? { ...chat, room_name: chatData.room_name } : chat;
     });
+  },
+
+  [SET_TEAMS](state, teams: TeamType[]) {
+    state.teams = teams;
+  },
+
+  [SET_CURRENT_TEAM](state, teams: TeamType[]) {
+    const currentUserTeamId = state.currentUser.defaultTeam;
+    const team = teams.find(team => team._id === currentUserTeamId);
+    state.currentTeam = team !== undefined ? team : {};
+  },
+
+  [SWITCH_TEAM](state, id: string) {
+    const team = state.teams.find(team => team._id === id);
+    if (team) {
+      state.currentTeam = team;
+    }
   },
 };

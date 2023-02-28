@@ -17,3 +17,6 @@ export const SET_NEW_USER_AVATAR = 'SET_NEW_USER_AVATAR';
 export const SET_NEW_GROUP_AVATAR = 'SET_NEW_GROUP_AVATAR';
 export const SET_DARK_MODE = 'SET_DARK_MODE';
 export const SET_NEW_CHAT_NAME = 'SET_NEW_CHAT_NAME';
+export const SET_TEAMS = 'SET_TEAMS';
+export const SET_CURRENT_TEAM = 'SET_CURRENT_TEAM';
+export const SWITCH_TEAM = 'SWITCH_TEAM';
