@@ -31,6 +31,8 @@ export const state: AppData = {
     peerId: '',
   },
   callLogs: [],
+  teams: [],
+  currentTeam: {},
 };
 
 const namespaced = true;

@@ -44,12 +44,23 @@ export interface AppData {
   userDevice: Platform['is'];
   currentUserForCall: CurrentUserForCall;
   callLogs: CallsLogs[];
+  teams: TeamType[];
+  currentTeam: Record<string, unknown> | TeamType;
 }
 export interface CurrentChatsType {
   chatType: string;
   room_name?: string;
   room_img?: string;
   roomId: string;
+}
+
+export interface TeamType {
+  _id: string;
+  teamName: string;
+  inviteLink: string;
+  teamLogo: string;
+  admin: string;
+  members: string[];
 }
 
 export interface UserStatus {

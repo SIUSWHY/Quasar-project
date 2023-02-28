@@ -9,9 +9,9 @@
       <q-card-section class="position">
         <q-btn label="Create team" type="submit" color="secondary" @click="goToCreateTeam"> </q-btn>
         <div class="text-center q-my-sm">OR</div>
-        <q-input filled label="Enter team link">
+        <q-input v-model="link" filled label="Enter team link">
           <template v-slot:append>
-            <q-icon name="arrow_forward" class="cursor-pointer"></q-icon>
+            <q-icon name="arrow_forward" class="cursor-pointer" @click="joinToTeam"></q-icon>
           </template>
         </q-input>
       </q-card-section>
