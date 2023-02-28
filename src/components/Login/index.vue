@@ -3,7 +3,7 @@
     <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
       <div class="q-pa-md">
         <q-card-section class="text-h6 text-center">Login</q-card-section>
-        <q-form class="q-gutter-md">
+        <q-form class="q-gutter-md" @keypress.enter="loginUser">
           <q-input filled v-model="user.name" :label="$t('login.your_username')"></q-input>
 
           <q-input

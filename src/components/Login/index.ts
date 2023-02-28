@@ -77,19 +77,23 @@ export default defineComponent({
     async loginUser() {
       isLoading.value = true;
       try {
-        const {
-          data: { token },
-        } = await loginUser(user);
-        Cookies.set('Token', token, { expires: 14 });
-        LocalStorage.set('user_login_token', token);
+        const { data: userData } = await loginUser(user);
+
+        Cookies.set('Token', userData.token, { expires: 14 });
+        LocalStorage.set('user_login_token', userData.token);
 
         socket.io.opts.query = {
-          token: token,
+          token: userData.token,
         };
         socket.disconnect();
         socket.connect();
 
-        this.$router.push({ path: 'chat_layout' });
+        if (userData.user.teams.length === 0) {
+          this.setCurrentUser(userData.user);
+          this.$router.push({ path: 'join_to_team' });
+        } else {
+          this.$router.push({ path: 'chat_layout' });
+        }
       } catch (err) {
         this.triggerNotify(err);
       } finally {

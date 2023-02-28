@@ -7,17 +7,17 @@
       <q-separator dark inset></q-separator>
       <q-card-section class="position">
         <q-form class="q-gutter-md">
-          <q-input filled v-model="team.name" @change="setNewLink" label="Enter team name"></q-input>
+          <q-input filled v-model="teamData.name" @change="setNewLink" label="Enter team name"></q-input>
           <q-input
             readonly
             hint="Your team invite link"
-            v-model="team.link"
+            v-model="teamData.link"
             filled
             type="text"
             prefix="https://hermes-server.online/"
           >
           </q-input>
-          <q-file filled v-model="team.avatar" label="Team logo" accept="image/png, image/jpeg, image/gif"></q-file>
+          <q-file filled v-model="teamData.avatar" label="Team logo" accept="image/png, image/jpeg, image/gif"></q-file>
         </q-form>
       </q-card-section>
       <q-card-actions align="around">
