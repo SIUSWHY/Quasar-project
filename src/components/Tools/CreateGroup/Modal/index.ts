@@ -21,6 +21,7 @@ export default defineComponent({
     ...mapGetters('appData', {
       getUsersDataForGroupChat: 'getUsersDataForGroupChat',
       getCurrentUser: 'getCurrentUser',
+      getCurrentTeam: 'getCurrentTeam',
     }),
     ...mapActions('appData', { getChats: 'getChats' }),
 
@@ -37,6 +38,7 @@ export default defineComponent({
         groupMembers: usersIds,
         groupType: ChatType.Group,
         adminUserId: this.getCurrentUser()._id,
+        teamId: this.getCurrentTeam()._id.toString(),
       };
 
       socket.emit('get_data_for_group', groupData);

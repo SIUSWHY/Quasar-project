@@ -38,8 +38,10 @@ export default defineComponent({
 
   async created() {
     const companion = await this.getCompanion();
+    const team = this.getCurrentTeam();
     socket.emit('get_companion_id', {
       companionId: companion._id,
+      teamId: team._id,
     });
 
     socket.on('sent_message_to_room', data => {
@@ -68,6 +70,7 @@ export default defineComponent({
     }),
     ...mapGetters('appData', {
       getCurrentChat: 'getCurrentChat',
+      getCurrentTeam: 'getCurrentTeam',
     }),
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',

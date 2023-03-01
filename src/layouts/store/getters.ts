@@ -7,7 +7,7 @@ export const getters: GetterTree<AppData, RootState> = {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const user = state.users.find(user => user._id === companionId);
     if (user === null || undefined) {
-      await getUsers();
+      await getUsers({ teamId: state.currentUser.defaultTeam });
     }
     return user;
   },
@@ -74,5 +74,10 @@ export const getters: GetterTree<AppData, RootState> = {
   getTeams(state) {
     const teams = state.teams;
     return teams;
+  },
+
+  getCurrentTeam(state) {
+    const team = state.currentTeam;
+    return team;
   },
 };

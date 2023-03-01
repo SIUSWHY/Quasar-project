@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { axiosInstance } from './index';
 
-const getUsers = (): Promise<AxiosResponse<string[]>> => axiosInstance.get('/user/all');
+const getUsers = (teamId: { teamId: string }): Promise<AxiosResponse<string[]>> =>
+  axiosInstance.post('/user/all', teamId);
 
 export default getUsers;

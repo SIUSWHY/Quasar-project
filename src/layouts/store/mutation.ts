@@ -38,6 +38,9 @@ import {
 
 export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
+    if (state.users.length === 0) {
+      return;
+    }
     state.users = users.map(user => ({ ...user, isOnline: false }));
   },
 

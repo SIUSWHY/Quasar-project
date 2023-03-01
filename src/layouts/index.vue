@@ -125,7 +125,14 @@
                 @click="switchTeam(team._id)"
               >
                 <q-item-section side> <q-icon name="dns" size="30px" /> </q-item-section>
-                <q-item-section side> {{ team.teamName }} </q-item-section>
+                <q-item-section> {{ team.teamName }} </q-item-section>
+                <q-item-section side>
+                  <q-icon
+                    name="star"
+                    :color="team._id === $store.state.appData.currentUser.defaultTeam ? 'green' : 'grey'"
+                    size="30px"
+                  />
+                </q-item-section>
               </q-item>
             </div>
             <q-btn class="q-mt-lg" color="green" style="width: 100%" label="+ Add a server" @click="addServer"></q-btn>

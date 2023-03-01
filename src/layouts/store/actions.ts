@@ -1,3 +1,4 @@
+import changeDefaultTeam from 'src/API/changeDefaultTeam';
 import getCallsLogs from 'src/API/getCallsLogs';
 import getCurrentUser from 'src/API/getCurrnetUser';
 import getRooms from 'src/API/getRooms';
@@ -33,8 +34,10 @@ import {
 import { RootState, AppData, UserStatus } from './types';
 
 export const actions: ActionTree<AppData, RootState> = {
-  async loadUsers({ commit }) {
-    const { data: users } = await getUsers();
+  async loadUsers({ commit, state }) {
+    const { data: users } = await getUsers({
+      teamId: state.currentUser.defaultTeam,
+    });
     commit(GET_USERS, users);
   },
 
@@ -60,7 +63,10 @@ export const actions: ActionTree<AppData, RootState> = {
   async getChats({ commit, state, dispatch }, currentUserId: string) {
     const userId = state.currentUser._id;
 
-    const { data: chats } = await getRooms({ _id: currentUserId || userId });
+    const { data: chats } = await getRooms({
+      _id: currentUserId || userId,
+      teamId: state.currentTeam._id !== undefined ? state.currentTeam._id : '',
+    });
     const roomIds: string[] = chats.map(chat => chat.roomId);
 
     commit(GET_CHATS, chats);
@@ -83,8 +89,8 @@ export const actions: ActionTree<AppData, RootState> = {
   },
 
   async prepareData({ dispatch }) {
-    await dispatch('loadUsers');
     const currentUserId: string = await dispatch('setCurrentUser');
+    await dispatch('loadUsers');
     await dispatch('getChats', currentUserId);
   },
 
@@ -149,7 +155,8 @@ export const actions: ActionTree<AppData, RootState> = {
     commit(SET_CURRENT_TEAM, teams);
   },
 
-  setNewTeam({ commit }, id: string) {
+  async setNewTeam({ state, commit }, id: string) {
+    await changeDefaultTeam({ _id: state.currentUser._id, teamId: id });
     commit(SWITCH_TEAM, id);
   },
 };

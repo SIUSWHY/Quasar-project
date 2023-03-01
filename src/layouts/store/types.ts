@@ -15,7 +15,7 @@ export interface CurrentUser {
   name: string;
   avatar: string;
   isDarkMode: boolean;
-  defaultTeam?: string;
+  defaultTeam: string;
 }
 export interface SelectedUsers {
   _id: string;
@@ -47,7 +47,7 @@ export interface AppData {
   currentUserForCall: CurrentUserForCall;
   callLogs: CallsLogs[];
   teams: TeamType[];
-  currentTeam: Record<string, unknown> | TeamType;
+  currentTeam: Record<string, string> | TeamType;
 }
 export interface CurrentChatsType {
   chatType: string;
