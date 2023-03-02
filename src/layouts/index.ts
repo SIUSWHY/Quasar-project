@@ -5,8 +5,9 @@ import { mapActions, mapGetters } from 'vuex';
 import { socket } from 'src/SocketInstance';
 import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 import { UserStatus } from './store/types';
-import { useQuasar } from 'quasar';
+import { Cookies, useQuasar } from 'quasar';
 import CallItem from './Calls/index.vue';
+import deleteUserFromTeam from 'src/API/deleteUserFromTeam';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);
@@ -127,6 +128,7 @@ export default defineComponent({
       getCallsLogs: 'getCallsLogs',
       setNewTeam: 'setNewTeam',
       setNewDefaultTeam: 'setNewDefaultTeam',
+      deleteTeam: 'deleteTeam',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
@@ -162,6 +164,32 @@ export default defineComponent({
     },
     changeDefaultTeam(_id: string) {
       this.setNewDefaultTeam(_id);
+    },
+    leaveFromTeam(_id: string) {
+      this.$q
+        .dialog({
+          title: 'Confirm',
+          message: 'Are you sure you want to leave from team?',
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(async () => {
+          await deleteUserFromTeam({
+            _id: this.$store.state.appData.currentUser._id,
+            teamId: _id,
+          });
+          this.deleteTeam(_id);
+          setTimeout(() => {
+            debugger;
+            if (this.$store.state.appData.currentUser.teams.length === 0) {
+              Cookies.remove('Token');
+              this.$router.push('/');
+            }
+          }, 500);
+        })
+        .onCancel(() => {
+          // console.log('>>>> Cancel')
+        });
     },
     longClick() {
       console.log('click');

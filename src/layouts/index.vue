@@ -126,6 +126,13 @@
               >
                 <q-item-section side> <q-icon name="dns" size="30px" /> </q-item-section>
                 <q-item-section> {{ team.teamName }} </q-item-section>
+                <q-item-section
+                  v-if="$store.state.appData.teams.some(team => team.admin !== $store.state.appData.currentUser._id)"
+                  side
+                  @click.stop="leaveFromTeam(team._id)"
+                >
+                  <q-icon name="logout" color="negative" size="30px" />
+                </q-item-section>
                 <q-item-section side @click.stop="changeDefaultTeam(team._id)">
                   <q-icon
                     name="star"

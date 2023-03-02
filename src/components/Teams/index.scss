@@ -10,3 +10,14 @@
     padding: 0 5px 0 5px;
   }
 }
+.q-badge-position {
+  top: 35px;
+  &.q-badge {
+    padding: 3px;
+  }
+}
+.chat-owner {
+  display: block;
+  margin: auto 0;
+  color: #1976d2 !important;
+}

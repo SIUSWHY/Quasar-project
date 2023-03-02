@@ -31,10 +31,15 @@
         </q-item>
         <q-item>
           <q-item-section side>
-            <q-avatar size="50px"> <img :src="$store.state.appData.currentTeam.teamLogo" alt="avatar" /> </q-avatar>
+            <q-avatar size="50px" @click="changeUserAvatar">
+              <img :src="$store.state.appData.currentTeam.teamLogo" alt="avatar" />
+              <q-badge class="q-badge-position" rounded floating color="blue">
+                <q-icon name="edit" color="white"></q-icon>
+              </q-badge>
+            </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-input filled v-model="name" label="Team name"></q-input>
+            <q-input filled v-model="name" label="Team name" @keyup.enter="saveNewTeamName"></q-input>
           </q-item-section>
           <q-item-section side>
             <q-btn color="green" label="Save" @click="saveNewTeamName"></q-btn>
@@ -42,13 +47,33 @@
         </q-item>
         <q-separator class="q-my-md" dark></q-separator>
         <div>
+          <q-item>
+            <q-item-section side>
+              <q-avatar size="50px"> <img :src="$store.state.appData.currentUser.avatar" alt="avatar" /> </q-avatar>
+            </q-item-section>
+            <q-item-section> {{ $store.state.appData.currentUser.name }}</q-item-section>
+            <q-item-section class="chat-owner" side>
+              owner
+              <q-icon name="verified" size="1.5em"></q-icon>
+            </q-item-section>
+            <!-- <q-item-section side>
+              <q-icon name="person_remove" color="negative" size="1.5em"></q-icon>
+            </q-item-section> -->
+          </q-item>
           <q-item v-for="user in $store.state.appData.users" :key="user._id">
             <q-item-section side>
               <q-avatar size="50px"> <img :src="user.avatar" alt="avatar" /> </q-avatar>
             </q-item-section>
             <q-item-section> {{ user.name }}</q-item-section>
-            <q-item-section side>
-              <q-icon name="delete" size="1.5em"></q-icon>
+            <q-item-section
+              side
+              @click="
+                () => {
+                  deleteUser(user._id);
+                }
+              "
+            >
+              <q-icon name="person_remove" color="negative" size="1.5em"></q-icon>
             </q-item-section>
           </q-item>
         </div>

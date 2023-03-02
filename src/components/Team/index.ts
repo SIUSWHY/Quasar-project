@@ -10,6 +10,12 @@ export default defineComponent({
       link: ref(''),
     };
   },
+  created() {
+    const user = this.$store.state.appData.currentUser;
+    if (user._id === '') {
+      this.$router.push({ path: '/' });
+    }
+  },
   methods: {
     ...mapGetters('appData', {
       getCurrentUser: 'getCurrentUser',

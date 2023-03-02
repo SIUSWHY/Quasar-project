@@ -31,8 +31,12 @@ import {
   SET_CURRENT_TEAM,
   SET_NEW_CURRENT_TEAM,
   SET_NEW_DEFAULT_TEAM,
+  PATCH_TEAM_IMAGE,
+  PATCH_TEAM_NAME,
+  DELETE_USER,
+  DELETE_TEAM_FROM_STORE,
 } from './mutationTypes';
-import { RootState, AppData, UserStatus } from './types';
+import { RootState, AppData, UserStatus, TeamType } from './types';
 
 export const actions: ActionTree<AppData, RootState> = {
   async loadUsers({ commit, state }) {
@@ -169,5 +173,21 @@ export const actions: ActionTree<AppData, RootState> = {
   async setNewDefaultTeam({ state, commit }, teamId: string) {
     await changeDefaultUserTeam({ _id: state.currentUser._id, teamId });
     commit(SET_NEW_DEFAULT_TEAM, teamId);
+  },
+
+  patchTeamData({ commit }, team: TeamType) {
+    commit(PATCH_TEAM_IMAGE, team);
+  },
+
+  patchTeamName({ commit }, team: TeamType) {
+    commit(PATCH_TEAM_NAME, team);
+  },
+
+  deleteUserFromStore({ commit }, _id: string) {
+    commit(DELETE_USER, _id);
+  },
+
+  deleteTeam({ commit }, _id: string) {
+    commit(DELETE_TEAM_FROM_STORE, _id);
   },
 };

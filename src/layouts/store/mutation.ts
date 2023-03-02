@@ -26,6 +26,10 @@ import {
   SWITCH_TEAM,
   SET_NEW_CURRENT_TEAM,
   SET_NEW_DEFAULT_TEAM,
+  PATCH_TEAM_IMAGE,
+  PATCH_TEAM_NAME,
+  DELETE_USER,
+  DELETE_TEAM_FROM_STORE,
 } from './mutationTypes';
 import {
   ChatsType,
@@ -223,5 +227,27 @@ export const mutations: MutationTree<AppData> = {
 
   [SET_NEW_DEFAULT_TEAM](state, teamId: string) {
     state.currentUser = { ...state.currentUser, defaultTeam: teamId };
+  },
+
+  [PATCH_TEAM_IMAGE](state, team: TeamType) {
+    state.currentTeam = { ...state.currentTeam, teamLogo: team.teamLogo };
+    state.teams = state.teams.map(elem => {
+      return elem._id === team._id ? { ...elem, teamLogo: team.teamLogo } : elem;
+    });
+  },
+
+  [PATCH_TEAM_NAME](state, team: TeamType) {
+    state.currentTeam = { ...state.currentTeam, teamName: team.teamName, inviteLink: team.inviteLink };
+    state.teams = state.teams.map(elem => {
+      return elem._id === team._id ? { ...elem, teamName: team.teamName, inviteLink: team.inviteLink } : elem;
+    });
+  },
+
+  [DELETE_USER](state, _id: string) {
+    state.users = state.users.filter(user => user._id !== _id);
+  },
+
+  [DELETE_TEAM_FROM_STORE](state, _id: string) {
+    state.teams = state.teams.filter(team => team._id !== _id);
   },
 };
