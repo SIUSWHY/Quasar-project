@@ -180,7 +180,6 @@ export default defineComponent({
           });
           this.deleteTeam(_id);
           setTimeout(() => {
-            debugger;
             if (this.$store.state.appData.currentUser.teams.length === 0) {
               Cookies.remove('Token');
               this.$router.push('/');
