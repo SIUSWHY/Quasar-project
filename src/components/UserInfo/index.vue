@@ -2,7 +2,7 @@
   <div>
     <div v-if="$store.getters['appData/getCurrentUser'].avatar">
       <q-avatar square size="300px">
-        <img :src=" $store.getters['appData/getCurrentUser'].avatar" alt="avatar" />
+        <img :src="$store.getters['appData/getCurrentUser'].avatar" alt="avatar" />
       </q-avatar>
     </div>
     <div v-else>
@@ -12,6 +12,19 @@
   <q-list>
     <strong>
       <UserActions v-for="link in userActions" :key="link.title" v-bind="link" />
+    </strong>
+    <strong
+      v-if="$store.state.appData.teams.some(team => team.admin === $store.state.appData.currentUser._id)"
+      @click="goToTeams"
+    >
+      <q-item clickable>
+        <q-item-section avatar side>
+          <q-icon name="dns" color="white" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>Team</q-item-label>
+        </q-item-section>
+      </q-item>
     </strong>
     <strong>
       <q-item>

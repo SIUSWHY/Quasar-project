@@ -73,5 +73,8 @@ export default defineComponent({
       const avatar = this.$store.state.appData.currentUser.avatar;
       return avatar;
     },
+    goToTeams() {
+      this.$router.push({ path: '/teams' });
+    },
   },
 });

@@ -22,6 +22,10 @@ const routes: RouteRecordRaw[] = [
     component: () => import('components/Team/index.vue'),
   },
   {
+    path: '/teams',
+    component: () => import('components/Teams/index.vue'),
+  },
+  {
     path: '/create_team',
     component: () => import('components/CreateTeam/index.vue'),
   },
