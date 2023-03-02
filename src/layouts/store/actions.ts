@@ -1,10 +1,10 @@
-import changeDefaultTeam from 'src/API/changeDefaultTeam';
+import changeDefaultUserTeam from 'src/API/changeDefaultUserTeam';
 import getCallsLogs from 'src/API/getCallsLogs';
 import getCurrentUser from 'src/API/getCurrnetUser';
 import getRooms from 'src/API/getRooms';
 import getTeams from 'src/API/getTeams';
 import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
-import getUsers from 'src/API/getUsers';
+import getTeamUsers from 'src/API/getUsers';
 import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
@@ -29,13 +29,14 @@ import {
   SET_NEW_CHAT_NAME,
   SET_TEAMS,
   SET_CURRENT_TEAM,
-  SWITCH_TEAM,
+  SET_NEW_CURRENT_TEAM,
+  SET_NEW_DEFAULT_TEAM,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus } from './types';
 
 export const actions: ActionTree<AppData, RootState> = {
   async loadUsers({ commit, state }) {
-    const { data: users } = await getUsers({
+    const { data: users } = await getTeamUsers({
       teamId: state.currentUser.defaultTeam,
     });
     commit(GET_USERS, users);
@@ -156,7 +157,17 @@ export const actions: ActionTree<AppData, RootState> = {
   },
 
   async setNewTeam({ state, commit }, id: string) {
-    await changeDefaultTeam({ _id: state.currentUser._id, teamId: id });
-    commit(SWITCH_TEAM, id);
+    const team = state.teams.find(chat => chat._id === id);
+    if (team) {
+      const { data: newRooms } = await getRooms({ _id: state.currentUser._id, teamId: team._id });
+
+      commit(GET_CHATS, newRooms);
+      commit(SET_NEW_CURRENT_TEAM, team);
+    }
+  },
+
+  async setNewDefaultTeam({ state, commit }, teamId: string) {
+    await changeDefaultUserTeam({ _id: state.currentUser._id, teamId });
+    commit(SET_NEW_DEFAULT_TEAM, teamId);
   },
 };

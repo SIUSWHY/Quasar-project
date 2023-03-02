@@ -1,7 +1,8 @@
 import { AxiosResponse } from 'axios';
+import { UserType } from 'src/layouts/store/types';
 import { axiosInstance } from './index';
 
-const getUsers = (teamId: { teamId: string }): Promise<AxiosResponse<string[]>> =>
+const getTeamUsers = (teamId: { teamId: string }): Promise<AxiosResponse<UserType[]>> =>
   axiosInstance.post('/user/all', teamId);
 
-export default getUsers;
+export default getTeamUsers;

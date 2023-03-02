@@ -126,6 +126,7 @@ export default defineComponent({
       setPeerId: 'setPeerId',
       getCallsLogs: 'getCallsLogs',
       setNewTeam: 'setNewTeam',
+      setNewDefaultTeam: 'setNewDefaultTeam',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',
@@ -158,6 +159,9 @@ export default defineComponent({
     },
     switchTeam(id: string) {
       this.setNewTeam(id);
+    },
+    changeDefaultTeam(_id: string) {
+      this.setNewDefaultTeam(_id);
     },
     longClick() {
       console.log('click');

@@ -126,7 +126,7 @@
               >
                 <q-item-section side> <q-icon name="dns" size="30px" /> </q-item-section>
                 <q-item-section> {{ team.teamName }} </q-item-section>
-                <q-item-section side>
+                <q-item-section side @click.stop="changeDefaultTeam(team._id)">
                   <q-icon
                     name="star"
                     :color="team._id === $store.state.appData.currentUser.defaultTeam ? 'green' : 'grey'"

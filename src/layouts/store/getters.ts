@@ -1,4 +1,4 @@
-import getUsers from 'src/API/getUsers';
+import getTeamUsers from 'src/API/getUsers';
 import { GetterTree } from 'vuex';
 import { RootState, AppData } from './types';
 
@@ -6,8 +6,8 @@ export const getters: GetterTree<AppData, RootState> = {
   getCompanionData: state => async (companionId: string) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const user = state.users.find(user => user._id === companionId);
-    if (user === null || undefined) {
-      await getUsers({ teamId: state.currentUser.defaultTeam });
+    if (user) {
+      await getTeamUsers({ teamId: state.currentUser.defaultTeam });
     }
     return user;
   },

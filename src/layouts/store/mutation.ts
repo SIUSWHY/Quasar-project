@@ -24,6 +24,8 @@ import {
   SET_TEAMS,
   SET_CURRENT_TEAM,
   SWITCH_TEAM,
+  SET_NEW_CURRENT_TEAM,
+  SET_NEW_DEFAULT_TEAM,
 } from './mutationTypes';
 import {
   ChatsType,
@@ -38,9 +40,6 @@ import {
 
 export const mutations: MutationTree<AppData> = {
   [GET_USERS](state, users: UserType[]) {
-    if (state.users.length === 0) {
-      return;
-    }
     state.users = users.map(user => ({ ...user, isOnline: false }));
   },
 
@@ -117,10 +116,12 @@ export const mutations: MutationTree<AppData> = {
   },
 
   [CHANGE_USER_STATUS](state, data: { userId: string; isOnline: boolean }) {
-    const usersWithChangeStatus = state.users.map(user =>
-      user._id === data.userId ? { ...user, isOnline: data.isOnline } : user
-    );
-    state.users = usersWithChangeStatus;
+    if (state.users) {
+      const usersWithChangeStatus = state.users.map(user =>
+        user._id === data.userId ? { ...user, isOnline: data.isOnline } : user
+      );
+      state.users = usersWithChangeStatus;
+    }
   },
 
   [CHANGE_CHAT_STATUS](state, data: { userId: string; isOnline: boolean }) {
@@ -214,5 +215,13 @@ export const mutations: MutationTree<AppData> = {
     if (team) {
       state.currentTeam = team;
     }
+  },
+
+  [SET_NEW_CURRENT_TEAM](state, team: TeamType) {
+    state.currentTeam = team;
+  },
+
+  [SET_NEW_DEFAULT_TEAM](state, teamId: string) {
+    state.currentUser = { ...state.currentUser, defaultTeam: teamId };
   },
 };
