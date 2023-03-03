@@ -80,7 +80,7 @@
       </q-page-container>
       <q-footer style="background-color: #121212; left: 0">
         <q-item>
-          <q-btn class="btn-delete" @click="deleteTeam" color="negative" icon="diversity_3" label="Delete team"></q-btn>
+          <q-btn class="btn-delete" :loading="isDeleting" @click="deleteTeam" color="negative" icon="diversity_3" label="Delete team"></q-btn>
         </q-item>
       </q-footer>
     </q-layout>

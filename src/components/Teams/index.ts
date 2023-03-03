@@ -10,6 +10,7 @@ export default defineComponent({
   components: {},
   data() {
     return {
+      isDeleting: ref(false),
       $q: useQuasar(),
       name: this.$store.state.appData.currentTeam.teamName,
       showing: ref(false),
@@ -80,7 +81,11 @@ export default defineComponent({
         });
     },
     deleteTeam() {
+      this.isDeleting = true;
       console.log('delete');
+      setTimeout(() => {
+        this.isDeleting = false;
+      }, 1500);
     },
   },
 });
