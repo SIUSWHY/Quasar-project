@@ -1,5 +1,5 @@
 import { Cookies, LocalStorage } from 'quasar';
-import deleteAccount from 'src/API/deleteAccount';
+import deleteAccount from 'src/API/Account/deleteAccount';
 import { socket } from 'src/SocketInstance';
 import { defineComponent, ref } from 'vue';
 import { mapGetters } from 'vuex';

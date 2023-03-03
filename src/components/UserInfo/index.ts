@@ -1,5 +1,5 @@
 import { Dark } from 'quasar';
-import changeUserTheme from 'src/API/changeUserTheme';
+import changeUserTheme from 'src/API/Account/changeUserTheme';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';

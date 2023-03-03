@@ -1,7 +1,7 @@
 import { Cookies, LocalStorage, useQuasar } from 'quasar';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters, mapMutations } from 'vuex';
-import loginUser from '../../API/loginUser';
+import loginUser from '../../API/Account/loginUser';
 import { socket } from 'src/SocketInstance';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue';
 

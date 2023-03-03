@@ -11,6 +11,9 @@ export const state: ChatData = {
     _id: '',
   },
   messages: [],
+  loaders: {
+    messages: true,
+  },
 };
 
 const namespaced = true;

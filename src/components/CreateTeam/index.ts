@@ -1,4 +1,4 @@
-import createTeam from 'src/API/createTeam';
+import createTeam from 'src/API/Team/createTeam';
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 

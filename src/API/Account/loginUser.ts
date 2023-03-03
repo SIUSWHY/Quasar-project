@@ -1,4 +1,4 @@
-import { axiosInstance } from './index';
+import { axiosInstance } from '../index';
 
 const loginUser = (user: object) => axiosInstance.post('/account/signIn', user);
 

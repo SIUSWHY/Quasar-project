@@ -1,4 +1,4 @@
-import { axiosInstance } from './index';
+import { axiosInstance } from '../index';
 
 const createTeam = (team: object) =>
   axiosInstance.post('/team/create', team, {

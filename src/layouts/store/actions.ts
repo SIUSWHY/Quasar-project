@@ -1,10 +1,10 @@
-import changeDefaultUserTeam from 'src/API/changeDefaultUserTeam';
-import getCallsLogs from 'src/API/getCallsLogs';
-import getCurrentUser from 'src/API/getCurrnetUser';
-import getRooms from 'src/API/getRooms';
-import getTeams from 'src/API/getTeams';
-import unreadMessagesCount from 'src/API/getUnreadMessagesCount';
-import getTeamUsers from 'src/API/getUsers';
+import changeDefaultUserTeam from 'src/API/Account/changeDefaultUserTeam';
+import getCallsLogs from 'src/API/Call/getCallsLogs';
+import getCurrentUser from 'src/API/User/getCurrnetUser';
+import getRooms from 'src/API/Room/getRooms';
+import getTeams from 'src/API/Team/getTeams';
+import unreadMessagesCount from 'src/API/Message/getUnreadMessagesCount';
+import getTeamUsers from 'src/API/User/getUsers';
 import { ChatData } from 'src/components/Chat/store/types';
 import { ActionTree } from 'vuex';
 import {
@@ -35,6 +35,7 @@ import {
   PATCH_TEAM_NAME,
   DELETE_USER,
   DELETE_TEAM_FROM_STORE,
+  SET_LOADER,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus, TeamType } from './types';
 
@@ -66,18 +67,24 @@ export const actions: ActionTree<AppData, RootState> = {
   },
 
   async getChats({ commit, state, dispatch }, currentUserId: string) {
-    const userId = state.currentUser._id;
+    try {
+      const userId = state.currentUser._id;
 
-    const { data: chats } = await getRooms({
-      _id: currentUserId || userId,
-      teamId: state.currentTeam._id !== undefined ? state.currentTeam._id : '',
-    });
-    const roomIds: string[] = chats.map(chat => chat.roomId);
+      const { data: chats } = await getRooms({
+        _id: currentUserId || userId,
+        teamId: state.currentTeam._id !== undefined ? state.currentTeam._id : '',
+      });
+      const roomIds: string[] = chats.map(chat => chat.roomId);
 
-    commit(GET_CHATS, chats);
-    await dispatch('getUnreadMessagesCount', { currentUserId: userId, roomId: roomIds });
+      commit(GET_CHATS, chats);
+      await dispatch('getUnreadMessagesCount', { currentUserId: userId, roomId: roomIds });
 
-    return chats;
+      return chats;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      dispatch('setLoader', { key: 'chats', value: false });
+    }
   },
 
   clearChatData({ commit }) {
@@ -94,6 +101,7 @@ export const actions: ActionTree<AppData, RootState> = {
   },
 
   async prepareData({ dispatch }) {
+    dispatch('setLoader', { key: 'chats', value: true });
     const currentUserId: string = await dispatch('setCurrentUser');
     await dispatch('loadUsers');
     await dispatch('getChats', currentUserId);
@@ -189,5 +197,9 @@ export const actions: ActionTree<AppData, RootState> = {
 
   deleteTeam({ commit }, _id: string) {
     commit(DELETE_TEAM_FROM_STORE, _id);
+  },
+
+  setLoader({ commit }, data: { key: string | string[]; value: boolean }) {
+    commit(SET_LOADER, data);
   },
 };

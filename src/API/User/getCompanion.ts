@@ -1,4 +1,4 @@
-import { axiosInstance } from './index';
+import { axiosInstance } from '../index';
 
 const getCompanion = (companionId: string) => axiosInstance.post('/user/companion', companionId);
 

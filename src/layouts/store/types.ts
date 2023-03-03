@@ -49,6 +49,7 @@ export interface AppData {
   callLogs: CallsLogs[];
   teams: TeamType[];
   currentTeam: Record<string, string> | TeamType;
+  loaders: Record<string, boolean>;
 }
 export interface CurrentChatsType {
   chatType: string;

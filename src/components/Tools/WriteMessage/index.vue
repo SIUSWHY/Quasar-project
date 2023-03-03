@@ -18,14 +18,9 @@
         </q-toolbar>
       </q-header>
       <q-page-container>
-        <UserList
-          v-for="chat in $store.state.appData.users"
-          @click="isMessageModalOpen = !isMessageModalOpen"
-          :key="chat._id"
-          v-bind="chat"
-        />
+        <UserList v-for="user in $store.state.appData.users" @click="createChat(user)" :key="user._id" v-bind="user" />
       </q-page-container>
-      <MessageModal v-model="isMessageModalOpen" @close-modal="isMessageModalOpen = $event" />
+      <!-- <MessageModal v-model="isMessageModalOpen" @close-modal="isMessageModalOpen = $event" /> -->
     </q-layout>
   </div>
 </template>

@@ -12,6 +12,7 @@ export interface MessageData {
 export interface ChatData {
   companionData: CompanionUserData;
   messages: MessageData[];
+  loaders: Record<string, boolean>;
 }
 
 export const enum ChatType {

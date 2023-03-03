@@ -105,7 +105,15 @@
         <div class="q-pa-md correct-padding row justify-center">
           <div style="width: 100%; height: 100%">
             <div>
-              <div v-if="$store.getters['chatData/getMessages'][0] !== undefined">
+              <div v-if="$store.getters['chatData/getMessagesLoader'] === true">
+                <div>
+                  <q-skeleton class="custom-left-skeleon" width="200px" height="40px"></q-skeleton>
+                </div>
+                <div class="flex-position">
+                  <q-skeleton class="custom-right-skeleon" width="200px" height="40px"></q-skeleton>
+                </div>
+              </div>
+              <div v-else-if="$store.getters['chatData/getMessages'].length >= 1">
                 <MessageComponent
                   v-for="message in $store.getters['chatData/getMessages']"
                   :key="message.userId"
@@ -114,12 +122,12 @@
                 />
               </div>
               <div v-else>
-                <div>
-                  <q-skeleton class="custom-left-skeleon" width="200px" height="40px"></q-skeleton>
-                </div>
-                <div class="flex-position">
-                  <q-skeleton class="custom-right-skeleon" width="200px" height="40px"></q-skeleton>
-                </div>
+                <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
+                  <q-card-section class="text-h6">
+                    <div class="text-h5">No messages here yet...</div>
+                    <div class="text-subtitle2">Send a message</div>
+                  </q-card-section>
+                </q-card>
               </div>
             </div>
           </div>

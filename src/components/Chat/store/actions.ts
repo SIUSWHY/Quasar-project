@@ -4,6 +4,7 @@ import {
   CLEAR_COMPANION_STORE,
   CLEAR_MESSAGE_STORE,
   SET_COMPANION_DATA,
+  SET_LOADER,
   SET_NEW_GROUP_NAME,
   SET_NEW_MESSAGE,
   SET_NEW_MESSAGE_STAMP,
@@ -23,18 +24,24 @@ export const actions: ActionTree<ChatData, RootState> = {
     commit(SET_NEW_MESSAGE, message);
   },
 
-  pushMessages({ commit, state }, arrMessages: MessageData[]) {
-    arrMessages.forEach(message => {
-      const time = new Date(message.stamp);
-      const selectedMonthName = Months[time.getMonth()];
-      const date = selectedMonthName + ', ' + time.getDate();
+  pushMessages({ commit, dispatch, state }, arrMessages: MessageData[]) {
+    try {
+      arrMessages.forEach(message => {
+        const time = new Date(message.stamp);
+        const selectedMonthName = Months[time.getMonth()];
+        const date = selectedMonthName + ', ' + time.getDate();
 
-      const isDateEqual = state.messages.find(message => message.label === date);
-      if (!Boolean(isDateEqual)) {
-        commit(SET_NEW_MESSAGE_STAMP, date);
-      }
-      commit(SET_NEW_MESSAGE, message);
-    });
+        const isDateEqual = state.messages.find(message => message.label === date);
+        if (!Boolean(isDateEqual)) {
+          commit(SET_NEW_MESSAGE_STAMP, date);
+        }
+        commit(SET_NEW_MESSAGE, message);
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      dispatch('setLoader', { key: 'messages', value: false });
+    }
   },
 
   clearMessageStore({ commit }) {
@@ -51,5 +58,9 @@ export const actions: ActionTree<ChatData, RootState> = {
 
   setNewGroupName({ commit }, newName) {
     commit(SET_NEW_GROUP_NAME, newName);
+  },
+
+  setLoader({ commit }, data: { key: string | string[]; value: boolean }) {
+    commit(SET_LOADER, data);
   },
 };

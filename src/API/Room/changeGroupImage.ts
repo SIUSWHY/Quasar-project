@@ -1,4 +1,4 @@
-import { axiosInstance } from './index';
+import { axiosInstance } from '../index';
 
 const changeGroupImage = (group: object) =>
   axiosInstance.patch('/room/changeGroupImage', group, {

@@ -3,7 +3,7 @@ import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import MessageComponent from './Message/index.vue';
 import GroupChatInfo from './GroupChatModal/index.vue';
-import readMessagesFromChat from 'src/API/readMssagesFromChat';
+import readMessagesFromChat from 'src/API/Message/readMssagesFromChat';
 import detectURLs from 'src/helpers/parseUrlFromString';
 
 const messageText = ref(null);

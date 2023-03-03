@@ -1,7 +1,7 @@
 import { useQuasar } from 'quasar';
-import changeTeamAvatar from 'src/API/changeTeamAvatar';
-import changeTeamName from 'src/API/changeTeamName';
-import deleteUserFromTeam from 'src/API/deleteUserFromTeam';
+import changeTeamAvatar from 'src/API/Team/changeTeamAvatar';
+import changeTeamName from 'src/API/Team/changeTeamName';
+import deleteUserFromTeam from 'src/API/Team/deleteUserFromTeam';
 import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
 
@@ -78,6 +78,9 @@ export default defineComponent({
         .onCancel(() => {
           // console.log('>>>> Cancel')
         });
+    },
+    deleteTeam() {
+      console.log('delete');
     },
   },
 });

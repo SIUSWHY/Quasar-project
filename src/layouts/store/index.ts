@@ -35,6 +35,9 @@ export const state: AppData = {
   callLogs: [],
   teams: [],
   currentTeam: {},
+  loaders:{
+    chats: false,
+  }
 };
 
 const namespaced = true;

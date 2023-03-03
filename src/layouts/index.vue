@@ -10,7 +10,7 @@
             <q-tab name="calls" label="Calls"></q-tab>
           </q-tabs>
           <q-space />
-          <q-btn flat dense round icon="dns" color="grey" @click="openSwitchTeam" />
+          <q-btn flat dense round icon="dns" @click="openSwitchTeam" />
         </q-toolbar>
       </q-header>
 
@@ -29,28 +29,34 @@
       <q-page-container style="padding-top: 50px">
         <q-pull-to-refresh @refresh="refreshUserList" bg-color="black">
           <div v-if="tab === 'chats'">
-            <transition appear enter-active-class="animated fadeInLeft">
-              <div v-if="$store.state.appData.chats[0] !== undefined">
-                <ChatComponentLayout
-                  v-for="newChat in $store.getters['appData/getChatsFromState']"
-                  :key="newChat._id"
-                  @click="isMessageModalOpen = !isMessageModalOpen"
-                  v-bind="newChat"
-                />
+            <div v-if="$store.getters['appData/getChatLoader'] === true">
+              <div v-for="skeleton in 5" :key="skeleton">
+                <q-item v-ripple>
+                  <q-item-section side>
+                    <q-skeleton type="QAvatar"></q-skeleton>
+                  </q-item-section>
+                  <q-item-section>
+                    <q-skeleton type="text"></q-skeleton>
+                  </q-item-section>
+                </q-item>
               </div>
-              <div v-else>
-                <div v-for="skeleton in 5" :key="skeleton">
-                  <q-item clickable v-ripple>
-                    <q-item-section side>
-                      <q-skeleton type="QAvatar"></q-skeleton>
-                    </q-item-section>
-                    <q-item-section>
-                      <q-skeleton type="text"></q-skeleton>
-                    </q-item-section>
-                  </q-item>
-                </div>
-              </div>
-            </transition>
+            </div>
+            <div v-else-if="$store.state.appData.chats.length >= 1">
+              <ChatComponentLayout
+                v-for="newChat in $store.getters['appData/getChatsFromState']"
+                :key="newChat._id"
+                @click="isMessageModalOpen = !isMessageModalOpen"
+                v-bind="newChat"
+              />
+            </div>
+            <div v-else>
+              <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
+                <q-card-section class="text-h6">
+                  <div class="text-h5">No chats here yet...</div>
+                  <div class="text-subtitle2">Send a message</div></q-card-section
+                ></q-card
+              >
+            </div>
           </div>
           <div v-else>
             <!-- <transition appear enter-active-class="animated fadeInRight"> -->

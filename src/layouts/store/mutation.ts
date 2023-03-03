@@ -30,6 +30,7 @@ import {
   PATCH_TEAM_NAME,
   DELETE_USER,
   DELETE_TEAM_FROM_STORE,
+  SET_LOADER,
 } from './mutationTypes';
 import {
   ChatsType,
@@ -249,5 +250,13 @@ export const mutations: MutationTree<AppData> = {
 
   [DELETE_TEAM_FROM_STORE](state, _id: string) {
     state.teams = state.teams.filter(team => team._id !== _id);
+  },
+
+  [SET_LOADER](state, data: { key: string | string[]; value: boolean }) {
+    const keys: string[] = Array.isArray(data.key) ? data.key : [data.key];
+
+    keys.forEach(key => {
+      state.loaders[key] = data.value;
+    });
   },
 };

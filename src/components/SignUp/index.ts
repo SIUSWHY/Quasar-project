@@ -1,5 +1,5 @@
 import { useQuasar } from 'quasar';
-import signUpUser from 'src/API/signUpUser';
+import signUpUser from 'src/API/Account/signUpUser';
 import { defineComponent, ref } from 'vue';
 
 const user = process.env.DEV

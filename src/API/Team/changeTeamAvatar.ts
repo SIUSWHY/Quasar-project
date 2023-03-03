@@ -1,4 +1,4 @@
-import { axiosInstance } from './index';
+import { axiosInstance } from '../index';
 
 const changeTeamAvatar = (team: object) =>
   axiosInstance.patch('/team/changeAvatar', team, {

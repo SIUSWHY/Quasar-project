@@ -3,6 +3,7 @@ import {
   CLEAR_COMPANION_STORE,
   CLEAR_MESSAGE_STORE,
   SET_COMPANION_DATA,
+  SET_LOADER,
   SET_MESSAGES,
   SET_NEW_GROUP_NAME,
   SET_NEW_MESSAGE,
@@ -38,5 +39,13 @@ export const mutations: MutationTree<ChatData> = {
 
   [SET_NEW_GROUP_NAME](state, newName) {
     state.companionData = { ...state.companionData, name: newName };
+  },
+
+  [SET_LOADER](state, data: { key: string | string[]; value: boolean }) {
+    const keys: string[] = Array.isArray(data.key) ? data.key : [data.key];
+
+    keys.forEach(key => {
+      state.loaders[key] = data.value;
+    });
   },
 };

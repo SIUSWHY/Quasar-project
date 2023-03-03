@@ -21,4 +21,9 @@ export const getters: GetterTree<ChatData, RootState> = {
     const companion = state.companionData;
     return companion;
   },
+
+  getMessagesLoader(state) {
+    const isLoading = state.loaders['messages'];
+    return isLoading;
+  },
 };

@@ -7,7 +7,7 @@ import MessageModal from '../components/Tools/WriteMessage/Modal/index.vue';
 import { UserStatus } from './store/types';
 import { Cookies, useQuasar } from 'quasar';
 import CallItem from './Calls/index.vue';
-import deleteUserFromTeam from 'src/API/deleteUserFromTeam';
+import deleteUserFromTeam from 'src/API/Team/deleteUserFromTeam';
 
 const toolsIsActive = ref(false);
 const rightDrawerOpen = ref(false);

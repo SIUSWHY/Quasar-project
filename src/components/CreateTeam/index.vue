@@ -14,7 +14,7 @@
             v-model="teamData.link"
             filled
             type="text"
-            prefix="https://hermes-server.online/"
+            prefix="h.me/hermes-server.online/"
           >
           </q-input>
           <q-file filled v-model="teamData.avatar" label="Team logo" accept="image/png, image/jpeg, image/gif"></q-file>

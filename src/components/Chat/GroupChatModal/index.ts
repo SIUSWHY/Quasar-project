@@ -1,6 +1,6 @@
 import { useQuasar } from 'quasar';
-import changeGroupImage from 'src/API/changeGroupImage';
-import changeGroupName from 'src/API/changeGroupName';
+import changeGroupImage from 'src/API/Room/changeGroupImage';
+import changeGroupName from 'src/API/Room/changeGroupName';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 

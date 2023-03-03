@@ -1,4 +1,4 @@
-import getTeamUsers from 'src/API/getUsers';
+import getTeamUsers from 'src/API/User/getUsers';
 import { GetterTree } from 'vuex';
 import { RootState, AppData } from './types';
 
@@ -79,5 +79,15 @@ export const getters: GetterTree<AppData, RootState> = {
   getCurrentTeam(state) {
     const team = state.currentTeam;
     return team;
+  },
+
+  getLoader: state => async (key: string) => {
+    const isLoading = state.loaders[key];
+    return isLoading;
+  },
+
+  getChatLoader(state) {
+    const isLoading = state.loaders['chats'];
+    return isLoading;
   },
 };

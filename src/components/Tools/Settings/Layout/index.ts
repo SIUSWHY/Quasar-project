@@ -1,5 +1,5 @@
 import { Cookies, LocalStorage } from 'quasar';
-import changeUserAvatar from 'src/API/changeUserAvatar';
+import changeUserAvatar from 'src/API/Account/changeUserAvatar';
 import { socket } from 'src/SocketInstance';
 import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
@@ -51,6 +51,7 @@ export default defineComponent({
       socket.connect();
 
       this.$router.push('/');
+      window.location.reload();
     },
   },
 });

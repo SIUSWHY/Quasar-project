@@ -1,4 +1,4 @@
-import joinToTeam from 'src/API/joinToTeam';
+import joinToTeam from 'src/API/Team/joinToTeam';
 import { defineComponent, ref } from 'vue';
 import { mapGetters } from 'vuex';
 

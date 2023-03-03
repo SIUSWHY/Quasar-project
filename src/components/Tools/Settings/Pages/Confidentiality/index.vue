@@ -12,7 +12,7 @@
           size="1.5em"
         ></q-icon>
       </q-item-section>
-      <q-item-section> Gadgets </q-item-section>
+      <q-item-section> Confidentiality </q-item-section>
     </q-item>
     <q-item class="header-pisition">
       <q-item-section>
