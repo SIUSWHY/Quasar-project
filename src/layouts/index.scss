@@ -24,6 +24,10 @@
   .q-hermes {
     background-color: $hermes;
   }
+  .q-drawer__content.fit.scroll {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .body--light {

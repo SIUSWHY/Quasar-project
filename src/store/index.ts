@@ -4,6 +4,7 @@ import { appData } from '../layouts/store/index';
 import { createStore, Store as VuexStore, useStore as vuexUseStore } from 'vuex';
 import { AppData } from 'src/layouts/store/types';
 import { chatData } from 'src/components/Chat/store/index';
+import { ChatData } from 'src/components/Chat/store/types';
 
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
@@ -21,8 +22,8 @@ export interface StateInterface {
   // Define your own store structure, using submodules if needed
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
-  example: unknown;
   appData: AppData;
+  chatData: ChatData;
 }
 
 // provide typings for `this.$store`
@@ -40,7 +41,6 @@ export default store(function (/* { ssrContext } */) {
     modules: {
       appData,
       chatData,
-      // example
     },
 
     // enable strict mode (adds overhead!)

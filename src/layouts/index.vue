@@ -133,7 +133,8 @@
                 <q-item-section side> <q-icon name="dns" size="30px" /> </q-item-section>
                 <q-item-section> {{ team.teamName }} </q-item-section>
                 <q-item-section
-                  v-if="$store.state.appData.teams.some(team => team.admin !== $store.state.appData.currentUser._id)"
+                  v-if="team.admin !== $store.state.appData.currentUser._id"
+                  @click="goToTeams"
                   side
                   @click.stop="leaveFromTeam(team._id)"
                 >

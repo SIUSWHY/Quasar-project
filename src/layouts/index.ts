@@ -25,6 +25,9 @@ export default defineComponent({
   async created() {
     await this.prepareData();
     this.redireckToLayout();
+    if (this.$store.state.appData.currentUser.teams.length < 1) {
+      this.$router.push({ path: 'join_to_team' });
+    }
     // socket.connect();
 
     socket.on('set_new_message_notify', data => {
@@ -129,6 +132,7 @@ export default defineComponent({
       setNewTeam: 'setNewTeam',
       setNewDefaultTeam: 'setNewDefaultTeam',
       deleteTeam: 'deleteTeam',
+      getCurrentUser: 'getCurrentUser',
     }),
     ...mapGetters('appData', {
       getChatsFromState: 'getChatsFromState',

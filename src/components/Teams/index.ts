@@ -1,6 +1,7 @@
 import { useQuasar } from 'quasar';
 import changeTeamAvatar from 'src/API/Team/changeTeamAvatar';
 import changeTeamName from 'src/API/Team/changeTeamName';
+import deleteTeam from 'src/API/Team/deleteTeam';
 import deleteUserFromTeam from 'src/API/Team/deleteUserFromTeam';
 import { defineComponent, ref } from 'vue';
 import { mapActions } from 'vuex';
@@ -80,12 +81,20 @@ export default defineComponent({
           // console.log('>>>> Cancel')
         });
     },
-    deleteTeam() {
-      this.isDeleting = true;
-      console.log('delete');
-      setTimeout(() => {
-        this.isDeleting = false;
-      }, 1500);
+    async deleteTeam() {
+      this.$q
+        .dialog({
+          title: 'Confirm',
+          message: 'Are you sure you want to delete this team?',
+          cancel: true,
+          persistent: true,
+        })
+        .onOk(async () => {
+          this.isDeleting = true;
+          await deleteTeam({ teamId: this.$store.state.appData.currentTeam._id });
+          this.isDeleting = false;
+          this.$router.push({ path: 'chat_layout' });
+        });
     },
   },
 });

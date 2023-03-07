@@ -51,7 +51,7 @@ export default defineComponent({
       socket.connect();
 
       this.$router.push('/');
-      window.location.reload();
+      // window.location.reload();
     },
   },
 });

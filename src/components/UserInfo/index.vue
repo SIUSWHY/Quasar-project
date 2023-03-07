@@ -13,10 +13,7 @@
     <strong>
       <UserActions v-for="link in userActions" :key="link.title" v-bind="link" />
     </strong>
-    <strong
-      v-if="$store.state.appData.teams.some(team => team.admin === $store.state.appData.currentUser._id)"
-      @click="goToTeams"
-    >
+    <strong v-if="$store.state.appData.currentTeam.admin === $store.state.appData.currentUser._id" @click="goToTeams">
       <q-item clickable>
         <q-item-section avatar side>
           <q-icon name="dns" color="white" />
@@ -40,6 +37,7 @@
       </q-item>
     </strong>
   </q-list>
+  <div class="version">v.{{ version }}</div>
 </template>
 
 <script lang="ts" src="./index.ts" />

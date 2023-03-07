@@ -3,6 +3,7 @@ import changeUserTheme from 'src/API/Account/changeUserTheme';
 import { defineComponent, ref } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import UserActions from '../../components/EssentialLink.vue';
+import { version } from '../../../package.json';
 
 const actions = [
   // {
@@ -30,6 +31,7 @@ export default defineComponent({
   data() {
     const rightDrawerOpen = ref(false);
     return {
+      version,
       userActions: actions,
       currentUserAvatar,
       darkModeStatus,
