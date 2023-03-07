@@ -34,7 +34,7 @@ export default defineComponent({
       input.click();
     },
     goTo(path: string) {
-      this.$router.push('/chat_layout/settings/' + path);
+      this.$router.push('/settings/' + path);
     },
     goTochatLayout() {
       this.$router.push('/chat_layout');
@@ -51,7 +51,6 @@ export default defineComponent({
       socket.connect();
 
       this.$router.push('/');
-      // window.location.reload();
     },
   },
 });

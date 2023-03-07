@@ -84,7 +84,6 @@ export default defineComponent({
     async deleteTeam() {
       this.$q
         .dialog({
-          title: 'Confirm',
           message: 'Are you sure you want to delete this team?',
           cancel: true,
           persistent: true,

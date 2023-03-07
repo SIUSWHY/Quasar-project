@@ -13,6 +13,7 @@ export const state: AppData = {
     isDarkMode: true,
     defaultTeam: '',
     teams: [],
+    locale: '',
   },
   currentChat: {
     chatType: '',
@@ -35,9 +36,9 @@ export const state: AppData = {
   callLogs: [],
   teams: [],
   currentTeam: {},
-  loaders:{
+  loaders: {
     chats: false,
-  }
+  },
 };
 
 const namespaced = true;

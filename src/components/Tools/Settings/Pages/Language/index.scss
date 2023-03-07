@@ -1,0 +1,38 @@
+.page-color {
+  background: $dark;
+}
+.header-position {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  .lable-position {
+    text-align: center;
+    &::after {
+      content: '';
+      margin-bottom: 15px;
+    }
+  }
+}
+.setting-lable {
+  color: $primary;
+}
+.container {
+  display: block;
+  .sub-title {
+    height: 20px;
+    color: grey;
+    font-size: 12px;
+    margin-left: 0;
+  }
+}
+.content {
+  padding-top: 50px;
+  .q-item {
+    :nth-child(0) {
+      padding: 0 16px 0 16px;
+    }
+  }
+}
+.item {
+  padding: 0;
+}

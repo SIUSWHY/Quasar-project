@@ -21,7 +21,7 @@ export default defineComponent({
       getCurrentUser: 'getCurrentUser',
     }),
     goBack() {
-      this.$router.push('/chat_layout/settings/main');
+      this.$router.push('/settings/main');
     },
     onDecode(decodedString: string) {
       this.isAddNewGadget = false;

@@ -31,6 +31,7 @@ import {
   DELETE_USER,
   DELETE_TEAM_FROM_STORE,
   SET_LOADER,
+  CHANGE_DEF_LOCALE,
 } from './mutationTypes';
 import {
   ChatsType,
@@ -258,5 +259,9 @@ export const mutations: MutationTree<AppData> = {
     keys.forEach(key => {
       state.loaders[key] = data.value;
     });
+  },
+
+  [CHANGE_DEF_LOCALE](state, locale: string) {
+    state.currentUser = { ...state.currentUser, locale };
   },
 };

@@ -30,6 +30,28 @@ const routes: RouteRecordRaw[] = [
     component: () => import('components/CreateTeam/index.vue'),
   },
   {
+    path: '/settings',
+    component: () => import('components/Tools/Settings/index.vue'),
+    children: [
+      {
+        path: 'main',
+        component: () => import('components/Tools/Settings/Layout/index.vue'),
+      },
+      {
+        path: 'gadgets',
+        component: () => import('components/Tools/Settings/Pages/Gadgets/index.vue'),
+      },
+      {
+        path: 'confidentiality',
+        component: () => import('components/Tools/Settings/Pages/Confidentiality/index.vue'),
+      },
+      {
+        path: 'language',
+        component: () => import('components/Tools/Settings/Pages/Language/index.vue'),
+      },
+    ],
+  },
+  {
     path: '/chat_layout',
     component: () => import('src/layouts/index.vue'),
     beforeEnter: (to, from, next) => {
@@ -40,24 +62,6 @@ const routes: RouteRecordRaw[] = [
       next();
     },
     children: [
-      {
-        path: 'settings',
-        component: () => import('components/Tools/Settings/index.vue'),
-        children: [
-          {
-            path: 'main',
-            component: () => import('components/Tools/Settings/Layout/index.vue'),
-          },
-          {
-            path: 'gadgets',
-            component: () => import('components/Tools/Settings/Pages/Gadgets/index.vue'),
-          },
-          {
-            path: 'confidentiality',
-            component: () => import('components/Tools/Settings/Pages/Confidentiality/index.vue'),
-          },
-        ],
-      },
       {
         path: 'chat',
         component: () => import('components/Chat/index.vue'),

@@ -2,7 +2,7 @@
   <div id="q-app" style="min-height: 100vh">
     <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
       <div class="q-pa-md">
-        <q-card-section class="text-h6 text-center">Login</q-card-section>
+        <q-card-section class="text-h6 text-center">{{ $t('login.login') }}</q-card-section>
         <q-form class="q-gutter-md" @keypress.enter="loginUser">
           <q-input filled v-model="user.name" :label="$t('login.your_username')"></q-input>
 
@@ -20,7 +20,7 @@
               ></q-icon> </template
           ></q-input>
           <div v-if="userDevice.desktop || userDevice.mobile === false">
-            <div class="spacer">OR</div>
+            <div class="spacer">{{ $t('or') }}</div>
             <div class="spacer">
               <div class="skeleton-position" v-if="socket_id === null">
                 <q-skeleton height="200px" width="200px"></q-skeleton>
@@ -31,8 +31,8 @@
             </div>
           </div>
           <div>
-            Don't have an account?
-            <router-link style="color: #1976d2 !important" to="/sign_up">Sign up</router-link>
+            {{ $t('login.no_account') }}
+            <router-link style="color: #1976d2 !important" to="/sign_up">{{ $t('login.sign_up') }}</router-link>
           </div>
         </q-form>
       </div>
@@ -44,7 +44,7 @@
             }
           "
           :loading="isLoading"
-          label="Submit"
+          :label="$t('login.submit')"
           type="submit"
           color="primary"
         >

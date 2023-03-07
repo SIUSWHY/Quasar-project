@@ -10,16 +10,26 @@
     </div>
   </div>
   <q-list>
-    <strong>
-      <UserActions v-for="link in userActions" :key="link.title" v-bind="link" />
+    <strong @click="goTo('settings/main')">
+      <q-item clickable>
+        <q-item-section avatar side>
+          <q-icon name="settings" color="white" />
+        </q-item-section>
+        <q-item-section>
+          <q-item-label>{{ $t('user_info.settings') }}</q-item-label>
+        </q-item-section>
+      </q-item>
     </strong>
-    <strong v-if="$store.state.appData.currentTeam.admin === $store.state.appData.currentUser._id" @click="goToTeams">
+    <strong
+      v-if="$store.state.appData.currentTeam.admin === $store.state.appData.currentUser._id"
+      @click="goTo('teams')"
+    >
       <q-item clickable>
         <q-item-section avatar side>
           <q-icon name="dns" color="white" />
         </q-item-section>
         <q-item-section>
-          <q-item-label>Team</q-item-label>
+          <q-item-label>{{ $t('user_info.teams') }}</q-item-label>
         </q-item-section>
       </q-item>
     </strong>
@@ -29,7 +39,7 @@
           <q-icon name="dark_mode" color="white" />
         </q-item-section>
         <q-item-section>
-          <q-item-label>Dark mode</q-item-label>
+          <q-item-label>{{ $t('user_info.dark_mode') }}</q-item-label>
         </q-item-section>
         <q-item-section>
           <q-toggle v-model="darkModeStatus"></q-toggle>

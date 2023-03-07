@@ -36,7 +36,7 @@
             </div>
           </div>
           <div v-if="chat.chatType === 'group'">
-            <q-item-label caption>{{ countOfMembers }} members</q-item-label>
+            <q-item-label caption>{{ countOfMembers }} {{ $t('chat.group.members') }}</q-item-label>
           </div>
           <div v-else>
             <q-item-label caption>online</q-item-label>
@@ -124,8 +124,8 @@
               <div v-else>
                 <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
                   <q-card-section class="text-h6">
-                    <div class="text-h5">No messages here yet...</div>
-                    <div class="text-subtitle2">Send a message</div>
+                    <div class="text-h5">{{ $t('chat.title') }}</div>
+                    <div class="text-subtitle2">{{ $t('chat.sub') }}</div>
                   </q-card-section>
                 </q-card>
               </div>
@@ -140,7 +140,7 @@
           <q-icon size="1.7em" name="sentiment_very_satisfied"></q-icon>
         </q-item-section>
         <q-item-section @keypress.enter="postMessage">
-          <q-input v-model="messageText" placeholder="Placeholder" ref="textInput"></q-input>
+          <q-input v-model="messageText" :placeholder="$t('layout.message')" ref="textInput"></q-input>
         </q-item-section>
         <q-item-section side>
           <q-icon size="1.7em" @click="postMessage()" name="send"></q-icon>

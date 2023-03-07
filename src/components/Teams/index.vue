@@ -16,7 +16,7 @@
           <q-input
             class="link-input"
             readonly
-            label="Your invite link"
+            :label="$t('team_page.link')"
             v-model="$store.state.appData.currentTeam.inviteLink"
             filled
             type="text"
@@ -39,10 +39,10 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            <q-input filled v-model="name" label="Team name" @keyup.enter="saveNewTeamName"></q-input>
+            <q-input filled v-model="name" :label="$t('team_page.name')" @keyup.enter="saveNewTeamName"></q-input>
           </q-item-section>
           <q-item-section side>
-            <q-btn color="green" label="Save" @click="saveNewTeamName"></q-btn>
+            <q-btn color="green" :label="$t('team_page.save')" @click="saveNewTeamName"></q-btn>
           </q-item-section>
         </q-item>
         <q-separator class="q-my-md" dark></q-separator>
@@ -53,7 +53,7 @@
             </q-item-section>
             <q-item-section> {{ $store.state.appData.currentUser.name }}</q-item-section>
             <q-item-section class="chat-owner" side>
-              owner
+              {{ $t('team_page.owner') }}
               <q-icon name="verified" size="1.5em"></q-icon>
             </q-item-section>
             <!-- <q-item-section side>
@@ -80,7 +80,14 @@
       </q-page-container>
       <q-footer style="background-color: #121212; left: 0">
         <q-item>
-          <q-btn class="btn-delete" :loading="isDeleting" @click="deleteTeam" color="negative" icon="diversity_3" label="Delete team"></q-btn>
+          <q-btn
+            class="btn-delete"
+            :loading="isDeleting"
+            @click="deleteTeam"
+            color="negative"
+            icon="diversity_3"
+            :label="$t('team_page.delete')"
+          ></q-btn>
         </q-item>
       </q-footer>
     </q-layout>

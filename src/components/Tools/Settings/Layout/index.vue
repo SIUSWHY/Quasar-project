@@ -46,29 +46,29 @@
       </div>
       <div class="spacer"></div>
       <div class="header-bg-color section">
-        <q-item class="setting-lable">Account </q-item>
+        <q-item class="setting-lable">{{ $t('settings.account') }} </q-item>
         <q-item class="container">
           <q-item-section> {{ $store.getters['appData/getCurrentUser'].phone }}</q-item-section>
-          <q-item-section class="sub-title"> Tap to change phone number</q-item-section>
+          <q-item-section class="sub-title"> {{ $t('settings.change_phone') }}</q-item-section>
         </q-item>
         <q-item class="container">
           <q-item-section> @{{ $store.getters['appData/getCurrentUser'].name }}</q-item-section>
-          <q-item-section class="sub-title"> Username</q-item-section>
+          <q-item-section class="sub-title"> {{ $t('settings.username') }}</q-item-section>
         </q-item>
         <q-item class="container">
-          <q-item-section>About me</q-item-section>
-          <q-item-section class="sub-title"> Add a few words about yourself</q-item-section>
+          <q-item-section>{{ $t('settings.about_me') }}</q-item-section>
+          <q-item-section class="sub-title"> {{ $t('settings.about_me_sub') }}</q-item-section>
         </q-item>
       </div>
       <div class="spacer"></div>
       <div class="header-bg-color section">
-        <q-item class="setting-lable">Settings </q-item>
+        <q-item class="setting-lable">{{ $t('settings.settings') }} </q-item>
         <q-item clickable @click="goTo('gadgets')">
           <q-item-section side>
             <q-icon name="devices_other" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Gadgets</q-item-label>
+            <q-item-label>{{ $t('settings.gadgets.gadgets') }}</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable @click="goTo('confidentiality')">
@@ -76,7 +76,15 @@
             <q-icon name="lock" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Confidentiality</q-item-label>
+            <q-item-label>{{ $t('settings.confidentiality.confidentiality') }}</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable @click="goTo('language')">
+          <q-item-section side>
+            <q-icon name="language" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>{{ $t('settings.language.language') }}</q-item-label>
           </q-item-section>
         </q-item>
       </div>

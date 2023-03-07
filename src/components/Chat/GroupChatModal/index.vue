@@ -43,14 +43,14 @@
               <q-skeleton type="text"></q-skeleton>
             </div>
           </div>
-          <q-item-label caption>{{ countOfMembers }} members</q-item-label>
+          <q-item-label caption>{{ countOfMembers }} {{ $t('chat.group.members') }}</q-item-label>
         </q-item-section>
         <q-item-section side>
           <q-icon name="more_vert" size="1.5em"></q-icon>
         </q-item-section>
       </q-item>
       <q-item style="padding-top: 68px">
-        <q-item-section> Notification</q-item-section>
+        <q-item-section> {{ $t('chat.group.notification') }}</q-item-section>
         <q-item-section side> <q-toggle v-model="isNotify"></q-toggle> </q-item-section>
       </q-item>
       <div>
@@ -58,7 +58,7 @@
           <q-item-section side>
             <q-icon name="person_add" color="primary" size="1.5em"></q-icon>
           </q-item-section>
-          <q-item-section class="add-member-color"> Add Member</q-item-section>
+          <q-item-section class="add-member-color"> {{ $t('chat.group.add_members') }}</q-item-section>
         </q-item>
         <q-item v-for="user in chat.users_id" :key="user._id">
           <q-item-section side>
@@ -66,7 +66,7 @@
           </q-item-section>
           <q-item-section> {{ user.name }}</q-item-section>
           <q-item-section class="chat-owner" side v-if="user._id === chat.adminUserId">
-            owner
+            {{ $t('chat.group.owner') }}
             <q-icon name="verified" size="1.5em"></q-icon>
           </q-item-section>
         </q-item>

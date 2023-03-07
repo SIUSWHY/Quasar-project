@@ -21,7 +21,7 @@ export default defineComponent({
       this.isModalOpen = true;
     },
     goBack() {
-      this.$router.push('/chat_layout/settings/main');
+      this.$router.push('/settings/main');
     },
     async deleteAccount() {
       this.isLoading = true;

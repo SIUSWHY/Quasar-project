@@ -28,6 +28,9 @@ export default defineComponent({
     if (this.$store.state.appData.currentUser.teams.length < 1) {
       this.$router.push({ path: 'join_to_team' });
     }
+    if (this.$root) {
+      this.$root.$i18n.locale = this.$store.state.appData.currentUser.locale;
+    }
     // socket.connect();
 
     socket.on('set_new_message_notify', data => {

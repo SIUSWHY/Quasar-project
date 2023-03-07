@@ -36,6 +36,7 @@ import {
   DELETE_USER,
   DELETE_TEAM_FROM_STORE,
   SET_LOADER,
+  CHANGE_DEF_LOCALE,
 } from './mutationTypes';
 import { RootState, AppData, UserStatus, TeamType } from './types';
 
@@ -201,5 +202,9 @@ export const actions: ActionTree<AppData, RootState> = {
 
   setLoader({ commit }, data: { key: string | string[]; value: boolean }) {
     commit(SET_LOADER, data);
+  },
+
+  changeDefLocale({ commit }, locale: string) {
+    commit(CHANGE_DEF_LOCALE, locale);
   },
 };

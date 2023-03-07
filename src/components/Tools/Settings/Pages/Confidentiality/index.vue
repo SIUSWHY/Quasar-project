@@ -12,21 +12,32 @@
           size="1.5em"
         ></q-icon>
       </q-item-section>
-      <q-item-section> Confidentiality </q-item-section>
+      <q-item-section> {{ $t('settings.confidentiality.confidentiality') }} </q-item-section>
     </q-item>
     <q-item class="header-pisition">
       <q-item-section>
-        <q-btn @click="openModal" color="negative" icon="account_circle" label="Delete account"></q-btn>
+        <q-btn
+          @click="openModal"
+          color="negative"
+          icon="account_circle"
+          :label="$t('settings.confidentiality.delete')"
+        ></q-btn>
       </q-item-section>
       <q-dialog v-model="isModalOpen" persistent>
         <q-card>
           <q-card-section class="row items-center">
-            <span class="q-ml-sm">Are you sure you want to delete your account?</span>
+            <span class="q-ml-sm">{{ $t('settings.confidentiality.title') }}</span>
           </q-card-section>
 
           <q-card-actions align="right">
-            <q-btn flat label="Cancel" color="primary" v-close-popup></q-btn>
-            <q-btn flat label="Delete" color="negative" :loading="isLoading" @click="deleteAccount"></q-btn>
+            <q-btn flat :label="$t('settings.confidentiality.cancel')" color="primary" v-close-popup></q-btn>
+            <q-btn
+              flat
+              :label="$t('settings.confidentiality.delete')"
+              color="negative"
+              :loading="isLoading"
+              @click="deleteAccount"
+            ></q-btn>
           </q-card-actions>
         </q-card>
       </q-dialog>

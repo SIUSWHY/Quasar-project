@@ -6,8 +6,8 @@
           <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
           <q-space />
           <q-tabs v-model="tab">
-            <q-tab name="chats" label="Chats"></q-tab>
-            <q-tab name="calls" label="Calls"></q-tab>
+            <q-tab name="chats" :label="$t('layout.chats')"></q-tab>
+            <q-tab name="calls" :label="$t('layout.calls')"></q-tab>
           </q-tabs>
           <q-space />
           <q-btn flat dense round icon="dns" @click="openSwitchTeam" />
@@ -52,8 +52,8 @@
             <div v-else>
               <q-card style="max-width: 400px; min-width: 350px" class="fixed-center">
                 <q-card-section class="text-h6">
-                  <div class="text-h5">No chats here yet...</div>
-                  <div class="text-subtitle2">Send a message</div></q-card-section
+                  <div class="text-h5">{{ $t('layout.no_chats.title') }}</div>
+                  <div class="text-subtitle2">{{ $t('layout.no_chats.sub') }}</div></q-card-section
                 ></q-card
               >
             </div>
@@ -75,20 +75,20 @@
       <div>
         <div v-if="tab === 'chats'">
           <transition appear enter-active-class="animated fadeIn">
-            <q-page-sticky @click="togleTools" position="bottom-right" class="btn_z-index" :offset="[18, 18]">
-              <q-fab icon="edit" direction="up" color="blue">
-                <q-fab-action
+            <q-page-sticky position="bottom-right" class="btn_z-index" :offset="[18, 18]">
+              <q-fab @click="togleTools" icon="edit" direction="up" color="blue">
+                <!-- <q-fab-action
                   @click="toggleRightDrawer()"
                   label="Create secret chat"
                   external-label
                   color="green-6"
                   label-position="left"
                   icon="lock"
-                ></q-fab-action>
+                ></q-fab-action> -->
                 <q-fab-action
                   @click="writeMessage()"
                   to="/chat_layout/write_message"
-                  label="Write message"
+                  :label="$t('layout.actions.double')"
                   external-label
                   color="red-5"
                   label-position="left"
@@ -96,7 +96,7 @@
                 ></q-fab-action>
                 <q-fab-action
                   @click="toggleRightDrawer()"
-                  label="Create group"
+                  :label="$t('layout.actions.group')"
                   to="/chat_layout/create_group"
                   external-label
                   color="orange-6"
@@ -123,7 +123,7 @@
       <q-dialog v-model="isSwitchTeamOpen" position="bottom">
         <q-card style="width: 90%">
           <div class="q-ma-md">
-            <div class="text-h6 q-my-sm">Your servers</div>
+            <div class="text-h6 q-my-sm">{{ $t('teams.yours_servers') }}</div>
             <div v-for="team in $store.getters['appData/getTeams']" :key="team._id">
               <q-item
                 clickable
@@ -149,7 +149,13 @@
                 </q-item-section>
               </q-item>
             </div>
-            <q-btn class="q-mt-lg" color="green" style="width: 100%" label="+ Add a server" @click="addServer"></q-btn>
+            <q-btn
+              class="q-mt-lg"
+              color="green"
+              style="width: 100%"
+              :label="$t('teams.add')"
+              @click="addServer"
+            ></q-btn>
           </div>
         </q-card>
       </q-dialog>

@@ -17,6 +17,7 @@ export interface CurrentUser {
   isDarkMode: boolean;
   defaultTeam: string;
   teams: string[];
+  locale: string;
 }
 export interface SelectedUsers {
   _id: string;
