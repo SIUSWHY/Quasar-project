@@ -53,11 +53,11 @@ export default defineComponent({
       });
     });
 
-    const token: string | null = LocalStorage.getItem('user_login_token');
-    if (token) {
-      Cookies.set('Token', token, { expires: 14 });
-      this.$router.push({ path: 'chat_layout' });
-    }
+    // const token: string | null = LocalStorage.getItem('user_login_token');
+    // if (token) {
+    //   // Cookies.set('Token', token, { expires: 14 });
+    //   this.$router.push({ path: 'chat_layout' });
+    // }
   },
   unmounted() {
     socket.off('send_room_data_to_clent');
@@ -79,8 +79,8 @@ export default defineComponent({
       try {
         const { data: userData } = await loginUser(user);
 
-        Cookies.set('Token', userData.token, { expires: 14 });
-        LocalStorage.set('user_login_token', userData.token);
+        // Cookies.set('Token', userData.token, { expires: 14 });
+        // LocalStorage.set('user_login_token', userData.token);
 
         socket.io.opts.query = {
           token: userData.token,
