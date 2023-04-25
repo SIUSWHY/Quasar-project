@@ -1,18 +1,21 @@
 import axios, { AxiosError } from 'axios';
-import { Cookies } from 'quasar';
 
 const apiUrl = process.env.DEV ? 'https://192.168.88.47:3000' : 'https://hermes-server.online/api/';
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(
   config => {
-    config.headers.Authorization = 'Bearer ' + Cookies.get('Token');
     return config;
   },
   error => {
-    return Promise.reject(error);
+    if (error.response.status === 401) {
+      window.location.href = '/';
+    } else {
+      return Promise.reject(error);
+    }
   }
 );
 
