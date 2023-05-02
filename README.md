@@ -1,40 +1,24 @@
-# Quasar App (quasar-project)
+# About "Hermes"
 
-A Quasar Project
+This project is my final qualification work.
+
+I will be glad if you watch the [DEMO](https://hermes-server.online/) and write about the bugs you find.
 
 ## Install the dependencies
 
 ```bash
-yarn
-# or
-npm install
+npm ci
 ```
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
 npm run serve
-```
-
-### Lint the files
-
-```bash
-yarn lint
-# or
-npm run lint
-```
-
-### Format the files
-
-```bash
-yarn format
-# or
-npm run format
+#or
+npm run dev:pwa
 ```
 
 ### How to build .apk file and subscribe it
-
-See [Publishing to Store](https://quasar.dev/quasar-cli-vite/developing-capacitor-apps/publishing-to-store).
 
 ```bash
 npx quasar build -m capacitor -T android
@@ -47,9 +31,7 @@ zipalign -v 4 app-release-unsigned.apk quasar.apk
 ### Build the app for production
 
 ```bash
-quasar build
+npm run build:apk
+#or
+npm run build:pwa
 ```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js).
