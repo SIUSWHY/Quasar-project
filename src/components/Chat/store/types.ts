@@ -8,6 +8,7 @@ export interface MessageData {
   stamp: string;
   label: string;
   messageText: string[];
+  type?: string;
 }
 export interface ChatData {
   companionData: CompanionUserData;

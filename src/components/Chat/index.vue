@@ -136,8 +136,8 @@
     </q-item>
     <q-footer style="background-color: #1d1d1d; left: 0">
       <q-item>
-        <q-item-section side>
-          <q-icon size="1.7em" name="sentiment_very_satisfied"></q-icon>
+        <q-item-section side @click="attachFile">
+          <q-icon size="1.7em" name="attach_file"></q-icon>
         </q-item-section>
         <q-item-section @keypress.enter="postMessage">
           <q-input v-model="messageText" :placeholder="$t('layout.message')" ref="textInput"></q-input>

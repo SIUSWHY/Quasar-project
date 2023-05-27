@@ -39,6 +39,17 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      .attach-bg-icon {
+        background-color: #289adb;
+        border-radius: 25px;
+        padding: 5px;
+        margin-right: 5px;
+        cursor: pointer;
+      }
+      .attach-message {
+        flex-direction: row;
+        align-items: flex-start;
+      }
     }
     .title {
       margin: 2% auto 2% 0;
@@ -49,6 +60,17 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      .attach-bg-icon {
+        background-color: #289adb;
+        border-radius: 25px;
+        padding: 5px;
+        margin: 0 5px 5px 0;
+        cursor: pointer;
+      }
+      .attach-message {
+        flex-direction: row;
+        align-items: flex-start;
+      }
     }
     .title {
       margin: 2% auto 2% 0;

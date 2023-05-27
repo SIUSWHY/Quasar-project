@@ -5,6 +5,8 @@ import MessageComponent from './Message/index.vue';
 import GroupChatInfo from './GroupChatModal/index.vue';
 import readMessagesFromChat from 'src/API/Message/readMssagesFromChat';
 import detectURLs from 'src/helpers/parseUrlFromString';
+import uploadFile from 'src/API/Message/attachFile';
+import { useQuasar } from 'quasar';
 
 const messageText = ref(null);
 const companionData = ref(null);
@@ -17,12 +19,16 @@ export default defineComponent({
   },
 
   data() {
+    const $q = useQuasar();
     return {
       isGroupInfoOpen: ref(false),
       companionData,
       messageText,
       countOfMembers: this.$store.getters['appData/getCountMembersFromCurrentChat'],
       chat: this.$store.getters['appData/getCurrentChat'],
+      attachSizeError(type: string, message: string) {
+        $q.notify({ type, message });
+      },
     };
   },
 
@@ -75,6 +81,59 @@ export default defineComponent({
     ...mapGetters('chatData', {
       getCompanion: 'getCompanion',
     }),
+
+    attachFile() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.pdf, .docx';
+      input.multiple = true;
+      input.onchange = async () => {
+        if (input.files !== null) {
+          Array.from(input.files).forEach(async file => {
+            const fileSize = file.size / 1024;
+            if (fileSize < 200) {
+              const response = new FormData();
+              response.append('avatar', file);
+              const { data: fileUrl } = await uploadFile(response);
+
+              const currentTime = new Date();
+              const postUserId = this.$store.state.appData.currentUser._id;
+
+              const message = {
+                messageText: [file.name],
+                stamp: currentTime,
+                userId: postUserId,
+                whoRead: [postUserId],
+                type: 'file',
+                fileUrl,
+                url: null,
+              };
+
+              socket.emit('save_message_to_db', {
+                message: message,
+              });
+
+              // socket.emit('send_url_to_server', url?.pop());
+
+              messageText.value = null;
+
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const textInput: any = this.$refs.textInput;
+              textInput.focus();
+
+              setTimeout(() => {
+                const elementFromArrayElements = Array.from(document.querySelectorAll('.q-message-text')).pop();
+                elementFromArrayElements?.scrollIntoView({ behavior: 'smooth' });
+              }, 300);
+            } else {
+              this.attachSizeError('negative', `File ${file.name} is too big`);
+              console.log('isToBig', file.name);
+            }
+          });
+        }
+      };
+      input.click();
+    },
 
     goChatLayout() {
       this.$router.push('/chat_layout');
