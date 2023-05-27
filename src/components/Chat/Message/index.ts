@@ -23,5 +23,15 @@ export default defineComponent({
       console.log(messageId);
       this.isActionsOpen = true;
     },
+
+    downloadFile(url: string, fileName: string) {
+      const a = document.createElement('a');
+      a.download = fileName;
+      a.target = '_blank';
+      a.href = url;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    },
   },
 });
